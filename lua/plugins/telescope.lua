@@ -1,0 +1,36 @@
+return {
+  {
+    "nvim-telescope/telescope.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      local builtin = require("telescope.builtin")
+      vim.keymap.set("n", "<C-p>", builtin.find_files, { desc = "find file" })
+      vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "fuzzy find (live grep)" })
+    end,
+  },
+  {
+    "nvim-telescope/telescope-ui-select.nvim",
+    config = function()
+      require("telescope").setup({
+        defaults = {
+          sorting_strategy = "ascending",
+          layout_config = {
+            prompt_position = "top",
+          },
+        },
+        extensions = {
+          -- for code actions popup: keep them small!
+          ["ui-select"] = {
+            require("telescope.themes").get_dropdown({
+              layout_config = {
+                width = 0.40,
+                height = 0.30,
+              },
+            }),
+          },
+        },
+      })
+      require("telescope").load_extension("ui-select")
+    end,
+  },
+}

@@ -20,9 +20,20 @@ If you, however, think you can stomach that: enjoy the repo! Feel free to clone 
 
 ## Shortcuts
 
-Ensure your terminal doesn't steal CMD key and CMD+number key combinations for example to switch between open terminal
-tabs, use tmux instead!
- 
+> [!IMPORTANT]
+> Ensure your terminal doesn't steal CMD key and CMD+number key combinations (i.e. to switch between open terminal tabs:
+> use tmux instead!). If you're not sure whether your key combination is recognised by neovim: press `F5`, and neovim
+> will print any shortcutto the command line. If nothing gets printed, it means that your terminal or OS is capturing it
+> already.
+
+
+| Action | Shortcut | Description | 
+| --------------- | --------------- | --------------- |
+| Toggle Project Files | CMD+1, CMD+k1 | Toggles the file browser from any window/buffer |
+| Show in Project Files | CMD+p | Show current file in the file browser |
+| Show Project Files help | ? | Shows all extra actions that can be performed in the file tree, i.e. `a`dd, `r`ename, `d`elete a file or `/` to fuzzy-find files |
+
+
 ## Notes
 
 :warning: Don't know the keymaps?

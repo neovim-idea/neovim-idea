@@ -38,7 +38,8 @@ If you, however, think you can stomach that: enjoy the repo! Feel free to clone 
 | Toggle Project Files | CMD+1, CMD+k1 | Toggles the file browser from any window/buffer |
 | Show in Project Files | CMD+p | Show current file in the file browser |
 | Show Project Files help | ? | Shows all extra actions that can be performed in the file tree, i.e. `a`dd, `r`ename, `d`elete a file or `/` to fuzzy-find files |
-
+| Find files | CMD+f | Find project files by name | 
+| Find in files | CMD+F | Fuzzy find some text in the project files | 
 
 ## Notes
 
@@ -131,3 +132,4 @@ will do), and that will prompt the LSP with the missing suggestion from its pare
 * [x] use notification plugin to avoid losing focus from the buffer
   * [x] add telescope integration to retrieve notifications in case we need to copy/paste logs
 * [ ] bind mouse keys prev/next to cycle between open files
+* [ ] global search & replace

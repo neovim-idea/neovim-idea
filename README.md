@@ -1,3 +1,28 @@
+# Read This First!
+
+This is a very personal and opinionated customisation of neovim to resemble IntelliJ IDEA look & feel, tailored towards
+Scala development (does support Java as well, although I believe it would need extra configuration to support standalone
+Java development).
+
+Due to my work laptop being old and with limited amount or RAM, having one instance of IntelliJ IDEA running along with
+Chrome and Slack had become... problematic. Add to the mix dockerized instances of kafka/postgres/redis/amqp and so on,
+and the system just turns downright unusable.
+
+Because of that, I needed a **quick** replacement for IntelliJ to shave off those ~4GB of memory and keep me working;
+obviously, neovim was the IDE of choice.
+
+HOWEVER: despite my (limited) previous knowledge of (neo)vim, I had nor the time or the inclination to learn a whole
+plethora of commands and shortcuts to be used in different modes. Call it lazyness, old age or muscle memory. As a
+direct consequence of it, I brazenly messed with the key shortcuts in a way that any respectabe neovim user would either
+get angry or weep in despair. Sorry, not sorry, I've got work to do. 
+
+If you, however, think you can stomach that: enjoy the repo! Feel free to clone it and tweak it as you please :)   
+
+## Shortcuts
+
+Ensure your terminal doesn't steal CMD key and CMD+number key combinations for example to switch between open terminal
+tabs, use tmux instead!
+ 
 ## Notes
 
 :warning: Don't know the keymaps?

@@ -23,8 +23,14 @@ If you, however, think you can stomach that: enjoy the repo! Feel free to clone 
 > [!IMPORTANT]
 > Ensure your terminal doesn't steal CMD key and CMD+number key combinations (i.e. to switch between open terminal tabs:
 > use tmux instead!). If you're not sure whether your key combination is recognised by neovim: press `F5`, and neovim
-> will print any shortcutto the command line. If nothing gets printed, it means that your terminal or OS is capturing it
-> already.
+> will print any shortcut to the command line. If nothing gets printed, it means that your terminal or OS is capturing
+> it already.
+
+> [!NOTE]
+> This setup comes with [which-key](https://github.com/folke/which-key.nvim) preinstalled: either type `:Whichkey` in
+> the command prompt, or press `<leader>` (=spacebar in this setup) and a popup will appear, showing all available
+> shortcuts that are registered in neovim.
+
 
 
 | Action | Shortcut | Description | 
@@ -38,7 +44,6 @@ If you, however, think you can stomach that: enjoy the repo! Feel free to clone 
 
 :warning: Don't know the keymaps?
 
-This setup comes with [which-key](https://github.com/folke/which-key.nvim) preinstalled to show you all available shortcuts.
 Just press spacebar and in 500ms (configurable in ./lua/plugins/which-key.lua) it will show an auto completable popup!
 
 remove all existing nvim config files, states etc..

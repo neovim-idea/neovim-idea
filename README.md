@@ -26,11 +26,20 @@ If you, however, think you can stomach that: enjoy the repo! Feel free to clone 
 > will print any shortcut to the command line. If nothing gets printed, it means that your terminal or OS is capturing
 > it already.
 
+
 > [!NOTE]
 > This setup comes with [which-key](https://github.com/folke/which-key.nvim) preinstalled: either type `:Whichkey` in
 > the command prompt, or press `<leader>` (=spacebar in this setup) and a popup will appear, showing all available
 > shortcuts that are registered in neovim.
 
+
+In case you're using `Logictech MX Keys` in MacOS, you might have issues trying to figure out why `Fn` keys are still
+modifying the brightness/volume/etc.. even though you you specifically toggled on the System Settings option
+`use F1, F2 etc. keys as standard function keys`. No, you're not drunk: on my Company's old MBP i9 they worked fine but,
+on my personal MBP M1, it didn't; seems like that, on the newer Apple Silicon MBPs, this setting is not honoerd properly
+and therefore you must install [Logi Option+](https://www.logitech.com/en-us/software/logi-options-plus.html), import
+your keyboad and then, under the `General` section .. toggle  `use F1, F2 etc. keys as standard function keys`.
+Go figure.
 
 
 | Action | Shortcut | Description | 

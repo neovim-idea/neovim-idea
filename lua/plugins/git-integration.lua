@@ -30,7 +30,7 @@ return {
   },
   {
     "folke/snacks.nvim",
-    lazy = true,
+    lazy = false,
     opts = {
       lazygit = {},
     },

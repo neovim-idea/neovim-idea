@@ -29,8 +29,8 @@ If you, however, think you can stomach that: enjoy the repo! Feel free to clone 
 
 > [!NOTE]
 > This setup comes with [which-key](https://github.com/folke/which-key.nvim) preinstalled: either type `:Whichkey` in
-> the command prompt, or press `<leader>` (=spacebar in this setup) and a popup will appear, showing all available
-> shortcuts that are registered in neovim.
+> the command prompt, or press `<leader>` (=spacebar in this setup) followed by `?` and a popup will appear, showing all
+> available shortcuts that are registered in neovim (navigate Down/Up the popup via CTRL+d/CTRL+u)
 
 
 In case you're using `Logictech MX Keys` in MacOS, you might have issues trying to figure out why `Fn` keys are still

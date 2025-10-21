@@ -43,7 +43,7 @@ return {
       -- go to references
       vim.keymap.set({ "n", "v" }, "<leader>gr", vim.lsp.buf.references, { desc = "go to symbol references" })
       vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "show code action" })
-      vim.keymap.set({ "n", "i", "v" }, "<D-r>", function()
+      vim.keymap.set({ "n", "v" }, "<D-r>", function()
         return ":IncRename " .. vim.fn.expand("<cword>")
       end, { expr = true, desc = "rename symbol" })
 
@@ -181,6 +181,25 @@ return {
     },
     config = function(_, opts)
       require("inc_rename").setup(opts)
+
+      -- TODO: maybe there's a less hackish way? ie set a global variable to keep track fo the mode, and check it after
+      --       we're done, in order to restore the previous mode
+      vim.keymap.set("i", "<D-r>", function()
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", true)
+        local word = vim.fn.expand("<cword>")
+
+        vim.ui.input({
+          -- this is probably not needed, dressing.nvim does that already
+          prompt = "Rename Symbol...",
+          default = word,
+          completion = "word",
+        }, function(new_name)
+          if new_name and new_name ~= "" then
+            vim.cmd("IncRename " .. new_name)
+          end
+          vim.cmd("startinsert")
+        end)
+      end, { desc = "Rename symbol" })
     end,
   },
 }

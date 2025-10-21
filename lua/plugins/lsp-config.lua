@@ -43,7 +43,9 @@ return {
       -- go to references
       vim.keymap.set({ "n", "v" }, "<leader>gr", vim.lsp.buf.references, { desc = "go to symbol references" })
       vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "show code action" })
-      vim.keymap.set({ "n", "i", "v" }, "<D-r>", vim.lsp.buf.rename, { desc = "rename symbol" })
+      vim.keymap.set({ "n", "i", "v" }, "<D-r>", function()
+        return ":IncRename " .. vim.fn.expand("<cword>")
+      end, { expr = true, desc = "rename symbol" })
 
       --      -- TODO This will be replaced hopefully by edgy.nvim
       --      vim.g.dapui_open = false
@@ -151,6 +153,34 @@ return {
         end,
         group = nvim_metals_group,
       })
+    end,
+  },
+  {
+    "stevearc/dressing.nvim",
+    lazy = false,
+    config = function()
+      require("dressing").setup({
+        input = {
+          insert_only = false,
+          override = function(conf)
+            -- specific customisation for renaming symbol popup
+            if vim.fn.getcmdtype() == ":" and vim.fn.getcmdline():match("^IncRename") then
+              conf.title = "Rename symbol..."
+            end
+            return conf
+          end,
+        },
+      })
+    end,
+  },
+  {
+    "smjonas/inc-rename.nvim",
+    dependencies = { "stevearc/dressing.nvim" },
+    opts = {
+      input_buffer_type = "dressing",
+    },
+    config = function(_, opts)
+      require("inc_rename").setup(opts)
     end,
   },
 }

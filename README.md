@@ -132,7 +132,8 @@ will do), and that will prompt the LSP with the missing suggestion from its pare
 * [x] SHIFT+UP/DOWN moves the current line up/down
 * [x] use https://github.com/folke/snacks.nvim/tree/main/docs for lazygit
   * [x] terminal (?)
-* [ ] find out how to rename variables, classes & [files](https://github.com/folke/snacks.nvim/blob/main/docs/rename.md)
+* [x] find out how to rename variables, classes
+  * [ ] ... and [files](https://github.com/folke/snacks.nvim/blob/main/docs/rename.md)
 * [x] show errors in the current line
 * [ ] click on a gutter to toggle a breakpoint creation on/off (might require jumping on the line, then dap.toggle())
 * [ ] scratch files management for quick & dirty snippets

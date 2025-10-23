@@ -143,3 +143,4 @@ will do), and that will prompt the LSP with the missing suggestion from its pare
   * [x] add telescope integration to retrieve notifications in case we need to copy/paste logs
 * [ ] bind mouse keys prev/next to cycle between open files
 * [ ] global search & replace
+* [ ] when exiting lazygit, neotree should refresh its status icons 

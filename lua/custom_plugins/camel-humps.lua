@@ -42,23 +42,10 @@ local function left_camel_hump(line)
   end
 
   local rightmost_word_position, word = line:match("()(%S-)[" .. special_chars:gsub("(%p)", "%%%1") .. "]*%s*$")
-  -- if there are no alphanumeric words availalbe ...
+  -- if there are no alphanumeric words availalbe -> move to the beginning
   if word == nil then
-    -- but, if the line has still whitespaces -> move to the beginning
     return { cursor_col = 0, cursor_line = 0 }
   end
-
-  local log = ""
-
-  local function add_log(action)
-    if log == "" then
-      log = action
-    else
-      log = log .. " -> " .. action
-    end
-  end
-
-  add_log("word: '" .. word .. "'")
 
   ---@diagnostic disable-next-line: need-check-nil
   local result = word:foldRight({ start_type = nil, pivot_type = nil, counter = 0 }, function(ch, acc)
@@ -67,7 +54,6 @@ local function left_camel_hump(line)
     end
 
     local new_type = char_type(ch)
-    add_log(ch)
     if acc.start_type == nil then
       acc.counter = 1
       acc.start_type = new_type
@@ -94,9 +80,6 @@ local function left_camel_hump(line)
       return acc
     end
   end)
-
-  -- debug to check the chars that were inspected
-  -- print(log)
 
   local final_position = { cursor_col = rightmost_word_position + (#word - result.counter) - 1, cursor_line = 0 }
   return final_position

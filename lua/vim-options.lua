@@ -76,112 +76,32 @@ vim.keymap.set({ "n", "i" }, "<S-Left>", function()
   vim.api.nvim_win_set_cursor(0, { current_cursor_position[1] + newpos.cursor_line , new_cursor_col})
 end, { noremap = true, silent = true })
 
-function camel_humps_shift_right()
-  local current_pos = vim.api.nvim_win_get_cursor(0) -- Get current cursor position
-  local line_num = current_pos[1]
-  local current_line = vim.fn.getline(".") -- Get the current line content
-  local cursor_col = current_pos[2] + 1 -- Get the cursor column position (0 based)
-  local line_len = #current_line
-  local function is_upper_at(i)
-    if i < 1 or i > line_len then
-      return false
-    end
-    local ch = current_line:sub(i, i)
-    return ch:match("%u") ~= nil
-  end
-
-  -- If we're at the end of the line, and not in the last line, move to the next line end
-  if (cursor_col == line_len and line_num < vim.fn.line("$")) or (current_line == "") then
-    vim.api.nvim_win_set_cursor(0, { line_num + 1, 0 })
-    return
-  end
-
-  -- Save the current position of the cursor
-  local current_cursor_position = vim.api.nvim_win_get_cursor(0)
-
-  -- 1. TODO Find the leftmost UPPERCASE word after the cursor
-  local closest_uppercase_position = nil
-  local current_char = current_line:sub(cursor_col, cursor_col)
-  if current_char:match("%u") ~= nil then
-    -- if we're over an uppercase char, try to understand if we're inside an uppercase word
-    local _, end_pos = current_line:find("[%u%d]+", cursor_col)
-    -- now, try to search another uppercase word, starting from the previous uppercase end_position + 1
-    local start_pos, ep = current_line:find("[%u%d]+", end_pos + 1)
-    closest_uppercase_position = (start_pos or line_len) - 1
-  --    local first_substring = current_line:sub(cursor_col, end_pos)
-  --    local second_substring
-  --    if start_pos ~= nil then
-  --      second_substring = current_line:sub(start_pos, ep)
-  --    else
-  --      second_substring = "-"
-  --    end
-  --    print(current_char .. " -> " .. first_substring .. " -> " .. second_substring)
-  else
-    closest_uppercase_position = (current_line:find("%u", cursor_col) or line_len) - 1
-  end
-
-  -- 2. Find the leftmost special character after the cursor
-  local closest_special_character_position = nil
-  --[[
-  if current_char:match("[(%)%.%=~?|&+%-*:/!<>#_]") ~= nil then
-    -- if we're over an uppercase char, try to understand if we're inside an uppercase word
-    local _, end_pos = current_line:find("[(%)%.%=~?|&+%-*:/!<>#_]+", cursor_col + 1)
-    -- now, try to search another uppercase word, starting from the previous uppercase end_position + 1
-    local start_pos, ep = current_line:find("[(%)%.%=~?|&+%-*:/!<>#_]+", end_pos + 1)
-      closest_special_character_position = start_pos - 1
---    local first_substring = current_line:sub(cursor_col, end_pos)
---    local second_substring
---    if start_pos ~= nil then
---      second_substring = current_line:sub(start_pos, ep)
---    else
---      second_substring = "-"
---    end
---    print(current_char .. " -> " .. first_substring .. " -> " .. second_substring)
-  else
-    closest_special_character_position = current_line:find("[(%)%.%=~?|&+%-*:/!<>#_]", cursor_col) - 1
-  end
-  --]]
-  for i = cursor_col + 1, line_len do
-    local char = current_line:sub(i, i)
-    if is_special_char(char) then
-      closest_special_character_position = i - 1
-      -- Now continue left to find the rest of the uppercase word
-      --      for j = i + 1, line_len do
-      --        local next_char = current_line:sub(j, j)
-      --        if not is_special_char(next_char) then
-      --          break
-      --        end
-      --        closest_special_character_position = j
-      --      end
-      break
-    end
-  end
-
-  -- 3. TODO update description Find the rightmost word (sequence of alphanumeric characters)
-  local closest_word_start_position = nil
-  for i = cursor_col + 1, line_len do
-    local char = current_line:sub(i, i)
-    if char:match("[a-zA-Z0-9]") then
-      closest_word_start_position = i
-    elseif not char:match("[a-zA-Z0-9]") then
-      break
-    end
-  end
-
-  -- 4. If all positions are nil, set final_position to the start of the current line
-  local final_position = math.min(
-    closest_uppercase_position or line_len,
-    closest_special_character_position or line_len,
-    closest_word_start_position or line_len
-  )
-
-  -- 5. Move the cursor to the calculated final position
-  vim.api.nvim_win_set_cursor(0, { current_cursor_position[1], final_position })
-end
-
 -- Map Shift+Right in normal/insert modes to the rightward camel-hump motion
 vim.keymap.set({ "n", "i" }, "<S-Right>", function()
-  camel_humps_shift_right()
+  local current_cursor_position = vim.api.nvim_win_get_cursor(0) -- Get current cursor position
+  local current_line = vim.fn.getline(".") -- Get the current line content
+  local cursor_col = current_cursor_position[2] -- Get the cursor column position
+  local line_to_be_processed = current_line:sub(cursor_col + 1, #current_line)
+  local line_count = vim.api.nvim_buf_line_count(0)
+  local newpos = C.right_camel_hump(line_to_be_processed)
+
+  local new_cursor_col = nil
+  local new_cursor_line = current_cursor_position[1] + newpos.cursor_line
+
+  if newpos.cursor_col == nil then
+    -- we need to move to the next line.. but do we have a new one?
+    if new_cursor_line >= line_count then
+      new_cursor_line = line_count
+      new_cursor_col = #current_line
+    else
+      new_cursor_col = 0
+    end
+  else
+    new_cursor_col = cursor_col + newpos.cursor_col
+  end
+
+  vim.api.nvim_win_set_cursor(0, { new_cursor_line, new_cursor_col})
+  -- print("..\"" .. line_to_be_processed .. "\"")
 end, { noremap = true, silent = true })
 
 

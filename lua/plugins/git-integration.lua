@@ -16,10 +16,10 @@ return {
     "lewis6991/gitsigns.nvim",
     config = function()
       require("gitsigns").setup({
-        -- toggle the line blame when neovim start
         current_line_blame = true,
       })
       vim.keymap.set("n", "<leader>gp", ":Gitsigns preview_hunk<CR>", { desc = "show git hunk preview" })
+      -- TODO: current_line_blame is handy, perhaps just leave it on all the times (?)
       vim.keymap.set(
         "n",
         "<leader>gt",
@@ -30,13 +30,15 @@ return {
   },
   {
     "folke/snacks.nvim",
-    lazy = true,
+    lazy = false,
     opts = {
       lazygit = {},
     },
     config = function()
       local Snacks = require("snacks")
-      vim.keymap.set({ "n", "i" }, "<D-G>", function() Snacks.lazygit.open() end, { desc = "open lazygit" })
+      vim.keymap.set({ "n", "i" }, "<D-G>", function()
+        Snacks.lazygit.open()
+      end, { desc = "open lazygit" })
     end,
   },
 }

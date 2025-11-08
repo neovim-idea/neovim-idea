@@ -71,7 +71,6 @@ return {
       return opts
     end,
   },
-  -- 3) Snacks: terminal toggle + mapping to ⌘+F12 (bottom split)
   {
     "folke/snacks.nvim",
     priority = 1000,
@@ -80,25 +79,23 @@ return {
       terminal = { enabled = true },
     },
     keys = {
-      -- macOS: <D-...> is the Command key in Neovim
       {
         "<D-F12>",
         function()
-          -- focus existing bottom terminal or create one there
           require("snacks").terminal(nil, { position = "bottom" })
         end,
-        mode = { "n", "t" },
+        mode = { "n", "i", "t" },
         desc = "Toggle Bottom Terminal (Snacks)",
       },
     },
   },
-
-  -- 4) DAP UI: hide sidebars while debugging, restore afterwards
   {
     "rcarriga/nvim-dap-ui",
     dependencies = { "mfussenegger/nvim-dap" },
-    opts = {}, -- your dap-ui layout if you want
+    opts = {},
     config = function(_, opts)
+      --[[ TODO: is this machinery still required?
+
       local dapui = require("dapui")
       -- dapui.setup(opts) -- TODO is all of this still needed ?
       local dap = require("dap")
@@ -152,6 +149,7 @@ return {
       --        the dapui still open to inspect logs
       -- dap.listeners.before.event_terminated["edgy_restore_sidebars_after_dap"] = restore_sidebars
       -- dap.listeners.before.event_exited["edgy_restore_sidebars_after_dap"] = restore_sidebars
+      --]]
     end,
   },
 }

@@ -43,24 +43,27 @@ return {
       -- go to references
       vim.keymap.set({ "n", "v" }, "<leader>gr", vim.lsp.buf.references, { desc = "go to symbol references" })
       vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "show code action" })
+      vim.keymap.set({ "n", "v" }, "<D-r>", function()
+        return ":IncRename " .. vim.fn.expand("<cword>")
+      end, { expr = true, desc = "rename symbol" })
 
---      -- TODO This will be replaced hopefully by edgy.nvim
---      vim.g.dapui_open = false
---      vim.keymap.set("n", "<D-4>", function()
---        if vim.g.dapui_open == true then
---          vim.g.dapui_open = false
---          require("dapui").close({ reset = true })
---          vim.schedule(function()
---            vim.cmd("Neotree reveal")
---          end)
---        else
---          vim.g.dapui_open = true
---          vim.cmd("Neotree close")
---          vim.schedule(function()
---            require("dapui").open({ reset = true })
---          end)
---        end
---      end, { desc = "DAP UI toggle" })
+      --      -- TODO This will be replaced hopefully by edgy.nvim
+      --      vim.g.dapui_open = false
+      --      vim.keymap.set("n", "<D-4>", function()
+      --        if vim.g.dapui_open == true then
+      --          vim.g.dapui_open = false
+      --          require("dapui").close({ reset = true })
+      --          vim.schedule(function()
+      --            vim.cmd("Neotree reveal")
+      --          end)
+      --        else
+      --          vim.g.dapui_open = true
+      --          vim.cmd("Neotree close")
+      --          vim.schedule(function()
+      --            require("dapui").open({ reset = true })
+      --          end)
+      --        end
+      --      end, { desc = "DAP UI toggle" })
     end,
   },
   {
@@ -85,6 +88,7 @@ return {
       end
 
       local dap = require("dap")
+      -- TODO: reorder to make the ui selection pleasant to the eye
       dap.configurations.scala = {
         {
           type = "scala",
@@ -149,6 +153,53 @@ return {
         end,
         group = nvim_metals_group,
       })
+    end,
+  },
+  {
+    "stevearc/dressing.nvim",
+    lazy = false,
+    config = function()
+      require("dressing").setup({
+        input = {
+          insert_only = false,
+          override = function(conf)
+            -- specific customisation for renaming symbol popup
+            if vim.fn.getcmdtype() == ":" and vim.fn.getcmdline():match("^IncRename") then
+              conf.title = "Rename symbol..."
+            end
+            return conf
+          end,
+        },
+      })
+    end,
+  },
+  {
+    "smjonas/inc-rename.nvim",
+    dependencies = { "stevearc/dressing.nvim" },
+    opts = {
+      input_buffer_type = "dressing",
+    },
+    config = function(_, opts)
+      require("inc_rename").setup(opts)
+
+      -- TODO: maybe there's a less hackish way? ie set a global variable to keep track fo the mode, and check it after
+      --       we're done, in order to restore the previous mode
+      vim.keymap.set("i", "<D-r>", function()
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", true)
+        local word = vim.fn.expand("<cword>")
+
+        vim.ui.input({
+          -- this is probably not needed, dressing.nvim does that already
+          prompt = "Rename Symbol...",
+          default = word,
+          completion = "word",
+        }, function(new_name)
+          if new_name and new_name ~= "" then
+            vim.cmd("IncRename " .. new_name)
+          end
+          vim.cmd("startinsert")
+        end)
+      end, { desc = "Rename symbol" })
     end,
   },
 }

@@ -47,14 +47,14 @@ return {
     -- TODO apply catppuccin colors
     vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "DiagnosticError", linehl = "", numhl = "" })
     vim.fn.sign_define("DapBreakpointCondition", { text = "󰺕", texthl = "DiagnosticWarn", linehl = "", numhl = "" })
-    vim.fn.sign_define("DapStopped", { text = "󰄳", texthl = "DiagnosticInfo", linehl = "", numhl = "" })
+    vim.fn.sign_define("DapStopped", { text = "󰸞", texthl = "DiagnosticInfo", linehl = "", numhl = "" })
 
-    -- todo: bind a mouse-click over the gutter with a toggle-breakpoint actio
-    vim.keymap.set("n", "<Leader>db", dap.toggle_breakpoint, { desc = "toggle breakpoint" })
-    vim.keymap.set("n", "<Leader>dc", dap.continue, { desc = "continue debugging" })
+    -- todo: bind a mouse-click over the gutter with a toggle-breakpoint action
+    vim.keymap.set("n", "<D-b>", dap.toggle_breakpoint, { desc = "toggle line breakpoint" })
+    vim.keymap.set("n", "<D-D>", dap.continue, { desc = "start / continue debugging" })
     vim.keymap.set("n", "<D-k4>", dapui.toggle, { desc = "toggle DAP UI" })
     vim.keymap.set("n", "<D-4>", dapui.toggle, { desc = "toggle DAP UI" })
-    -- don't show the max widht column
+    -- don't show the max width column
     vim.api.nvim_create_autocmd("FileType", {
       pattern = {
         "dapui_stacks",

@@ -19,7 +19,8 @@ return {
     return opts
   end,
   config = function()
-    require("neo-tree").setup({
+    local neotree = require("neo-tree")
+    neotree.setup({
       -- todo: figure out how to set a max width
       --      window  = {
       --        auto_expand_width = true,
@@ -33,11 +34,28 @@ return {
       },
     })
 
-    vim.keymap.set("n", "<D-1>", ":Neotree toggle<CR>", { desc = "toggle Neotree sidebar" })
-    vim.keymap.set({ "n", "i" }, "<D-s>", "<Cmd>w<CR>", { desc = "save current buffer" })
-    vim.keymap.set({ "n", "i" }, "<D-p>", ":Neotree reveal<CR>", { desc = "point in Neotree the current file" })
-    -- vim.keymap.set("n", "<C-n>", ":Neotree toggle<CR>", {})
-    -- open terminal with a height of 10 lines
-    -- vim.keymap.set({'n','i'}, '<D-2>', ':botright 10split | file shell | terminal<CR>', {})
+    -- performs a neotree action, preserving the current mode of the original buffer
+    --@param action string
+    local neotree_action = function(action)
+      local original_buf = vim.api.nvim_get_current_buf()
+      local modifiable = vim.api.nvim_buf_get_option(original_buf, "modifiable")
+      if modifiable then
+        vim.cmd("stopinsert")
+      end
+      vim.schedule(function()
+        vim.cmd("Neotree " .. action)
+      end)
+    end
+
+    local neotree_toggle = function()
+      neotree_action("toggle")
+    end
+    local neotree_reveal = function()
+      neotree_action("reveal")
+    end
+
+    vim.keymap.set({ "n", "i" }, "<D-1>", neotree_toggle, { desc = "toggle Neotree sidebar" })
+    vim.keymap.set({ "n", "i" }, "<D-k1>", neotree_toggle, { desc = "toggle Neotree sidebar" })
+    vim.keymap.set({ "n", "i" }, "<D-p>", neotree_reveal, { desc = "point in Neotree the current file" })
   end,
 }

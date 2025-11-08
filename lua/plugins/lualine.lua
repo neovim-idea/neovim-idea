@@ -11,7 +11,7 @@ return {
         lualine_y = {
           {
             "lsp_status",
-            icon = "󱤢", -- f013
+            icon = "󱤢",
             symbols = {
               spinner = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" },
               done = "✓",

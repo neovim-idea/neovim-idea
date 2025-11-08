@@ -1,8 +1,59 @@
+# Read This First!
+
+This is a very personal and opinionated customisation of neovim to resemble IntelliJ IDEA look & feel, tailored towards
+Scala development (does support Java as well, although I believe it would need extra configuration to support standalone
+Java development).
+
+Due to my work laptop being old and with limited amount or RAM, having one instance of IntelliJ IDEA running along with
+Chrome and Slack had become... problematic. Add to the mix dockerized instances of kafka/postgres/redis/amqp and so on,
+and the system just turns downright unusable.
+
+Because of that, I needed a **quick** replacement for IntelliJ to shave off those ~4GB of memory and keep me working;
+obviously, neovim was the IDE of choice.
+
+HOWEVER: despite my (limited) previous knowledge of (neo)vim, I had nor the time or the inclination to learn a whole
+plethora of commands and shortcuts to be used in different modes. Call it lazyness, old age or muscle memory. As a
+direct consequence of it, I brazenly messed with the key shortcuts in a way that any respectabe neovim user would either
+get angry or weep in despair. Sorry, not sorry, I've got work to do. 
+
+If you, however, think you can stomach that: enjoy the repo! Feel free to clone it and tweak it as you please :)   
+
+## Shortcuts
+
+> [!IMPORTANT]
+> Ensure your terminal doesn't steal CMD key and CMD+number key combinations (i.e. to switch between open terminal tabs:
+> use tmux instead!). If you're not sure whether your key combination is recognised by neovim: press `F5`, and neovim
+> will print any shortcut to the command line. If nothing gets printed, it means that your terminal or OS is capturing
+> it already.
+
+
+> [!NOTE]
+> This setup comes with [which-key](https://github.com/folke/which-key.nvim) preinstalled: either type `:Whichkey` in
+> the command prompt, or press `<leader>` (=spacebar in this setup) followed by `?` and a popup will appear, showing all
+> available shortcuts that are registered in neovim (navigate Down/Up the popup via CTRL+d/CTRL+u)
+
+
+In case you're using `Logictech MX Keys` in MacOS, you might have issues trying to figure out why `Fn` keys are still
+modifying the brightness/volume/etc.. even though you you specifically toggled on the System Settings option
+`use F1, F2 etc. keys as standard function keys`. No, you're not drunk: on my Company's old MBP i9 they worked fine but,
+on my personal MBP M1, it didn't; seems like that, on the newer Apple Silicon MBPs, this setting is not honoerd properly
+and therefore you must install [Logi Option+](https://www.logitech.com/en-us/software/logi-options-plus.html), import
+your keyboad and then, under the `General` section .. toggle  `use F1, F2 etc. keys as standard function keys`.
+Go figure.
+
+
+| Action | Shortcut | Description | 
+| --------------- | --------------- | --------------- |
+| Toggle Project Files | CMD+1, CMD+k1 | Toggles the file browser from any window/buffer |
+| Show in Project Files | CMD+p | Show current file in the file browser |
+| Show Project Files help | ? | Shows all extra actions that can be performed in the file tree, i.e. `a`dd, `r`ename, `d`elete a file or `/` to fuzzy-find files |
+| Find files | CMD+f | Find project files by name | 
+| Find in files | CMD+F | Fuzzy find some text in the project files | 
+
 ## Notes
 
 :warning: Don't know the keymaps?
 
-This setup comes with [which-key](https://github.com/folke/which-key.nvim) preinstalled to show you all available shortcuts.
 Just press spacebar and in 500ms (configurable in ./lua/plugins/which-key.lua) it will show an auto completable popup!
 
 remove all existing nvim config files, states etc..
@@ -81,7 +132,8 @@ will do), and that will prompt the LSP with the missing suggestion from its pare
 * [x] SHIFT+UP/DOWN moves the current line up/down
 * [x] use https://github.com/folke/snacks.nvim/tree/main/docs for lazygit
   * [x] terminal (?)
-* [ ] find out how to rename variables, classes & [files](https://github.com/folke/snacks.nvim/blob/main/docs/rename.md)
+* [x] find out how to rename variables, classes
+  * [ ] ... and [files](https://github.com/folke/snacks.nvim/blob/main/docs/rename.md)
 * [x] show errors in the current line
 * [ ] click on a gutter to toggle a breakpoint creation on/off (might require jumping on the line, then dap.toggle())
 * [ ] scratch files management for quick & dirty snippets
@@ -90,3 +142,5 @@ will do), and that will prompt the LSP with the missing suggestion from its pare
 * [x] use notification plugin to avoid losing focus from the buffer
   * [x] add telescope integration to retrieve notifications in case we need to copy/paste logs
 * [ ] bind mouse keys prev/next to cycle between open files
+* [ ] global search & replace
+* [ ] when exiting lazygit, neotree should refresh its status icons 

@@ -14,8 +14,17 @@ return {
       require("telescope").setup({
         defaults = {
           sorting_strategy = "ascending",
+          layout_strategy = "vertical",
+
           layout_config = {
-            prompt_position = "top",
+            vertical = {
+              prompt_position = "top",
+              mirror = true,
+              results_height = 0.45,
+              preview_height = 0.55,
+            },
+            width = 0.5,
+            height = 0.55,
           },
         },
         extensions = {

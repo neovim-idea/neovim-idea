@@ -5,7 +5,7 @@ return {
   config = function()
     local path = vim.fn.expand("~/.config/nvim/lua/catppuccin/palettes/")
     local files = vim.fn.globpath(path, "*", false, true)
-    local flavours = { latte = 1, frappe = 2, macchiato = 3, mocha = 4, matrix = 5 }
+    local flavours = { latte = 1, frappe = 2, macchiato = 3, mocha = 4 }
 
     for i, file in ipairs(files) do
       local name = vim.fn.fnamemodify(file, ":t:r")

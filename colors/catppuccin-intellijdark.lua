@@ -1,2 +1,2 @@
--- ~/.config/nvim/colors/catppuccin-matrix.lua
+-- ~/.config/nvim/colors/catppuccin-intellijdark.lua
 require("catppuccin").load("intellijdark")

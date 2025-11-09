@@ -3,8 +3,17 @@ return {
   name = "catppuccin",
   priority = 1000,
   config = function()
+    local path = vim.fn.expand("~/.config/nvim/lua/catppuccin/palettes/")
+    local files = vim.fn.globpath(path, "*", false, true)
+    local flavours = { latte = 1, frappe = 2, macchiato = 3, mocha = 4, matrix = 5 }
+
+    for i, file in ipairs(files) do
+      local name = vim.fn.fnamemodify(file, ":t:r")
+      flavours[name] = 5 + i
+    end
+
     local catppuccin = require("catppuccin")
-    catppuccin.flavours = { latte = 1, frappe = 2, macchiato = 3, mocha = 4, matrix = 5, intellijdark = 6 }
+    catppuccin.flavours = flavours
     catppuccin.setup({
       auto_integrations = true,
       custom_highlights = function(colors)

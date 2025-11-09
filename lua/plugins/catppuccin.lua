@@ -3,15 +3,41 @@ return {
   name = "catppuccin",
   priority = 1000,
   config = function()
-    require("catppuccin").setup({
+    local catppuccin = require("catppuccin")
+    catppuccin.flavours = { latte = 1, frappe = 2, macchiato = 3, mocha = 4, matrix = 5, intellijdark = 6 }
+    catppuccin.setup({
       auto_integrations = true,
       custom_highlights = function(colors)
+        -- intellij-specific tweaks
         return {
-          FloatBorder = { bg = colors.crust },
-          NormalBorder = { bg = colors.base },
+          -- [[Generic]]
+          Normal = { bg = colors.crust, fg = colors.text },
+          NormalNC = { bg = colors.crust, fg = colors.text },
+          -- TODO why these won't work even after manually cancelling all caches ??? ffs...
+          -- LineNr = { fg = colors.surface2 },
+          -- NormalCursorLineNr = { fg = colors.surface0 },
+          -- NormalCursorLine = { fg = colors.surface0 },
+
+          FloatBorder = { bg = colors.base, fg = colors.text },
+
+          -- [[Neotree]]
+          NeoTreeGitUntracked = { fg = colors.red },
+          NeoTreeGitModified = { fg = colors.blue },
+          NeoTreeGitStaged = { fg = colors.green },
+          NeoTreeGitUntrackedFolder = { fg = colors.red },
+          NeoTreeGitModifiedFolder = { fg = colors.blue },
+          NeoTreeGitStagedFolder = { fg = colors.green },
+          NeoTreeCursorLine = { bg = "#2e3861" },
+
+          -- [[Telescope]]
+          TelescopeNormal = { bg = colors.base, fg = colors.text },
+          TelescopeBorder = { bg = colors.mantle, fg = colors.text },
+          TelescopePreviewTitle = { bg = colors.crust, fg = colors.text },
+          TelescopePreviewNormal = { bg = colors.crust, fg = colors.text },
+          TelescopePreviewBorder = { bg = colors.crust, fg = colors.text },
         }
-      end
+      end,
     })
-    vim.cmd.colorscheme("catppuccin")
+    vim.cmd.colorscheme("catppuccin-intellijdark")
   end,
 }

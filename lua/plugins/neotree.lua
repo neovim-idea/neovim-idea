@@ -32,6 +32,17 @@ return {
           leave_dirs_open = true,
         },
       },
+      default_component_configs = {
+        indent = {
+          indent_marker = "",
+          last_indent_marker = "",
+          highlight = "NeoTreeIndentMarker",
+          with_expanders = true, -- if nil and file nesting is enabled, will enable expanders
+          expander_collapsed = "",
+          expander_expanded = "",
+          expander_highlight = "NeoTreeExpander",
+        },
+      },
     })
 
     -- performs a neotree action, preserving the current mode of the original buffer

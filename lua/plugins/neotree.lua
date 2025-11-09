@@ -34,6 +34,7 @@ return {
       },
       default_component_configs = {
         indent = {
+          with_markers = false,
           indent_marker = "",
           last_indent_marker = "",
           highlight = "NeoTreeIndentMarker",

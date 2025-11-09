@@ -9,7 +9,7 @@ return {
 
     for i, file in ipairs(files) do
       local name = vim.fn.fnamemodify(file, ":t:r")
-      flavours[name] = 5 + i
+      flavours[name] = 4 + i
     end
 
     local catppuccin = require("catppuccin")

@@ -39,6 +39,16 @@ return {
       vim.keymap.set({ "n", "i" }, "<D-G>", function()
         Snacks.lazygit.open()
       end, { desc = "open lazygit" })
+
+      -- fire a neotree event when lazygit closes
+      -- many thanks to https://github.com/nvim-neo-tree/neo-tree.nvim/discussions/1253#discussioncomment-9971975
+      local events = require("neo-tree.events")
+      vim.api.nvim_create_autocmd("TermClose", {
+        pattern = "term://*lazygit*",
+        callback = function()
+          events.fire_event(events.GIT_EVENT)
+        end,
+      })
     end,
   },
 }

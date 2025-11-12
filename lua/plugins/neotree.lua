@@ -26,9 +26,9 @@ return {
       --        auto_expand_width = true,
       --      },
       filesystem = {
+        use_libuv_file_watcher = true,
         follow_current_file = {
           enabled = true,
-          use_libuv_file_watcher = true,
           leave_dirs_open = true,
         },
       },

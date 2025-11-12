@@ -94,17 +94,6 @@ However it is possible to set conditional breakpoints like so
 
 > :DapSetBreakpoint --condition 'x == someValue'
 
-### Implement all function from super class/trait
-
-If you have
-
-```scala
-trait Parent { def foo:Unit ; def bar: Unit }
-class Child extends Parent
-```
-you might expect that triggerging a `Code Action` over class `Child` will prompt an extra option to implement all
-methods from trait `Parent`; it doens't. The "fix" at the moment is type `override` (the few first two or three letters)
-will do), and that will prompt the LSP with the missing suggestion from its parent. Then hit `Enter` and you're done.
 
 ## Things To Improve
 
@@ -118,7 +107,7 @@ will do), and that will prompt the LSP with the missing suggestion from its pare
 * [x] autosave buffers
 * [ ] make neotree condense package folders
 * [ ] shortcuts to create new class/obj
-* [ ] shortcuts to implement all methods from trait/abstract class
+* [x] shortcuts to implement all methods from trait/abstract class
 * [x] undo with D-z
 * [x] make neotree stick to the left sidebar
   * [x] use https://github.com/folke/edgy.nvim

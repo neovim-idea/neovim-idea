@@ -132,4 +132,4 @@ However it is possible to set conditional breakpoints like so
   * [x] add telescope integration to retrieve notifications in case we need to copy/paste logs
 * [ ] bind mouse keys prev/next to cycle between open files
 * [ ] global search & replace
-* [ ] when exiting lazygit, neotree should refresh its status icons 
+* [x] when exiting lazygit, neotree should refresh its status icons 

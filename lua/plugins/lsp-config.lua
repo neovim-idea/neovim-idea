@@ -42,7 +42,7 @@ return {
       vim.keymap.set({ "n", "v" }, "<leader>gd", vim.lsp.buf.definition, { desc = "got to symbol definitio" })
       -- go to references
       vim.keymap.set({ "n", "v" }, "<leader>gr", vim.lsp.buf.references, { desc = "go to symbol references" })
-      vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "show code action" })
+      vim.keymap.set({ "n", "i" }, "<M-CR>", vim.lsp.buf.code_action, { desc = "show code action" })
       vim.keymap.set({ "n", "v" }, "<D-r>", function()
         return ":IncRename " .. vim.fn.expand("<cword>")
       end, { expr = true, desc = "rename symbol" })

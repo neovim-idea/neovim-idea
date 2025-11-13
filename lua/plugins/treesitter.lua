@@ -8,6 +8,7 @@ return {
       ensure_installed = { "lua", "javascript", "java", "scala" },
       highlight = { enable = true },
       indent = { enable = true },
+      fold = { enable = true },
     })
   end,
 }

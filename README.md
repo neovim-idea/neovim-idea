@@ -124,7 +124,7 @@ However it is possible to set conditional breakpoints like so
 * [x] find out how to rename variables, classes
   * [ ] ... and [files](https://github.com/folke/snacks.nvim/blob/main/docs/rename.md)
 * [x] show errors in the current line
-* [ ] click on a gutter to toggle a breakpoint creation on/off (might require jumping on the line, then dap.toggle())
+* [x] click on a gutter to toggle a breakpoint creation on/off
 * [ ] scratch files management for quick & dirty snippets
 * [x] copy paste shortcuts using D-c, D-x, D-v
 * [x] toggle comment/uncomment with <D-/>

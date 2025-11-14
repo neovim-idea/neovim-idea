@@ -17,6 +17,19 @@ vim.opt.rtp:prepend(lazypath)
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
+-- enable folding with treesitter
+vim.o.foldenable = true 
+vim.o.foldmethod = 'expr'
+vim.o.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+vim.o.foldlevel = 99
+vim.o.foldlevelstart = 99
+vim.o.foldcolumn = "auto"
+vim.opt.fillchars:append({
+  foldopen = "",
+  foldclose = "",
+  foldsep = "│",
+  fold = " ",
+})
 
 require("vim-options")
 require("lazy").setup("plugins")

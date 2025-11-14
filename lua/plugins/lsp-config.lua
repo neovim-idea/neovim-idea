@@ -42,28 +42,11 @@ return {
       vim.keymap.set({ "n", "v" }, "<leader>gd", vim.lsp.buf.definition, { desc = "got to symbol definitio" })
       -- go to references
       vim.keymap.set({ "n", "v" }, "<leader>gr", vim.lsp.buf.references, { desc = "go to symbol references" })
-      vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "show code action" })
+      vim.keymap.set({ "n", "i" }, "<M-CR>", vim.lsp.buf.code_action, { desc = "show code action" })
       vim.keymap.set({ "n", "v" }, "<D-r>", function()
         return ":IncRename " .. vim.fn.expand("<cword>")
       end, { expr = true, desc = "rename symbol" })
 
-      --      -- TODO This will be replaced hopefully by edgy.nvim
-      --      vim.g.dapui_open = false
-      --      vim.keymap.set("n", "<D-4>", function()
-      --        if vim.g.dapui_open == true then
-      --          vim.g.dapui_open = false
-      --          require("dapui").close({ reset = true })
-      --          vim.schedule(function()
-      --            vim.cmd("Neotree reveal")
-      --          end)
-      --        else
-      --          vim.g.dapui_open = true
-      --          vim.cmd("Neotree close")
-      --          vim.schedule(function()
-      --            require("dapui").open({ reset = true })
-      --          end)
-      --        end
-      --      end, { desc = "DAP UI toggle" })
     end,
   },
   {

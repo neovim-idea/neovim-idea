@@ -10,6 +10,8 @@ return {
     require("statuscol").setup({
       setopt = true,
       relculright = true,
+      ft_ignore = { "neo-tree", "neo-tree-popup" },
+      bt_ignore = { "terminal", "help" },
       segments = {
         {
           text = { builtin.lnumfunc, " " },
@@ -34,10 +36,10 @@ return {
             },
             maxwidth = 2,
             colwidth = 2,
-            -- I prefer to keep this column always shown because the icons for DAP and todos/comments gets too much
-            -- close to each other otherwise. And actually it balances pretty nicely the space on the left side of the
-            -- line numbers so, it's a win-win-win
-            -- auto = true,
+            -- I prefer to keep this column always shown because the icons for DAP and todo comments gets too much close
+            -- to each other otherwise. And actually it balances pretty nicely the space on the left side of the line
+            -- numbers so, it's a win-win-win
+            auto = true,
           },
           click = "v:lua.ScSa",
         },

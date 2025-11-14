@@ -63,6 +63,7 @@ return {
           ["@keyword.operator.scala"] = { fg = colors.peach },
           ["@keyword.function.scala"] = { fg = colors.peach },
           ["@keyword.modifier.scala"] = { fg = colors.peach },
+          ["@keyword.conditional.scala"] = { fg = colors.peach },
           ["@variable.parameter.scala"] = { fg = colors.mauve },
           ["@function.call.scala"] = { fg = colors.text },
           ["@punctuation.special.scala"] = { fg = colors.peach },

@@ -69,7 +69,8 @@ rm -rf ~/.local/state/nvim
 3. install `coursier` to use  `nvim-metals` (run `brew install coursier`)
 4. install metals in nvim using the command `:MetalsInstall`
 5. install lazygit (run `brew install lazygit`) 
-6. open your scala project and have fun
+6. install treesitter cli (run `brew install tree-sitter-cli`)
+7. open your scala project and have fun
 
 ## Keyboard remappings
 
@@ -132,4 +133,5 @@ However it is possible to set conditional breakpoints like so
   * [x] add telescope integration to retrieve notifications in case we need to copy/paste logs
 * [ ] bind mouse keys prev/next to cycle between open files
 * [ ] global search & replace
-* [x] when exiting lazygit, neotree should refresh its status icons 
+* [x] when exiting lazygit, neotree should refresh its status icons
+* [ ] highlight a line that has a breakpoint set

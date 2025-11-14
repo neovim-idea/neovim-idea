@@ -22,19 +22,23 @@ return {
           -- [[Generic]]
           Normal = { bg = colors.crust, fg = colors.text },
           NormalNC = { bg = colors.crust, fg = colors.text },
-          -- TODO why these won't work even after manually cancelling all caches ??? ffs...
-          -- LineNr = { fg = colors.surface2 },
-          -- NormalCursorLineNr = { fg = colors.surface0 },
-          -- NormalCursorLine = { fg = colors.surface0 },
+          LineNr = { fg = colors.surface0 },
+          CursorLineNr = { fg = colors.overlay0 },
+          CursorLine = { bg = colors.mantle },
 
           FloatBorder = { bg = colors.base, fg = colors.text },
 
           -- [[Neotree]]
+          NeoTreeRootName = { fg = colors.text },
+          NeoTreeFileName = { fg = colors.text },
+          NeoTreeFileIcon = { fg = colors.text },
+          NeoTreeDirectoryName = { fg = colors.text },
+          NeoTreeDirectoryIcon = { fg = colors.text },
           NeoTreeGitUntracked = { fg = colors.red },
-          NeoTreeGitModified = { fg = colors.blue },
+          NeoTreeGitModified = { fg = colors.lavender },
           NeoTreeGitStaged = { fg = colors.green },
           NeoTreeGitUntrackedFolder = { fg = colors.red },
-          NeoTreeGitModifiedFolder = { fg = colors.blue },
+          NeoTreeGitModifiedFolder = { fg = colors.lavender },
           NeoTreeGitStagedFolder = { fg = colors.green },
           NeoTreeCursorLine = { bg = "#2e3861" },
 
@@ -44,6 +48,27 @@ return {
           TelescopePreviewTitle = { bg = colors.crust, fg = colors.text },
           TelescopePreviewNormal = { bg = colors.crust, fg = colors.text },
           TelescopePreviewBorder = { bg = colors.crust, fg = colors.text },
+
+          -- [[Treesitter]]
+          Include = { fg = colors.peach },
+          Constant = { fg = colors.yellow },
+          ["@attribute.scala"] = { fg = colors.yellow },
+          ["@module"] = { fg = colors.text },
+          ["@type.scala"] = { fg = colors.text },
+          ["@module.scala"] = { fg = colors.text },
+          ["@operator.scala"] = { fg = colors.text },
+          ["@keyword.scala"] = { fg = colors.peach },
+          ["@keyword.type.scala"] = { fg = colors.peach },
+          ["@keyword.import.scala"] = { fg = colors.peach },
+          ["@keyword.operator.scala"] = { fg = colors.peach },
+          ["@keyword.function.scala"] = { fg = colors.peach },
+          ["@keyword.modifier.scala"] = { fg = colors.peach },
+          ["@variable.parameter.scala"] = { fg = colors.mauve },
+          ["@function.call.scala"] = { fg = colors.text },
+          ["@punctuation.special.scala"] = { fg = colors.peach },
+          ["@variable.member.scala"] = { fg = colors.mauve },
+          ["@comment.scala"] = { fg = colors.green },
+          ["@comment.documentation.scala"] = { fg = colors.green },
         }
       end,
     })

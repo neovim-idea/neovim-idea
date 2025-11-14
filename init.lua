@@ -31,6 +31,8 @@ vim.opt.fillchars:append({
   fold = " ",
 })
 
+vim.o.cursorline = true
+
 require("vim-options")
 require("lazy").setup("plugins")
 

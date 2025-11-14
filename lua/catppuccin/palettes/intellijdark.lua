@@ -1,14 +1,30 @@
--- TODO: remove once the theme has been finalised !
-local base = require("catppuccin.palettes.mocha")
-
-local M = {
-  -- blue = "#9ca0b0",
-  text = "#bcbec4",
+return {
+	rosewater = "#f5e0dc",
+	flamingo = "#f2cdcd",
+	pink = "#f5c2e7",
+	mauve = "#b573ab",
+	red = "#f38ba8",
+	maroon = "#eba0ac",
+	peach = "#c69076",
+	yellow = "#b0ab5f", --
+	green = "#5a7a66", --
+	teal = "#94e2d5",
+	sky = "#89dceb",
+	sapphire = "#74c7ec",
+	blue = "#56a8f5",
+	lavender = "#b4befe", --
+  text = "#bcbec4", --
+	subtext1 = "#bac2de",
+	subtext0 = "#a6adc8",
+	overlay2 = "#9399b2",
+	overlay1 = "#7f849c",
+	overlay0 = "#74767d", --
+	surface2 = "#585b70",
+	surface1 = "#45475a",
+	surface0 = "#393d44", --
   base = "#27282a",
   mantle = "#222225", -- mathematically halfway through base & crust
   crust = "#1c1c1f",
 }
 
--- 45454a -> bordo per le ricerche
-
-return vim.tbl_deep_extend("force", base, M)
+-- #45454a -> bordo per le ricerche

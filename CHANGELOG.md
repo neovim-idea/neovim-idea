@@ -1,3 +1,17 @@
+## [1.1.0](https://github.com/neovim-idea/neovim-idea/compare/v1.0.1...v1.1.0) (2025-11-14)
+
+### ✨ Features
+
+* proper, intellij-like, line number with gutter icons and mouse actions ([babe026](https://github.com/neovim-idea/neovim-idea/commit/babe026e7e1443a6a4997c2f80bf48c844a7680f))
+
+### 🩹 Fixes
+
+* add autocmd to trigger neotree refresh when lazygit closes ([b831ae0](https://github.com/neovim-idea/neovim-idea/commit/b831ae08caf9eafcc4c512c05fd9ca882fbde78c))
+* added Option+Enter to trigger code actions & cleaned up README ([a59ac58](https://github.com/neovim-idea/neovim-idea/commit/a59ac58d0046af77afa98789f16cbfed4711d779))
+* disable statuscol for neotree, terminal and help ([c6b9342](https://github.com/neovim-idea/neovim-idea/commit/c6b9342afa2a94f16ef56263b9c686e84fdb1ca7))
+* move `use_libuv_file_watcher` to the correct section ([0c7b454](https://github.com/neovim-idea/neovim-idea/commit/0c7b454c1c06610baeec0364652def19deb9c8c4))
+* switched to indent-blankline ([087a6cc](https://github.com/neovim-idea/neovim-idea/commit/087a6cc193eb1d83a8a7f3cc615f016ee188345a))
+
 ## [1.0.1](https://github.com/neovim-idea/neovim-idea/compare/v1.0.0...v1.0.1) (2025-11-08)
 
 ### 📖 Docs

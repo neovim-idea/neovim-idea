@@ -1,3 +1,24 @@
+## [1.2.0](https://github.com/neovim-idea/neovim-idea/compare/v1.1.0...v1.2.0) (2025-11-15)
+
+### ✨ Features
+
+* added intellij dark colorscheme for LSP ([28f0a6d](https://github.com/neovim-idea/neovim-idea/commit/28f0a6d9d3e189380c41b52b1ca9addea68825e2))
+* added intellij dark colorscheme for treesitter ([032e3de](https://github.com/neovim-idea/neovim-idea/commit/032e3dee7f09b1b00a3e0b6bfb16cc8632e7fdaa))
+* intellij idea dark & matrix color schemes for catppuccin! ([df5a414](https://github.com/neovim-idea/neovim-idea/commit/df5a414c10d9d5c544b3a67d73702a5b71f2a95c))
+
+### 🩹 Fixes
+
+* automatically discover & add new flavours to catppuccin ([d98fa3c](https://github.com/neovim-idea/neovim-idea/commit/d98fa3ce723b7404adb9c8ac5d4e9a3b841ce26a))
+* better virtcolumn and coloring ([7a17643](https://github.com/neovim-idea/neovim-idea/commit/7a176439dff7a93a235ef6a396dce183de2847e3))
+* ffs im an idiot ([224573b](https://github.com/neovim-idea/neovim-idea/commit/224573b2a4e96dab845da93e1ff1f9ff62fd29ac))
+* last child in a directory has same indentation of all other siblings ([446c2b1](https://github.com/neovim-idea/neovim-idea/commit/446c2b142b2ff4ec49df9f21cf21dc507448c26c))
+* make Telscope more IntelliJ-ish ([6c3b210](https://github.com/neovim-idea/neovim-idea/commit/6c3b210564cd78777a1a3801d2e28f03913eb584))
+* minor fixes ([49cf208](https://github.com/neovim-idea/neovim-idea/commit/49cf208822acfb4f6a4eac92fb1eb49a84fda38b))
+* more reconisable expander icons ([e88819c](https://github.com/neovim-idea/neovim-idea/commit/e88819c111fe5d07b46b8ab758b82b567a9e9f4a))
+* override colors for conditionals ([21b8f75](https://github.com/neovim-idea/neovim-idea/commit/21b8f7569c4a34ca792a42334678443851c0d32e))
+* show line numnbers in Telescope preview ([7a85b48](https://github.com/neovim-idea/neovim-idea/commit/7a85b4866e8ed6d105c1454538e4e1d7cd2b4ad3))
+* switch back treesitter to `master` branch and added a README entry ([08fda28](https://github.com/neovim-idea/neovim-idea/commit/08fda28e7fd46633d0f8b20d26e491527317590a))
+
 ## [1.1.0](https://github.com/neovim-idea/neovim-idea/compare/v1.0.1...v1.1.0) (2025-11-14)
 
 ### ✨ Features

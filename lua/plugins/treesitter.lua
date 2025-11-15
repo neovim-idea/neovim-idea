@@ -1,7 +1,8 @@
 return {
   "nvim-treesitter/nvim-treesitter",
   build = ":TSUpdate",
-  branch = "main",
+  -- TODO figure out where the new settings went, when moving to "main"
+  branch = "master",
   lazy = false,
   config = function()
     local config = require("nvim-treesitter.configs")

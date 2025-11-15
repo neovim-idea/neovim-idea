@@ -135,3 +135,4 @@ However it is possible to set conditional breakpoints like so
 * [ ] global search & replace
 * [x] when exiting lazygit, neotree should refresh its status icons
 * [ ] highlight a line that has a breakpoint set
+* [ ] update treesitter to `main` and figure out where the configuration options are now located

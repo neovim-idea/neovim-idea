@@ -25,6 +25,7 @@ return {
           LineNr = { fg = colors.surface0 },
           CursorLineNr = { fg = colors.overlay0 },
           CursorLine = { bg = colors.mantle },
+          ColorColumn = { bg = colors.surface0 },
 
           FloatBorder = { bg = colors.base, fg = colors.text },
 

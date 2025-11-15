@@ -64,12 +64,36 @@ return {
           ["@keyword.function.scala"] = { fg = colors.peach },
           ["@keyword.modifier.scala"] = { fg = colors.peach },
           ["@keyword.conditional.scala"] = { fg = colors.peach },
-          ["@variable.parameter.scala"] = { fg = colors.mauve },
+          ["@variable.parameter.scala"] = { fg = colors.mauve, style = { "italic" } },
           ["@function.call.scala"] = { fg = colors.text },
           ["@punctuation.special.scala"] = { fg = colors.peach },
           ["@variable.member.scala"] = { fg = colors.mauve },
           ["@comment.scala"] = { fg = colors.green },
           ["@comment.documentation.scala"] = { fg = colors.green },
+
+          -- [[LSP - Scala]]
+          ["@lsp.type.keyword.scala"] = { fg = colors.peach },
+          ["@lsp.type.class.scala"] = { fg = colors.text },
+          ["@lsp.type.type.scala"] = { fg = colors.text },
+          ["@lsp.type.interface.scala"] = { fg = colors.text },
+          ["@lsp.type.operator.scala"] = { fg = colors.text },
+          ["@lsp.type.method.scala"] = { fg = colors.text },
+          ["@lsp.type.variable.scala"] = { fg = colors.text },
+          ["@lsp.type.comment.scala"] = { fg = colors.green },
+          ["@lsp.type.typeParameter.scala"] = { fg = colors.teal },
+          ["@lsp.type.modifier.scala"] = { fg = colors.peach },
+          -- this kinda works, but there's a limitation in the LSP that local variables and fields/class members share
+          -- the same high-priority token, hence vals defined in function are colored in mauve as well :-/
+          ["@lsp.typemod.variable.readonly.scala"] = { fg = colors.mauve },
+          -- an alternative would be this, but some class/trait val definition are skipped ...
+          -- ["@lsp.typemod.variable.declaration.scala"] = { fg = colors.mauve },
+          -- ["@lsp.typemod.variable.definition.scala"] = { fg = colors.text },
+          -- ["@lsp.typemod.variable.readonly.scala"]   = { fg = colors.text },
+          ["@lsp.typemod.type.abstract.scala"] = { fg = colors.teal },
+          ["@lsp.typemod.parameter.declaration.scala"] = { fg = colors.text },
+          ["@lsp.typemod.parameter.readonly.scala"] = { fg = colors.text },
+          ["@lsp.typemod.method.declaration.scala"] = { fg = colors.blue },
+          ["@lsp.typemod.method.definition.scala"] = { fg = colors.blue },
         }
       end,
     })

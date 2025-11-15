@@ -21,10 +21,13 @@ return {
   config = function()
     local neotree = require("neo-tree")
     neotree.setup({
-      -- todo: figure out how to set a max width
-      --      window  = {
-      --        auto_expand_width = true,
-      --      },
+      window = {
+        border = {
+          style = "single"
+        },
+        -- todo: figure out how to set a max width
+        --        auto_expand_width = true,
+      },
       filesystem = {
         use_libuv_file_watcher = true,
         follow_current_file = {

@@ -46,12 +46,11 @@ return {
       vim.keymap.set({ "n", "v" }, "<D-r>", function()
         return ":IncRename " .. vim.fn.expand("<cword>")
       end, { expr = true, desc = "rename symbol" })
-
     end,
   },
   {
     "scalameta/nvim-metals",
-    ft = {}, -- { "scala", "sbt", "java", "sc" },
+    ft = { "scala", "sbt", "java", "sc" },
     opts = function()
       local metals = require("metals")
       local metals_config = metals.bare_config()

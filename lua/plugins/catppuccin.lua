@@ -109,6 +109,13 @@ return {
           ["@lsp.typemod.parameter.readonly.scala"] = { fg = colors.text },
           ["@lsp.typemod.method.declaration.scala"] = { fg = colors.blue },
           ["@lsp.typemod.method.definition.scala"] = { fg = colors.blue },
+
+          -- [[LSP - Sbt]]
+          ["@lsp.type.class.sbt"] = { fg = colors.text },
+          ["@lsp.type.method.sbt"] = { fg = colors.text },
+          ["@lsp.type.operator.sbt"] = { fg = colors.text },
+          ["@lsp.type.keyword.sbt"] = { fg = colors.peach },
+          ["@lsp.type.modifier.sbt"] = { fg = colors.peach },
         }
       end,
     })

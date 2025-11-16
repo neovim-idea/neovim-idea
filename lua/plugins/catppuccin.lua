@@ -116,6 +116,7 @@ return {
           ["@lsp.type.operator.sbt"] = { fg = colors.text },
           ["@lsp.type.keyword.sbt"] = { fg = colors.peach },
           ["@lsp.type.modifier.sbt"] = { fg = colors.peach },
+          ["@lsp.type.comment.sbt"] = { fg = colors.overlay0 },
         }
       end,
     })

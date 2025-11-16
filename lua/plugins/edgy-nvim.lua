@@ -62,7 +62,7 @@ return {
           filter = function(_buf, win)
             return vim.w[win].snacks_win
               and vim.w[win].snacks_win.position == pos
-         and vim.w[win].snacks_win.relative == "editor"
+              and vim.w[win].snacks_win.relative == "editor"
               and not vim.w[win].trouble_preview
           end,
         })

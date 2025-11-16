@@ -1,4 +1,4 @@
--- Bootstrap lazy.nvim
+-- Bootstrap lazy.nvimgreen 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -32,6 +32,9 @@ vim.opt.fillchars:append({
 })
 
 vim.o.cursorline = true
+
+-- avoid scrolling all the way to the botttom, up to the point where the last line is on the top of the editor
+vim.o.scrolloff = 999
 
 require("vim-options")
 require("lazy").setup("plugins")

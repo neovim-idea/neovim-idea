@@ -30,6 +30,8 @@ return {
           FloatBorder = { bg = colors.base, fg = colors.text },
 
           -- [[Neotree]]
+          NeoTreeWinSeparator = { bg = "NONE" },
+          NeoTreeVertSplit = { bg = "NONE" },
           NeoTreeRootName = { fg = colors.text },
           NeoTreeFileName = { fg = colors.text },
           NeoTreeFileIcon = { fg = colors.text },
@@ -43,12 +45,20 @@ return {
           NeoTreeGitStagedFolder = { fg = colors.green },
           NeoTreeCursorLine = { bg = "#2e3861" },
 
-          -- [[Telescope]]
+          -- [[Telescope - General]]
           TelescopeNormal = { bg = colors.base, fg = colors.text },
-          TelescopeBorder = { bg = colors.mantle, fg = colors.text },
-          TelescopePreviewTitle = { bg = colors.crust, fg = colors.text },
+          TelescopeBorder = { bg = colors.base , fg = colors.text },
+          TelescopeTitle = { bg = colors.base, fg = colors.text },
+          TelescopeSelection = { bg = "#2e3861", fg = colors.subtext1, style = {} },
+          TelescopeMatching = { bg = "NONE", fg = "NONE", style = { "bold" } },
+          -- [[Telescope - Prompt]]
+          TelescopePromptTitle = { bg = colors.base, fg = colors.text },
+          -- [[Telescope - Results]]
+          TelescopeResultsNormal = { bg = colors.base, fg = colors.subtext0 },
+          -- [[Telescope - Preview]]
+          TelescopePreviewTitle = { bg = colors.base, fg = colors.text },
           TelescopePreviewNormal = { bg = colors.crust, fg = colors.text },
-          TelescopePreviewBorder = { bg = colors.crust, fg = colors.text },
+          TelescopePreviewLine = { bg = colors.base, fg = colors.text },
 
           -- [[Treesitter]]
           Include = { fg = colors.peach },

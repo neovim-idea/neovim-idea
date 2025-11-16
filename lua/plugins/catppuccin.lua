@@ -93,6 +93,7 @@ return {
           ["@lsp.type.comment.scala"] = { fg = colors.green },
           ["@lsp.type.typeParameter.scala"] = { fg = colors.teal },
           ["@lsp.type.modifier.scala"] = { fg = colors.peach },
+          ["@lsp.type.namespace.scala"] = { style = {} },
           -- this kinda works, but there's a limitation in the LSP that local variables and fields/class members share
           -- the same high-priority token, hence vals defined in function are colored in mauve as well :-/
           ["@lsp.typemod.variable.readonly.scala"] = { fg = colors.mauve },

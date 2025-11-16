@@ -26,8 +26,7 @@ return {
           CursorLineNr = { fg = colors.overlay0 },
           CursorLine = { bg = colors.mantle },
           ColorColumn = { bg = colors.surface0 },
-
-          FloatBorder = { bg = colors.base, fg = colors.text },
+          FloatBorder = { bg = colors.mantle, fg = colors.text },
 
           -- [[Neotree]]
           NeoTreeWinSeparator = { bg = "NONE" },
@@ -44,10 +43,11 @@ return {
           NeoTreeGitModifiedFolder = { fg = colors.lavender },
           NeoTreeGitStagedFolder = { fg = colors.green },
           NeoTreeCursorLine = { bg = "#2e3861" },
+          NeoTreeFloatTitle = { bg = colors.mantle, fg = colors.text },
 
           -- [[Telescope - General]]
           TelescopeNormal = { bg = colors.base, fg = colors.text },
-          TelescopeBorder = { bg = colors.base , fg = colors.text },
+          TelescopeBorder = { bg = colors.base, fg = colors.text },
           TelescopeTitle = { bg = colors.base, fg = colors.text },
           TelescopeSelection = { bg = "#2e3861", fg = colors.subtext1, style = {} },
           TelescopeMatching = { bg = "NONE", fg = "NONE", style = { "bold" } },
@@ -59,6 +59,9 @@ return {
           TelescopePreviewTitle = { bg = colors.base, fg = colors.text },
           TelescopePreviewNormal = { bg = colors.crust, fg = colors.text },
           TelescopePreviewLine = { bg = colors.base, fg = colors.text },
+
+          -- [[Edgy]]
+          EdgyTitle = { bg = "NONE", fg = colors.subtext0 },
 
           -- [[Treesitter]]
           Include = { fg = colors.peach },

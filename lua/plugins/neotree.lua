@@ -21,6 +21,7 @@ return {
   config = function()
     local neotree = require("neo-tree")
     neotree.setup({
+      popup_border_style = "",
       window = {
         border = {
           style = "single"

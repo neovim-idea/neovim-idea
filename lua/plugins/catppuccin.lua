@@ -29,7 +29,7 @@ return {
           FloatBorder = { bg = colors.mantle, fg = colors.text },
 
           -- [[Neotree]]
-          NeoTreeWinSeparator = { bg = "NONE", fg = "NONE" },
+          NeoTreeWinSeparator = { bg = colors.crust ,fg = colors.crust },
           NeoTreeVertSplit = { bg = "NONE" },
           NeoTreeRootName = { fg = colors.text },
           NeoTreeFileName = { fg = colors.text },

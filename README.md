@@ -72,6 +72,14 @@ rm -rf ~/.local/state/nvim
 6. install treesitter cli (run `brew install tree-sitter-cli`)
 7. open your scala project and have fun
 
+Optionally, if you want to enable Java development:
+
+1. `brew install mvn`
+2. from within neovim, type `:Mason` command and look for the `java-language-server`, then hit `i` to install
+    (note: [needs at least Java18](https://github.com/georgewfraser/java-language-server/issues/273))
+3. follow instructions from [lsp-config official documentation page](https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#java_language_server)
+
+
 ## Keyboard remappings
 
 1. right CMD into Super

@@ -29,7 +29,7 @@ return {
           FloatBorder = { bg = colors.mantle, fg = colors.text },
 
           -- [[Neotree]]
-          NeoTreeWinSeparator = { bg = colors.crust ,fg = colors.crust },
+          NeoTreeWinSeparator = { bg = colors.crust, fg = colors.crust },
           NeoTreeVertSplit = { bg = "NONE" },
           NeoTreeRootName = { fg = colors.text },
           NeoTreeFileName = { fg = colors.text },
@@ -120,6 +120,25 @@ return {
         }
       end,
     })
+
+    -- keep lualine in sync with catppuccin color scheme changes
+    vim.api.nvim_create_autocmd("ColorScheme", {
+      callback = function()
+        local ok_lualine, lualine = pcall(require, "lualine")
+        if not ok_lualine then
+          return
+        end
+
+        local scheme = vim.g.colors_name or ""
+
+        if scheme:match("^catppuccin") then
+          lualine.setup({
+            options = { theme = scheme },
+          })
+        end
+      end,
+    })
+
     vim.cmd.colorscheme("catppuccin-intellijdark")
   end,
 }

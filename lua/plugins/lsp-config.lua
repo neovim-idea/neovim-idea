@@ -46,6 +46,19 @@ return {
       vim.keymap.set({ "n", "v" }, "<D-r>", function()
         return ":IncRename " .. vim.fn.expand("<cword>")
       end, { expr = true, desc = "rename symbol" })
+
+      -- when we "go to definition" and hit Enter in one entry, close the panel (since we don't care about it anymore)
+      -- TODO: perhaps make it configurable in case somebody doesn't like it this way ?
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "qf",
+        callback = function()
+          vim.keymap.set("n", "<CR>", "<CR>:cclose<CR>:lclose<CR>", {
+            buffer = true,
+            silent = true,
+            noremap = true,
+          })
+        end,
+      })
     end,
   },
   {

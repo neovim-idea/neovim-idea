@@ -1,3 +1,19 @@
+## [1.2.1](https://github.com/neovim-idea/neovim-idea/compare/v1.2.0...v1.2.1) (2025-11-17)
+
+### 🩹 Fixes
+
+* added instructions to setup Java LSP ([1f1e7dc](https://github.com/neovim-idea/neovim-idea/commit/1f1e7dcaf2cd4863c43536593efb1310778d9c7c))
+* automatically close "show definitions" panel when user hits Enter on one entry ([0449330](https://github.com/neovim-idea/neovim-idea/commit/0449330b6d215f845e0b7344bae6840c003c90f5))
+* avoid scrolling too much down ([54f17cf](https://github.com/neovim-idea/neovim-idea/commit/54f17cf517bc50be57e8fa1e6eb3a92a9937b219))
+* better blending of neotree win separator ([62bc389](https://github.com/neovim-idea/neovim-idea/commit/62bc38987e1b60ab3cf268590386b7cf6aeaa787))
+* better styling to neotree popups ([b652c75](https://github.com/neovim-idea/neovim-idea/commit/b652c75a7af549e7dc13a04a754cad2e6ee08b11))
+* better Telescope and Neotree styles ([d7ebd6e](https://github.com/neovim-idea/neovim-idea/commit/d7ebd6ec8b48439b49d38739f59316d82d186974))
+* custom colorscheme for Sbt ([87a4f03](https://github.com/neovim-idea/neovim-idea/commit/87a4f033b58b5f90c5270f92a8db2935007cb78b))
+* imports should not be italic ([ea80bbd](https://github.com/neovim-idea/neovim-idea/commit/ea80bbd8b9d7b61a856eda4e637e93d66a68fb93))
+* keep catppuccin color scheme change and lualine in sync ([eb8b6b1](https://github.com/neovim-idea/neovim-idea/commit/eb8b6b1d6c5916f28a6755d6c0ff2f7fbb5bca25))
+* maintain the window separator style when switching between color schemes ([fb83ebd](https://github.com/neovim-idea/neovim-idea/commit/fb83ebd5d6548969d340b523ba8113a1fa53e712))
+* minor sbt colorscheme improvement & fmt ([ebbe415](https://github.com/neovim-idea/neovim-idea/commit/ebbe4155a9548af3f256c92f8667dc3e4907dbfa))
+
 ## [1.2.0](https://github.com/neovim-idea/neovim-idea/compare/v1.1.0...v1.2.0) (2025-11-15)
 
 ### ✨ Features

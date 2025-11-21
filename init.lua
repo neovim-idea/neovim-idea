@@ -37,7 +37,11 @@ vim.o.cursorline = true
 vim.o.scrolloff = 999
 
 require("vim-options")
+require("option-overrides")
 require("lazy").setup("plugins")
+
+-- todo: perhaps add a post-setup.lua ?
+vim.cmd.colorscheme("catppuccin-intellijdark")
 
 -- debug stuff to print keystrokes
 local function listen_for_key()

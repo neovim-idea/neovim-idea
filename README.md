@@ -106,7 +106,7 @@ However it is possible to set conditional breakpoints like so
 
 ## Things To Improve
 
-* [ ] project manager
+* [x] project manager
 * [ ] by default, when opening a project: open in order `README.md` or `build.sbt`
 * [ ] keep insert mode after autocompletion
 * [x] simple camel hump navigation

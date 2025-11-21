@@ -7,35 +7,7 @@ return {
   config = function()
     local dap = require("dap")
     local dapui = require("dapui")
-    dapui.setup({
-      layouts = {
-        {
-          elements = {
-            { id = "watches", size = 0.15 },
-            { id = "repl", size = 0.55 },
-            { id = "scopes", size = 0.15 },
-            { id = "stacks", size = 0.15 },
-          },
-          position = "bottom",
-          size = 12,
-        },
-      },
-      controls = {
-        enabled = true,
-        element = "stacks",
-        icons = {
-          play = "",
-          pause = "󰏤",
-          step_into = "⤵",
-          step_over = "⤴",
-          step_out = "⤶",
-          step_back = "↶",
-          run_last = "↻",
-          terminate = "",
-          disconnect = "⏏",
-        },
-      },
-    })
+    dapui.setup(require("neovim-idea.options").get_nvim_dap_ui_options())
 
     -- dap.listeners.before.attach.dapui_config = function()
     --   dapui.open({reset = true})
@@ -44,7 +16,6 @@ return {
       dapui.open({ reset = true })
     end
 
-    -- TODO apply catppuccin colors
     vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "DiagnosticError", linehl = "", numhl = "" })
     vim.fn.sign_define("DapBreakpointCondition", { text = "󰺕", texthl = "DiagnosticWarn", linehl = "", numhl = "" })
     vim.fn.sign_define("DapStopped", { text = "󰸞", texthl = "DiagnosticInfo", linehl = "", numhl = "" })

@@ -111,9 +111,90 @@ local catppuccin_defaults = {
 
 Options.catppuccin = {}
 
+-- [[nvim-cmp]]
+local nvim_cmp_defaults = function(cmp)
+  return {
+    snippet = {
+      -- REQUIRED - you must specify a snippet engine
+      expand = function(args)
+        require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
+      end,
+    },
+    window = {
+      completion = cmp.config.window.bordered({
+        border = "rounded",
+        winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+      }),
+      documentation = cmp.config.window.bordered({
+        border = "rounded",
+        winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+      }),
+    },
+    mapping = cmp.mapping.preset.insert({
+      ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+      ["<C-f>"] = cmp.mapping.scroll_docs(4),
+      ["<C-Space>"] = cmp.mapping.complete(),
+      ["<C-e>"] = cmp.mapping.abort(),
+      ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+      ["<Esc>"] = cmp.mapping.abort(),
+    }),
+    sources = cmp.config.sources({
+      { name = "nvim_lsp" },
+      { name = "luasnip" }, -- For luasnip users.
+    }, {
+      { name = "buffer" },
+    }),
+  }
+end
+
+function Options.nvim_cmp(cmp)
+  return {}
+end
+
+-- [[nvim-dap-ui]]
+local nvim_dap_ui_defaults = {
+  layouts = {
+    {
+      elements = {
+        { id = "watches", size = 0.15 },
+        { id = "repl", size = 0.55 },
+        { id = "scopes", size = 0.15 },
+        { id = "stacks", size = 0.15 },
+      },
+      position = "bottom",
+      size = 12,
+    },
+  },
+  controls = {
+    enabled = true,
+    element = "stacks",
+    icons = {
+      play = "",
+      pause = "󰏤",
+      step_into = "⤵",
+      step_over = "⤴",
+      step_out = "⤶",
+      step_back = "↶",
+      run_last = "↻",
+      terminate = "",
+      disconnect = "⏏",
+    },
+  },
+}
+
+Options.nvim_dap_ui = {}
+
 --[[Accessors]]
 function Options.get_catppuccin_options()
   return vim.tbl_deep_extend("force", catppuccin_defaults, Options.catppuccin)
+end
+
+function Options.get_nvim_cmp_options(cmp)
+  return vim.tbl_deep_extend("force", nvim_cmp_defaults(cmp), Options.nvim_cmp(cmp))
+end
+
+function Options.get_nvim_dap_ui_options()
+  return vim.tbl_deep_extend("force", nvim_dap_ui_defaults, Options.nvim_dap_ui)
 end
 
 return Options

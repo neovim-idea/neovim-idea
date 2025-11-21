@@ -141,7 +141,7 @@ local catppuccin_defaults = {
 ```
 </details>
 
-If you're not happy/satisfied with the options above, feel free to extend/override them like so
+If you're not happy/satisfied with the options above, feel free to extend/override the table like so
 
 ```lua
 -- ~/.config/nvim/lua/option-overrides.lua
@@ -153,6 +153,107 @@ require("neovim-idea.options").catppuccin = {
   end,
   -- add as many catppuccin's options as you'd like
 }
+```
+
+
+### 2. [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
+<details>
+<summary>nvim-cmp default options</summary>
+```lua
+local nvim_cmp_defaults = function(cmp)
+  return {
+    snippet = {
+      -- REQUIRED - you must specify a snippet engine
+      expand = function(args)
+        require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
+      end,
+    },
+    window = {
+      completion = cmp.config.window.bordered({
+        border = "rounded",
+        winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+      }),
+      documentation = cmp.config.window.bordered({
+        border = "rounded",
+        winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+      }),
+    },
+    mapping = cmp.mapping.preset.insert({
+      ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+      ["<C-f>"] = cmp.mapping.scroll_docs(4),
+      ["<C-Space>"] = cmp.mapping.complete(),
+      ["<C-e>"] = cmp.mapping.abort(),
+      ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+      ["<Esc>"] = cmp.mapping.abort(),
+    }),
+    sources = cmp.config.sources({
+      { name = "nvim_lsp" },
+      { name = "luasnip" }, -- For luasnip users.
+    }, {
+      { name = "buffer" },
+    }),
+  }
+end
+```
+</details>
+
+If you're not happy/satisfied with the options above, feel free to extend/override the function like so (it can accept
+a `cmp` parameter that comes from `require(nvim-cmp)` in case you'd need it)
+
+```lua
+-- ~/.config/nvim/lua/option-overrides.lua
+require("neovim-idea.options").nvim_cmp = function(cmp)
+  return {
+    -- add as many nvim-cmp's options as you'd like
+  }
+end
+```
+
+
+### 3. [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui)
+<details>
+<summary>nvim-dap-ui default options</summary>
+```lua
+local nvim_dap_ui_defaults = {
+  layouts = {
+    {
+      elements = {
+        { id = "watches", size = 0.15 },
+        { id = "repl", size = 0.55 },
+        { id = "scopes", size = 0.15 },
+        { id = "stacks", size = 0.15 },
+      },
+      position = "bottom",
+      size = 12,
+    },
+  },
+  controls = {
+    enabled = true,
+    element = "stacks",
+    icons = {
+      play = "",
+      pause = "󰏤",
+      step_into = "⤵",
+      step_over = "⤴",
+      step_out = "⤶",
+      step_back = "↶",
+      run_last = "↻",
+      terminate = "",
+      disconnect = "⏏",
+    },
+  },
+}
+```
+</details>
+
+If you're not happy/satisfied with the options above, feel free to extend/override the table like so
+
+```lua
+-- ~/.config/nvim/lua/option-overrides.lua
+require("neovim-idea.options").nvim_dap_ui = {
+    -- add as many nvim-dap-ui's options as you'd like
+  }
+end
 ```
 
 

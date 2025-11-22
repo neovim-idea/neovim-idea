@@ -1,4 +1,4 @@
--- Bootstrap lazy.nvimgreen 
+-- Bootstrap lazy.nvimgreen
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -6,7 +6,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   if vim.v.shell_error ~= 0 then
     vim.api.nvim_echo({
       { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-      { out,                            "WarningMsg" },
+      { out, "WarningMsg" },
       { "\nPress any key to exit..." },
     }, true, {})
     vim.fn.getchar()
@@ -18,12 +18,12 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 -- enable folding with treesitter
-vim.o.foldenable = true 
-vim.o.foldmethod = 'expr'
-vim.o.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+vim.o.foldenable = true
+vim.o.foldmethod = "expr"
+vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.o.foldlevel = 99
 vim.o.foldlevelstart = 99
-vim.o.foldcolumn = "auto"
+vim.o.foldcolumn = "auto:1"
 vim.opt.fillchars:append({
   foldopen = "",
   foldclose = "",
@@ -37,7 +37,11 @@ vim.o.cursorline = true
 vim.o.scrolloff = 999
 
 require("vim-options")
+require("option-overrides")
 require("lazy").setup("plugins")
+
+-- todo: perhaps add a post-setup.lua ?
+vim.cmd.colorscheme("catppuccin-intellijdark")
 
 -- debug stuff to print keystrokes
 local function listen_for_key()

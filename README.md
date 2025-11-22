@@ -12,11 +12,292 @@ Because of that, I needed a **quick** replacement for IntelliJ to shave off thos
 obviously, neovim was the IDE of choice.
 
 HOWEVER: despite my (limited) previous knowledge of (neo)vim, I had nor the time or the inclination to learn a whole
-plethora of commands and shortcuts to be used in different modes. Call it lazyness, old age or muscle memory. As a
-direct consequence of it, I brazenly messed with the key shortcuts in a way that any respectabe neovim user would either
+plethora of commands and shortcuts to be used in different modes. Call it laziness, old age or muscle memory. As a
+direct consequence of it, I brazenly messed with the key shortcuts in a way that any respectable neovim user would either
 get angry or weep in despair. Sorry, not sorry, I've got work to do. 
 
 If you, however, think you can stomach that: enjoy the repo! Feel free to clone it and tweak it as you please :)   
+
+
+## Plugin Options
+
+`neovim-idea` comes "batteries included": it contains all the necessary plugins and configurations to mimic the UI/UX
+that you would normally see in IntellIJ. However, should you feel the need to change some configurations options or
+keymaps, you are encouraged to do so.
+
+
+### 1. [catppuccin](https://github.com/catppuccin/nvim)
+<details>
+<summary>neovim-idea default options</summary>
+
+```lua
+local catppuccin_defaults = {
+  flavour = "intellijdark",
+  auto_integrations = true,
+  custom_highlights = function(colors)
+    -- intellij-specific tweaks
+    return {
+      -- [[Generic]]
+      Normal = { bg = colors.crust, fg = colors.text },
+      NormalNC = { bg = colors.crust, fg = colors.text },
+      LineNr = { fg = colors.surface0 },
+      CursorLineNr = { fg = colors.overlay0 },
+      CursorLine = { bg = colors.mantle },
+      ColorColumn = { bg = colors.surface0 },
+      FloatBorder = { bg = colors.mantle, fg = colors.text },
+
+      -- [[Neotree]]
+      NeoTreeWinSeparator = { bg = colors.crust, fg = colors.crust },
+      NeoTreeVertSplit = { bg = "NONE" },
+      NeoTreeRootName = { fg = colors.text },
+      NeoTreeFileName = { fg = colors.text },
+      NeoTreeFileIcon = { fg = colors.text },
+      NeoTreeDirectoryName = { fg = colors.text },
+      NeoTreeDirectoryIcon = { fg = colors.text },
+      NeoTreeGitUntracked = { fg = colors.red },
+      NeoTreeGitModified = { fg = colors.lavender },
+      NeoTreeGitStaged = { fg = colors.green },
+      NeoTreeGitUntrackedFolder = { fg = colors.red },
+      NeoTreeGitModifiedFolder = { fg = colors.lavender },
+      NeoTreeGitStagedFolder = { fg = colors.green },
+      NeoTreeCursorLine = { bg = "#2e3861" },
+      NeoTreeFloatTitle = { bg = colors.mantle, fg = colors.text },
+
+      -- [[Telescope - General]]
+      TelescopeNormal = { bg = colors.base, fg = colors.text },
+      TelescopeBorder = { bg = colors.base, fg = colors.text },
+      TelescopeTitle = { bg = colors.base, fg = colors.text },
+      TelescopeSelection = { bg = "#2e3861", fg = colors.subtext1, style = {} },
+      TelescopeMatching = { bg = "NONE", fg = "NONE", style = { "bold" } },
+      -- [[Telescope - Prompt]]
+      TelescopePromptTitle = { bg = colors.base, fg = colors.text },
+      -- [[Telescope - Results]]
+      TelescopeResultsNormal = { bg = colors.base, fg = colors.subtext0 },
+      -- [[Telescope - Preview]]
+      TelescopePreviewTitle = { bg = colors.base, fg = colors.text },
+      TelescopePreviewNormal = { bg = colors.crust, fg = colors.text },
+      TelescopePreviewLine = { bg = colors.base, fg = colors.text },
+
+      -- [[Edgy]]
+      EdgyTitle = { bg = "NONE", fg = colors.subtext0 },
+
+      -- [[Treesitter]]
+      Include = { fg = colors.peach },
+      Constant = { fg = colors.yellow },
+      ["@attribute.scala"] = { fg = colors.yellow },
+      ["@module"] = { fg = colors.text },
+      ["@type.scala"] = { fg = colors.text },
+      ["@module.scala"] = { fg = colors.text },
+      ["@operator.scala"] = { fg = colors.text },
+      ["@keyword.scala"] = { fg = colors.peach },
+      ["@keyword.type.scala"] = { fg = colors.peach },
+      ["@keyword.import.scala"] = { fg = colors.peach },
+      ["@keyword.operator.scala"] = { fg = colors.peach },
+      ["@keyword.function.scala"] = { fg = colors.peach },
+      ["@keyword.modifier.scala"] = { fg = colors.peach },
+      ["@keyword.conditional.scala"] = { fg = colors.peach },
+      ["@variable.parameter.scala"] = { fg = colors.mauve, style = { "italic" } },
+      ["@function.call.scala"] = { fg = colors.text },
+      ["@punctuation.special.scala"] = { fg = colors.peach },
+      ["@variable.member.scala"] = { fg = colors.mauve },
+      ["@comment.scala"] = { fg = colors.green },
+      ["@comment.documentation.scala"] = { fg = colors.green },
+
+      -- [[LSP - Scala]]
+      ["@lsp.type.keyword.scala"] = { fg = colors.peach },
+      ["@lsp.type.class.scala"] = { fg = colors.text },
+      ["@lsp.type.type.scala"] = { fg = colors.text },
+      ["@lsp.type.interface.scala"] = { fg = colors.text },
+      ["@lsp.type.operator.scala"] = { fg = colors.text },
+      ["@lsp.type.method.scala"] = { fg = colors.text },
+      ["@lsp.type.variable.scala"] = { fg = colors.text },
+      ["@lsp.type.comment.scala"] = { fg = colors.green },
+      ["@lsp.type.typeParameter.scala"] = { fg = colors.teal },
+      ["@lsp.type.modifier.scala"] = { fg = colors.peach },
+      ["@lsp.type.namespace.scala"] = { style = {} },
+      -- this kinda works, but there's a limitation in the LSP that local variables and fields/class members share
+      -- the same high-priority token, hence vals defined in function are colored in mauve as well :-/
+      ["@lsp.typemod.variable.readonly.scala"] = { fg = colors.mauve },
+      -- an alternative would be this, but some class/trait val definition are skipped ...
+      -- ["@lsp.typemod.variable.declaration.scala"] = { fg = colors.mauve },
+      -- ["@lsp.typemod.variable.definition.scala"] = { fg = colors.text },
+      -- ["@lsp.typemod.variable.readonly.scala"]   = { fg = colors.text },
+      ["@lsp.typemod.type.abstract.scala"] = { fg = colors.teal },
+      ["@lsp.typemod.parameter.declaration.scala"] = { fg = colors.text },
+      ["@lsp.typemod.parameter.readonly.scala"] = { fg = colors.text },
+      ["@lsp.typemod.method.declaration.scala"] = { fg = colors.blue },
+      ["@lsp.typemod.method.definition.scala"] = { fg = colors.blue },
+
+      -- [[LSP - Sbt]]
+      ["@lsp.type.class.sbt"] = { fg = colors.text },
+      ["@lsp.type.method.sbt"] = { fg = colors.text },
+      ["@lsp.type.operator.sbt"] = { fg = colors.text },
+      ["@lsp.type.keyword.sbt"] = { fg = colors.peach },
+      ["@lsp.type.modifier.sbt"] = { fg = colors.peach },
+      ["@lsp.type.comment.sbt"] = { fg = colors.overlay0 },
+    }
+  end,
+}
+```
+</details>
+
+If you're not happy/satisfied with the options above, feel free to extend/override the table like so
+
+```lua
+-- ~/.config/nvim/lua/option-overrides.lua
+require("neovim-idea.options").catppuccin = {
+  flavour = "latte",
+  auto_integrations = false,
+  custom_highlights = function(colors)
+    return {} -- resets neovim-idea custom color overrides
+  end,
+  -- add as many catppuccin's options as you'd like
+}
+```
+
+
+### 2. [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
+<details>
+<summary>nvim-cmp default options</summary>
+
+```lua
+local nvim_cmp_defaults = function(cmp)
+  return {
+    snippet = {
+      -- REQUIRED - you must specify a snippet engine
+      expand = function(args)
+        require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
+      end,
+    },
+    window = {
+      completion = cmp.config.window.bordered({
+        border = "rounded",
+        winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+      }),
+      documentation = cmp.config.window.bordered({
+        border = "rounded",
+        winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+      }),
+    },
+    mapping = cmp.mapping.preset.insert({
+      ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+      ["<C-f>"] = cmp.mapping.scroll_docs(4),
+      ["<C-Space>"] = cmp.mapping.complete(),
+      ["<C-e>"] = cmp.mapping.abort(),
+      ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+      ["<Esc>"] = cmp.mapping.abort(),
+    }),
+    sources = cmp.config.sources({
+      { name = "nvim_lsp" },
+      { name = "luasnip" }, -- For luasnip users.
+    }, {
+      { name = "buffer" },
+    }),
+  }
+end
+```
+</details>
+
+If you're not happy/satisfied with the options above, feel free to extend/override the function like so (it can accept
+a `cmp` parameter that comes from `require(nvim-cmp)` in case you'd need it)
+
+```lua
+-- ~/.config/nvim/lua/option-overrides.lua
+require("neovim-idea.options").nvim_cmp = function(cmp)
+  return {
+    -- add as many nvim-cmp's options as you'd like
+  }
+end
+```
+
+
+### 3. [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui)
+<details>
+<summary>nvim-dap-ui default options</summary>
+
+```lua
+local nvim_dap_ui_defaults = {
+  layouts = {
+    {
+      elements = {
+        { id = "watches", size = 0.15 },
+        { id = "repl", size = 0.55 },
+        { id = "scopes", size = 0.15 },
+        { id = "stacks", size = 0.15 },
+      },
+      position = "bottom",
+      size = 12,
+    },
+  },
+  controls = {
+    enabled = true,
+    element = "stacks",
+    icons = {
+      play = "",
+      pause = "󰏤",
+      step_into = "⤵",
+      step_over = "⤴",
+      step_out = "⤶",
+      step_back = "↶",
+      run_last = "↻",
+      terminate = "",
+      disconnect = "⏏",
+    },
+  },
+}
+```
+</details>
+
+If you're not happy/satisfied with the options above, feel free to extend/override the table like so
+
+```lua
+-- ~/.config/nvim/lua/option-overrides.lua
+require("neovim-idea.options").nvim_dap_ui = {
+    -- add as many nvim-dap-ui's options as you'd like
+  }
+end
+```
+
+
+### 4. [edgy.nvim](https://github.com/folke/edgy.nvim)
+
+<details>
+
+<summary>edgy.nvim default options</summary>
+
+```lua
+local edgy_nvim_defaults = {
+  left = {
+    {
+      title = "Project Files",
+      ft = "neo-tree",
+      pinned = true,
+      filter = function(buf)
+        return vim.b[buf].neo_tree_source == "filesystem"
+      end,
+      open = "Neotree show position=left filesystem",
+    },
+  },  bottom = {},
+  options = {
+    left = { size = 40 },
+    bottom = { size = 12 },
+  },
+}
+```
+</details>
+
+If you're not happy/satisfied with the options above, feel free to extend/override the table like so
+
+```lua
+-- ~/.config/nvim/lua/option-overrides.lua
+require("neovim-idea.options").edgy_nvim = {
+    -- add as many edgy_nvim's options as you'd like
+}
+end
+```
+
+
+
 
 ## Shortcuts
 
@@ -36,7 +317,7 @@ If you, however, think you can stomach that: enjoy the repo! Feel free to clone 
 In case you're using `Logictech MX Keys` in MacOS, you might have issues trying to figure out why `Fn` keys are still
 modifying the brightness/volume/etc.. even though you you specifically toggled on the System Settings option
 `use F1, F2 etc. keys as standard function keys`. No, you're not drunk: on my Company's old MBP i9 they worked fine but,
-on my personal MBP M1, it didn't; seems like that, on the newer Apple Silicon MBPs, this setting is not honoerd properly
+on my personal MBP M1, it didn't; seems like that, on the newer Apple Silicon MBPs, this setting is not honored properly
 and therefore you must install [Logi Option+](https://www.logitech.com/en-us/software/logi-options-plus.html), import
 your keyboad and then, under the `General` section .. toggle  `use F1, F2 etc. keys as standard function keys`.
 Go figure.
@@ -106,7 +387,7 @@ However it is possible to set conditional breakpoints like so
 
 ## Things To Improve
 
-* [ ] project manager
+* [x] project manager
 * [ ] by default, when opening a project: open in order `README.md` or `build.sbt`
 * [ ] keep insert mode after autocompletion
 * [x] simple camel hump navigation

@@ -20,7 +20,6 @@ return {
     vim.fn.sign_define("DapBreakpointCondition", { text = "󰺕", texthl = "DiagnosticWarn", linehl = "", numhl = "" })
     vim.fn.sign_define("DapStopped", { text = "󰸞", texthl = "DiagnosticInfo", linehl = "", numhl = "" })
 
-    -- todo: bind a mouse-click over the gutter with a toggle-breakpoint action
     vim.keymap.set("n", "<D-b>", dap.toggle_breakpoint, { desc = "toggle line breakpoint" })
     vim.keymap.set("n", "<D-D>", dap.continue, { desc = "start / continue debugging" })
     vim.keymap.set("n", "<D-k4>", dapui.toggle, { desc = "toggle DAP UI" })

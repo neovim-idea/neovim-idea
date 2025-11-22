@@ -159,6 +159,7 @@ require("neovim-idea.options").catppuccin = {
 ### 2. [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
 <details>
 <summary>nvim-cmp default options</summary>
+
 ```lua
 local nvim_cmp_defaults = function(cmp)
   return {
@@ -213,6 +214,7 @@ end
 ### 3. [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui)
 <details>
 <summary>nvim-dap-ui default options</summary>
+
 ```lua
 local nvim_dap_ui_defaults = {
   layouts = {
@@ -255,6 +257,44 @@ require("neovim-idea.options").nvim_dap_ui = {
   }
 end
 ```
+
+
+### 4. [edgy.nvim](https://github.com/folke/edgy.nvim)
+
+<details>
+
+<summary>edgy.nvim default options</summary>
+```lua
+local edgy_nvim_defaults = {
+  left = {
+    {
+      title = "Project Files",
+      ft = "neo-tree",
+      pinned = true,
+      filter = function(buf)
+        return vim.b[buf].neo_tree_source == "filesystem"
+      end,
+      open = "Neotree show position=left filesystem",
+    },
+  },  bottom = {},
+  options = {
+    left = { size = 40 },
+    bottom = { size = 12 },
+  },
+}
+```
+</details>
+
+If you're not happy/satisfied with the options above, feel free to extend/override the table like so
+
+```lua
+-- ~/.config/nvim/lua/option-overrides.lua
+require("neovim-idea.options").edgy_nvim = {
+    -- add as many edgy_nvim's options as you'd like
+}
+end
+```
+
 
 
 

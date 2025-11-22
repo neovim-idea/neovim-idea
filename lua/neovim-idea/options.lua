@@ -184,6 +184,28 @@ local nvim_dap_ui_defaults = {
 
 Options.nvim_dap_ui = {}
 
+-- [[edgy.nvim]]
+local edgy_nvim_defaults = {
+  left = {
+    {
+      title = "Project Files",
+      ft = "neo-tree",
+      pinned = true,
+      filter = function(buf)
+        return vim.b[buf].neo_tree_source == "filesystem"
+      end,
+      open = "Neotree show position=left filesystem",
+    },
+  },
+  bottom = {},
+  options = {
+    left = { size = 40 },
+    bottom = { size = 12 },
+  },
+}
+
+Options.edgy_nvim = {}
+
 --[[Accessors]]
 function Options.get_catppuccin_options()
   return vim.tbl_deep_extend("force", catppuccin_defaults, Options.catppuccin)
@@ -195,6 +217,10 @@ end
 
 function Options.get_nvim_dap_ui_options()
   return vim.tbl_deep_extend("force", nvim_dap_ui_defaults, Options.nvim_dap_ui)
+end
+
+function Options.get_edgy_nvim_options()
+  return vim.tbl_deep_extend("force", edgy_nvim_defaults, Options.edgy_nvim)
 end
 
 return Options

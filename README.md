@@ -264,6 +264,7 @@ end
 <details>
 
 <summary>edgy.nvim default options</summary>
+
 ```lua
 local edgy_nvim_defaults = {
   left = {

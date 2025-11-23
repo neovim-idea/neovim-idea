@@ -1,3 +1,40 @@
+## [1.3.0](https://github.com/neovim-idea/neovim-idea/compare/v1.2.1...v1.3.0) (2025-11-23)
+
+### 📖 Docs
+
+* fix markdown rendering ([587852e](https://github.com/neovim-idea/neovim-idea/commit/587852e42c0f082a507ea73d75174e61ef71e365))
+* typo-- ([c9ceb1c](https://github.com/neovim-idea/neovim-idea/commit/c9ceb1c81891b41f0e2321517b5e62973ffc9636))
+
+### ✨ Features
+
+* added (basic) project management capabilities ([edda078](https://github.com/neovim-idea/neovim-idea/commit/edda078e68846026945dcb23c6d41349c5f31b2c))
+
+### 🩹 Fixes
+
+* add LSP capabilities to markdown files ([2363bc4](https://github.com/neovim-idea/neovim-idea/commit/2363bc4d19577befd0ed6b66f2f92f0e2f5dd3de))
+* make catpuccin's options extensible ([b5c72b5](https://github.com/neovim-idea/neovim-idea/commit/b5c72b533f4e90ea0a5ff37905b24a6e80ad40d8))
+* make edgy.nvim's options extensible ([0aee5cf](https://github.com/neovim-idea/neovim-idea/commit/0aee5cf7a4eead89293aebe467a692cbca85c368))
+* make gitsign's options extensible ([a7a31d6](https://github.com/neovim-idea/neovim-idea/commit/a7a31d693f8e418628a85117fc741749c949f5a8))
+* make lualine's options extensible ([101875c](https://github.com/neovim-idea/neovim-idea/commit/101875c951686562bd6cc2d2ff605303a1c0c282))
+* make mason & mason-lspconfig options extensible ([7c2b4bd](https://github.com/neovim-idea/neovim-idea/commit/7c2b4bd2acbd876ce346b8ded7c03cdb589360a8))
+* make mini.pairs' options extensible ([50aff2f](https://github.com/neovim-idea/neovim-idea/commit/50aff2fd8b133f0963f04fe25f152eb4afba615d))
+* make neotree's options extensible ([f39a03e](https://github.com/neovim-idea/neovim-idea/commit/f39a03e88eb1980748b9b663e1d1e444c3f2ecd5))
+* make neovim-project's options extensible ([2cda0ba](https://github.com/neovim-idea/neovim-idea/commit/2cda0ba81469f363c3e19fe4ca74d449e224493b))
+* make nvim-metals's options extensible ([0bd019b](https://github.com/neovim-idea/neovim-idea/commit/0bd019b14733d662e9e7ec2ed8e4994e8fcc2a33))
+* make nvim-treesitter's options extensible ([61c1405](https://github.com/neovim-idea/neovim-idea/commit/61c1405772f0b13144bda5d1cfeb5f9562777650))
+* make render-markdown's options extensible ([c1ec7a6](https://github.com/neovim-idea/neovim-idea/commit/c1ec7a6d239113fd2762a15b2464fa4336d48734))
+* make statuscol.nvim's options extensible ([cc09a8a](https://github.com/neovim-idea/neovim-idea/commit/cc09a8ae73555bf58ea1c8c2a78b69bf99b3f0b7))
+* make telescope.nvim's options extensible ([001f1e5](https://github.com/neovim-idea/neovim-idea/commit/001f1e5291a9a1b7cd7b08425b67ee174a4bc973))
+* make the completion options extensible ([9c14ae2](https://github.com/neovim-idea/neovim-idea/commit/9c14ae2314b87045bea591bc96109928282c685a))
+* make todo-comments' options extensible ([b95ae9f](https://github.com/neovim-idea/neovim-idea/commit/b95ae9fe37aee2800a8d77dbb6f7fa01b122bb24))
+* make vim-notify's options extensible ([3c19bd8](https://github.com/neovim-idea/neovim-idea/commit/3c19bd80fc534fa440023a1d77aa6b5d927dfaa4))
+* make which-key's options extensible ([cd6450c](https://github.com/neovim-idea/neovim-idea/commit/cd6450c8d33ebc317357b05f5d61a99fb156ff14))
+* move snacks.nvim in its own lua file ([0cecf29](https://github.com/neovim-idea/neovim-idea/commit/0cecf29699505a12020e44698927451822b2486b))
+* no more flaky stylua formatting ([9a7ea71](https://github.com/neovim-idea/neovim-idea/commit/9a7ea71cfc77ec822049e110abc6eb75b1427230))
+* proper sync lualine with catppuccin's theme change ([7dcfc9e](https://github.com/neovim-idea/neovim-idea/commit/7dcfc9ebe60ac36461b5f4dcb5f3afeb7f2c536c))
+* show folding for imports as well (experimental) ([f1fc8f3](https://github.com/neovim-idea/neovim-idea/commit/f1fc8f3977e69da65625d702c2e903b54e91b3b8))
+* visually align metal's run options ([26006b0](https://github.com/neovim-idea/neovim-idea/commit/26006b097b000fdaeab458af49945384b880577c))
+
 ## [1.2.1](https://github.com/neovim-idea/neovim-idea/compare/v1.2.0...v1.2.1) (2025-11-17)
 
 ### 🩹 Fixes

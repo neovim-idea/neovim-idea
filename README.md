@@ -716,7 +716,30 @@ If you're not happy/satisfied with the options above, feel free to extend/overri
 ```lua
 -- ~/.config/nvim/lua/option-overrides.lua
 require("neovim-idea.options").todo_comments = {
-  -- add as many nvim_treesitter's options as you'd like
+  -- add as many nvim-treesitter's options as you'd like
+}
+```
+
+
+### [vim-notify](https://github.com/rcarriga/nvim-notify)
+<details>
+<summary>vim-notify default options</summary>
+
+```lua
+local vim_notify_defaults = {
+  timeout = 3000,
+  render = "compact",
+  top_down = true,
+}
+```
+</details>
+
+If you're not happy/satisfied with the options above, feel free to extend/override the table like so
+
+```lua
+-- ~/.config/nvim/lua/option-overrides.lua
+require("neovim-idea.options").vim_notify = {
+  -- add as many vim-notify's options as you'd like
 }
 ```
 

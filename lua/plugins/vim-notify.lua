@@ -3,14 +3,9 @@ return {
   "rcarriga/nvim-notify",
   lazy = false,
   priority = 1000,
-  opts = {
-    timeout = 3000,
-    render = "compact",
-    top_down = true,
-  },
   config = function(_, opts)
     local notify = require("notify")
-    notify.setup(opts)
+    notify.setup(require("neovim-idea.options").get_vim_notify_options())
     vim.notify = notify
 
     local show_all_notifications = function()

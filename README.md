@@ -488,13 +488,40 @@ local neotree_defaults = {
 ```
 </details>
 
-
 If you're not happy/satisfied with the options above, feel free to extend/override the table like so
 
 ```lua
 -- ~/.config/nvim/lua/option-overrides.lua
 require("neovim-idea.options").neotree = {
   -- add as many neotree's options as you'd like
+}
+```
+
+
+### [neovim-project](https://github.com/coffebar/neovim-project)
+<details>
+<summary>neovim-project default options</summary>
+
+```lua
+
+local neovim_project_defaults = {
+  projects = {
+    "~/projects/*",
+    "~/.config/*",
+  },
+  picker = {
+    type = "telescope",
+  },
+}
+```
+</details>
+
+If you're not happy/satisfied with the options above, feel free to extend/override the table like so
+
+```lua
+-- ~/.config/nvim/lua/option-overrides.lua
+require("neovim-idea.options").neovim_project = {
+  -- add as many neovim-project's options as you'd like
 }
 ```
 

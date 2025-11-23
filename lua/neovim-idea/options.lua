@@ -458,6 +458,15 @@ local vim_notify_defaults = {
 
 Options.vim_notify = {}
 
+-- [[which-key]]
+local which_key_defaults = {
+  preset = "helix",
+  -- delay more such that it doesn't get in the way unless im really waiting a bit
+  delay = 500,
+}
+
+Options.which_key = {}
+
 --[[Accessors]]
 function Options.get_catppuccin_options()
   return vim.tbl_deep_extend("force", catppuccin_defaults, Options.catppuccin)
@@ -529,6 +538,10 @@ end
 
 function Options.get_vim_notify_options()
   return vim.tbl_deep_extend("force", vim_notify_defaults, Options.vim_notify)
+end
+
+function Options.get_which_key_options()
+  return vim.tbl_deep_extend("force", which_key_defaults, Options.which_key)
 end
 
 return Options

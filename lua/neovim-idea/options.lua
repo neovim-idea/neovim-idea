@@ -449,6 +449,15 @@ local nvim_treesitter_defaults = {
 
 Options.nvim_treesitter = {}
 
+-- [[vim-notify]]
+local vim_notify_defaults = {
+  timeout = 3000,
+  render = "compact",
+  top_down = true,
+}
+
+Options.vim_notify = {}
+
 --[[Accessors]]
 function Options.get_catppuccin_options()
   return vim.tbl_deep_extend("force", catppuccin_defaults, Options.catppuccin)
@@ -516,6 +525,10 @@ end
 
 function Options.get_nvim_treesitter_options()
   return vim.tbl_deep_extend("force", nvim_treesitter_defaults, Options.nvim_treesitter)
+end
+
+function Options.get_vim_notify_options()
+  return vim.tbl_deep_extend("force", vim_notify_defaults, Options.vim_notify)
 end
 
 return Options

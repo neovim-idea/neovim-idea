@@ -1,28 +1,6 @@
 return {
   "nvim-lualine/lualine.nvim",
   config = function()
-    require("lualine").setup({
-      options = {
-        component_separators = { left = "", right = "" },
-        section_separators = { left = "", right = "" },
-      },
-      sections = {
-        lualine_y = {
-          {
-            "lsp_status",
-            icon = "󱤢",
-            symbols = {
-              spinner = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" },
-              done = "✓",
-              separator = " ",
-            },
-            -- LSPs that we don't care to show
-            ignore_lsp = { "null-ls", "stylua" },
-            show_name = true,
-          },
-          "progress",
-        },
-      },
-    })
+    require("lualine").setup(require("neovim-idea.options").get_lualine_options())
   end,
 }

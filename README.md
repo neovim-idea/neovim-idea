@@ -389,6 +389,47 @@ require("neovim-idea.options").nvim_metals = function(metals, metals_config)
 end
 ```
 
+
+### 9. [lualine]()
+<details>
+<summary>lualine default options</summary>
+
+```lua
+local lualine_defaults = {
+  options = {
+    component_separators = { left = "", right = "" },
+    section_separators = { left = "", right = "" },
+  },
+  sections = {
+    lualine_y = {
+      {
+        "lsp_status",
+        icon = "󱤢",
+        symbols = {
+          spinner = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" },
+          done = "✓",
+          separator = " ",
+        },
+        -- LSPs that we don't care to show
+        ignore_lsp = { "null-ls", "stylua" },
+        show_name = true,
+      },
+      "progress",
+    },
+  },
+}
+```
+</details>
+
+If you're not happy/satisfied with the options above, feel free to extend/override the table like so
+
+```lua
+-- ~/.config/nvim/lua/option-overrides.lua
+require("neovim-idea.options").nvim_metals = {
+  -- add as many lualine's options as you'd like
+}
+```
+
 ## Shortcuts
 
 > [!IMPORTANT]

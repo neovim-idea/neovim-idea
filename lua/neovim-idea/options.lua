@@ -246,6 +246,33 @@ function Options.nvim_metals(metals, metals_config)
   return {}
 end
 
+-- [[lualine]]
+local lualine_defaults = {
+  options = {
+    component_separators = { left = "", right = "" },
+    section_separators = { left = "", right = "" },
+  },
+  sections = {
+    lualine_y = {
+      {
+        "lsp_status",
+        icon = "󱤢",
+        symbols = {
+          spinner = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" },
+          done = "✓",
+          separator = " ",
+        },
+        -- LSPs that we don't care to show
+        ignore_lsp = { "null-ls", "stylua" },
+        show_name = true,
+      },
+      "progress",
+    },
+  },
+}
+
+Options.lualine = {}
+
 --[[Accessors]]
 function Options.get_catppuccin_options()
   return vim.tbl_deep_extend("force", catppuccin_defaults, Options.catppuccin)
@@ -277,6 +304,10 @@ end
 
 function Options.get_nvim_metals_options(metals, m_config)
   return vim.tbl_deep_extend("force", nvim_metals_defaults(metals, m_config), Options.nvim_metals(metals, m_config))
+end
+
+function Options.get_lualine_options()
+  return vim.tbl_deep_extend("force", lualine_defaults, Options.lualine)
 end
 
 return Options

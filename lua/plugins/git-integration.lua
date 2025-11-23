@@ -16,7 +16,7 @@ return {
     "lewis6991/gitsigns.nvim",
     lazy = false,
     config = function()
-      require("gitsigns").setup(require('neovim-idea.options').get_gitsigns_options())
+      require("gitsigns").setup(require("neovim-idea.options").get_gitsigns_options())
       vim.keymap.set("n", "<leader>gp", ":Gitsigns preview_hunk<CR>", { desc = "show git hunk preview" })
       -- TODO: current_line_blame is handy, perhaps just leave it on all the times (?)
       vim.keymap.set(
@@ -25,29 +25,6 @@ return {
         ":Gitsigns toggle_current_line_blame<CR>",
         { desc = "show current line last committer" }
       )
-    end,
-  },
-  {
-    "folke/snacks.nvim",
-    lazy = false,
-    opts = {
-      lazygit = {},
-    },
-    config = function()
-      local Snacks = require("snacks")
-      vim.keymap.set({ "n", "i" }, "<D-G>", function()
-        Snacks.lazygit.open()
-      end, { desc = "open lazygit" })
-
-      -- fire a neotree event when lazygit closes
-      -- many thanks to https://github.com/nvim-neo-tree/neo-tree.nvim/discussions/1253#discussioncomment-9971975
-      local events = require("neo-tree.events")
-      vim.api.nvim_create_autocmd("TermClose", {
-        pattern = "term://*lazygit*",
-        callback = function()
-          events.fire_event(events.GIT_EVENT)
-        end,
-      })
     end,
   },
 }

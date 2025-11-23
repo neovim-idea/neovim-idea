@@ -696,6 +696,30 @@ require("neovim-idea.options").todo_comments = {
 ```
 
 
+### [nvim-treesitter]()
+<details>
+<summary>nvim-treesitter default options</summary>
+
+```lua
+local nvim_treesitter_defaults = {
+  -- auto_install = true -- to autoinstall languages as they're encountered
+  ensure_installed = { "lua", "javascript", "java", "scala" },
+  highlight = { enable = true },
+  indent = { enable = true },
+  fold = { enable = true },
+}
+```
+</details>
+
+If you're not happy/satisfied with the options above, feel free to extend/override the table like so
+
+```lua
+-- ~/.config/nvim/lua/option-overrides.lua
+require("neovim-idea.options").todo_comments = {
+  -- add as many nvim_treesitter's options as you'd like
+}
+```
+
 
 
 ## Shortcuts

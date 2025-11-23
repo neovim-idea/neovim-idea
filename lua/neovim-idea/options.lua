@@ -438,6 +438,17 @@ local todo_comments_defaults = {
 
 Options.todo_comments = {}
 
+-- [[nvim-treesitter]]
+local nvim_treesitter_defaults = {
+  -- auto_install = true -- to autoinstall languages as they're encountered
+  ensure_installed = { "lua", "javascript", "java", "scala" },
+  highlight = { enable = true },
+  indent = { enable = true },
+  fold = { enable = true },
+}
+
+Options.nvim_treesitter = {}
+
 --[[Accessors]]
 function Options.get_catppuccin_options()
   return vim.tbl_deep_extend("force", catppuccin_defaults, Options.catppuccin)
@@ -501,6 +512,10 @@ end
 
 function Options.get_todo_comments_options()
   return vim.tbl_deep_extend("force", todo_comments_defaults, Options.todo_comments)
+end
+
+function Options.get_nvim_treesitter_options()
+  return vim.tbl_deep_extend("force", nvim_treesitter_defaults, Options.nvim_treesitter)
 end
 
 return Options

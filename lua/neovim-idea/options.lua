@@ -333,6 +333,64 @@ local render_markdown_options = {
 
 Options.render_markdown = {}
 
+-- [[statuscol-nvim]]
+local statuscol_nvim_defaults = function(builtin)
+  return {
+    setopt = true,
+    relculright = true,
+    ft_ignore = { "neo-tree", "neo-tree-popup" },
+    bt_ignore = { "terminal", "help" },
+    segments = {
+      {
+        text = { builtin.lnumfunc, " " },
+        condition = { true, builtin.not_empty },
+        click = "v:lua.ScLa",
+      },
+      {
+        sign = {
+          namespace = { "diagnostic/signs" },
+          text = { "E", "I", "W", "H" },
+          maxwidth = 2,
+          colwidth = 1,
+          auto = true,
+        },
+        click = "v:lua.ScSa",
+      },
+      {
+        sign = {
+          name = {
+            "Dap.*",
+            "todo%-sign%-.*",
+          },
+          maxwidth = 2,
+          colwidth = 2,
+          -- I prefer to keep this column always shown because the icons for DAP and todo comments gets too much close
+          -- to each other otherwise. And actually it balances pretty nicely the space on the left side of the line
+          -- numbers so, it's a win-win-win
+          auto = true,
+        },
+        click = "v:lua.ScSa",
+      },
+      {
+        text = { builtin.foldfunc, " " },
+        click = "v:lua.ScFa",
+      },
+      {
+        sign = {
+          name = { "gitsigns.*" },
+          text = { "gitsigns.*" },
+          namespace = { "gitsigns.*" },
+        },
+        click = "v:lua.ScSa",
+      },
+    },
+  }
+end
+
+function Options.statuscol_nvim(builtin)
+  return {}
+end
+
 --[[Accessors]]
 function Options.get_catppuccin_options()
   return vim.tbl_deep_extend("force", catppuccin_defaults, Options.catppuccin)
@@ -378,13 +436,16 @@ function Options.get_neotree_options()
   return vim.tbl_deep_extend("force", neotree_defaults, Options.neotree)
 end
 
-
 function Options.get_neovim_project_options()
   return vim.tbl_deep_extend("force", neovim_project_defaults, Options.neovim_project)
 end
 
 function Options.get_render_markdown_options()
   return vim.tbl_deep_extend("force", render_markdown_options, Options.render_markdown)
+end
+
+function Options.get_statuscol_nvim_options(builtin)
+  return vim.tbl_deep_extend("force", statuscol_nvim_defaults(builtin), Options.statuscol_nvim(builtin))
 end
 
 return Options

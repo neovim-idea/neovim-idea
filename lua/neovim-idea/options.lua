@@ -391,6 +391,38 @@ function Options.statuscol_nvim(builtin)
   return {}
 end
 
+-- [[telescope.nvim]]
+local telescope_nvim_defaults = {
+  defaults = {
+    sorting_strategy = "ascending",
+    layout_strategy = "vertical",
+
+    layout_config = {
+      vertical = {
+        prompt_position = "top",
+        mirror = true,
+        results_height = 0.45,
+        preview_height = 0.55,
+      },
+      width = 0.5,
+      height = 0.55,
+    },
+  },
+  extensions = {
+    -- for code actions popup: keep them small!
+    ["ui-select"] = {
+      require("telescope.themes").get_dropdown({
+        layout_config = {
+          width = 0.40,
+          height = 0.30,
+        },
+      }),
+    },
+  },
+}
+
+Options.telescope_nvim = {}
+
 --[[Accessors]]
 function Options.get_catppuccin_options()
   return vim.tbl_deep_extend("force", catppuccin_defaults, Options.catppuccin)
@@ -446,6 +478,10 @@ end
 
 function Options.get_statuscol_nvim_options(builtin)
   return vim.tbl_deep_extend("force", statuscol_nvim_defaults(builtin), Options.statuscol_nvim(builtin))
+end
+
+function Options.get_telescope_nvim_options()
+  return vim.tbl_deep_extend("force", telescope_nvim_defaults, Options.telescope_nvim)
 end
 
 return Options

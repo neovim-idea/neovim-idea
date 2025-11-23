@@ -621,6 +621,52 @@ end
 ```
 
 
+### [telescope](https://github.com/nvim-telescope/telescope.nvim)
+<details>
+<summary>telescope.nvim default options</summary>
+
+```lua
+local telescope_nvim_defaults = {
+  defaults = {
+    sorting_strategy = "ascending",
+    layout_strategy = "vertical",
+
+    layout_config = {
+      vertical = {
+        prompt_position = "top",
+        mirror = true,
+        results_height = 0.45,
+        preview_height = 0.55,
+      },
+      width = 0.5,
+      height = 0.55,
+    },
+  },
+  extensions = {
+    -- for code actions popup: keep them small!
+    ["ui-select"] = {
+      require("telescope.themes").get_dropdown({
+        layout_config = {
+          width = 0.40,
+          height = 0.30,
+        },
+      }),
+    },
+  },
+}
+```
+</details>
+
+If you're not happy/satisfied with the options above, feel free to extend/override the table like so
+
+```lua
+-- ~/.config/nvim/lua/option-overrides.lua
+require("neovim-idea.options").telescope_nvim = {
+  -- add as many telescope.nvim's options as you'd like
+}
+```
+
+
 
 
 ## Shortcuts

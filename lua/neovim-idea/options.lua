@@ -423,6 +423,21 @@ local telescope_nvim_defaults = {
 
 Options.telescope_nvim = {}
 
+-- [[todo-comments]]
+local todo_comments_defaults = {
+  gui_style = {
+    bg = "NONE",
+  },
+  highlight = {
+    before = "",
+    keyword = "fg",
+    after = "fg",
+    pattern = [[.*<(KEYWORDS)\s*:*]],
+  },
+}
+
+Options.todo_comments = {}
+
 --[[Accessors]]
 function Options.get_catppuccin_options()
   return vim.tbl_deep_extend("force", catppuccin_defaults, Options.catppuccin)
@@ -482,6 +497,10 @@ end
 
 function Options.get_telescope_nvim_options()
   return vim.tbl_deep_extend("force", telescope_nvim_defaults, Options.telescope_nvim)
+end
+
+function Options.get_todo_comments_options()
+  return vim.tbl_deep_extend("force", todo_comments_defaults, Options.todo_comments)
 end
 
 return Options

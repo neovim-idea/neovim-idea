@@ -667,6 +667,35 @@ require("neovim-idea.options").telescope_nvim = {
 ```
 
 
+### [todo-comments](https://github.com/folke/todo-comments.nvim)
+<details>
+<summary>todo-comments default options</summary>
+
+```lua
+local todo_comments_defaults = {
+  gui_style = {
+    bg = "NONE",
+  },
+  highlight = {
+    before = "",
+    keyword = "fg",
+    after = "fg",
+    pattern = [[.*<(KEYWORDS)\s*:*]],
+  },
+}
+```
+</details>
+
+If you're not happy/satisfied with the options above, feel free to extend/override the table like so
+
+```lua
+-- ~/.config/nvim/lua/option-overrides.lua
+require("neovim-idea.options").todo_comments = {
+  -- add as many todo-comments's options as you'd like
+}
+```
+
+
 
 
 ## Shortcuts

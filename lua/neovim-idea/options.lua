@@ -326,6 +326,13 @@ local neovim_project_defaults = {
 
 Options.neovim_project = {}
 
+-- [[render-markdown]]
+local render_markdown_options = {
+  completions = { lsp = { enabled = true } },
+}
+
+Options.render_markdown = {}
+
 --[[Accessors]]
 function Options.get_catppuccin_options()
   return vim.tbl_deep_extend("force", catppuccin_defaults, Options.catppuccin)
@@ -371,8 +378,13 @@ function Options.get_neotree_options()
   return vim.tbl_deep_extend("force", neotree_defaults, Options.neotree)
 end
 
+
 function Options.get_neovim_project_options()
   return vim.tbl_deep_extend("force", neovim_project_defaults, Options.neovim_project)
+end
+
+function Options.get_render_markdown_options()
+  return vim.tbl_deep_extend("force", render_markdown_options, Options.render_markdown)
 end
 
 return Options

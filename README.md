@@ -526,6 +526,28 @@ require("neovim-idea.options").neovim_project = {
 ```
 
 
+### [render-markdown](https://github.com/MeanderingProgrammer/render-markdown.nvim)
+<details>
+<summary>render-markdown default options</summary>
+
+```lua
+function Options.get_neovim_project_options()
+  return vim.tbl_deep_extend("force", neovim_project_defaults, Options.neovim_project)
+end
+
+```
+</details>
+
+If you're not happy/satisfied with the options above, feel free to extend/override the table like so
+
+```lua
+-- ~/.config/nvim/lua/option-overrides.lua
+require("neovim-idea.options").render_markdown = {
+  -- add as many render-markdown's options as you'd like
+}
+```
+
+
 ## Shortcuts
 
 > [!IMPORTANT]

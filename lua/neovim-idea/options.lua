@@ -213,6 +213,18 @@ local gitsigns_defaults = {
 
 Options.gitsigns = {}
 
+-- [[mason]]
+local mason_defaults = {}
+
+Options.mason = {}
+
+-- [[mason-lspconfig]]
+local mason_lspconfig_defaults = {
+  ensure_installed = { "lua_ls", "ts_ls" },
+}
+
+Options.mason_lspconfig = {}
+
 --[[Accessors]]
 function Options.get_catppuccin_options()
   return vim.tbl_deep_extend("force", catppuccin_defaults, Options.catppuccin)
@@ -232,6 +244,14 @@ end
 
 function Options.get_gitsigns_options()
   return vim.tbl_deep_extend("force", gitsigns_defaults, Options.gitsigns)
+end
+
+function Options.get_mason_options()
+  return vim.tbl_deep_extend("force", mason_defaults, Options.mason)
+end
+
+function Options.get_mason_lspconfig_options()
+  return vim.tbl_deep_extend("force", mason_lspconfig_defaults, Options.mason_lspconfig)
 end
 
 return Options

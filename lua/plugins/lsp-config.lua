@@ -3,16 +3,14 @@ return {
     "mason-org/mason.nvim",
     lazy = false,
     config = function()
-      require("mason").setup()
+      require("mason").setup(require("neovim-idea.options").get_mason_options())
     end,
   },
   {
     "mason-org/mason-lspconfig.nvim",
     lazy = false,
     config = function()
-      require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "ts_ls" },
-      })
+      require("mason-lspconfig").setup(require("neovim-idea.options").get_mason_lspconfig_options())
     end,
   },
   {

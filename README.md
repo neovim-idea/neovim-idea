@@ -295,6 +295,7 @@ end
 ```
 
 
+
 ### 5. [gitsigns](https://github.com/lewis6991/gitsigns.nvim)
 <details>
 <summary>gitsigns default options</summary>
@@ -312,6 +313,48 @@ If you're not happy/satisfied with the options above, feel free to extend/overri
 -- ~/.config/nvim/lua/option-overrides.lua
 require("neovim-idea.options").gitsigns = {
     -- add as many gitsigns's options as you'd like
+}
+end
+
+
+### 6. [mason](https://github.com/mason-org/mason.nvim)
+<details>
+<summary>mason default options</summary>
+
+```lua
+local mason_defaults = {}
+```
+</details>
+
+If you're not happy/satisfied with the options above, feel free to extend/override the table like so
+
+```lua
+-- ~/.config/nvim/lua/option-overrides.lua
+require("neovim-idea.options").mason = {
+    -- add as many mason's options as you'd like
+}
+end
+
+```
+
+
+### 7. [mason-lsp](https://github.com/mason-org/mason-lspconfig.nvim)
+<details>
+<summary>mason default options</summary>
+
+```lua
+local mason_lspconfig_defaults = {
+  ensure_installed = { "lua_ls", "ts_ls" },
+}
+```
+</details>
+
+If you're not happy/satisfied with the options above, feel free to extend/override the table like so
+
+```lua
+-- ~/.config/nvim/lua/option-overrides.lua
+require("neovim-idea.options").mason_lspconfig = {
+    -- add as many mason's options as you'd like
 }
 end
 

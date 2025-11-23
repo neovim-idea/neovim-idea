@@ -273,6 +273,11 @@ local lualine_defaults = {
 
 Options.lualine = {}
 
+-- [[mini-pairs]]
+local mini_pairs_defaults = {}
+
+Options.mini_pairs = {}
+
 --[[Accessors]]
 function Options.get_catppuccin_options()
   return vim.tbl_deep_extend("force", catppuccin_defaults, Options.catppuccin)
@@ -308,6 +313,10 @@ end
 
 function Options.get_lualine_options()
   return vim.tbl_deep_extend("force", lualine_defaults, Options.lualine)
+end
+
+function Options.get_mini_pairs_options()
+  return vim.tbl_deep_extend("force", mini_pairs_defaults, Options.mini_pairs)
 end
 
 return Options

@@ -26,7 +26,7 @@ that you would normally see in IntellIJ. However, should you feel the need to ch
 keymaps, you are encouraged to do so.
 
 
-### 1. [catppuccin](https://github.com/catppuccin/nvim)
+### [catppuccin](https://github.com/catppuccin/nvim)
 <details>
 <summary>neovim-idea default options</summary>
 
@@ -156,7 +156,7 @@ require("neovim-idea.options").catppuccin = {
 ```
 
 
-### 2. [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
+### [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
 <details>
 <summary>nvim-cmp default options</summary>
 
@@ -211,7 +211,7 @@ end
 ```
 
 
-### 3. [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui)
+### [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui)
 <details>
 <summary>nvim-dap-ui default options</summary>
 
@@ -258,7 +258,7 @@ require("neovim-idea.options").nvim_dap_ui = {
 ```
 
 
-### 4. [edgy.nvim](https://github.com/folke/edgy.nvim)
+### [edgy.nvim](https://github.com/folke/edgy.nvim)
 <details>
 <summary>edgy.nvim default options</summary>
 
@@ -293,8 +293,7 @@ require("neovim-idea.options").edgy_nvim = {
 ```
 
 
-
-### 5. [gitsigns](https://github.com/lewis6991/gitsigns.nvim)
+### [gitsigns](https://github.com/lewis6991/gitsigns.nvim)
 <details>
 <summary>gitsigns default options</summary>
 
@@ -315,7 +314,7 @@ require("neovim-idea.options").gitsigns = {
 ```
 
 
-### 6. [mason](https://github.com/mason-org/mason.nvim)
+### [mason](https://github.com/mason-org/mason.nvim)
 <details>
 <summary>mason default options</summary>
 
@@ -334,7 +333,7 @@ require("neovim-idea.options").mason = {
 ```
 
 
-### 7. [mason-lsp](https://github.com/mason-org/mason-lspconfig.nvim)
+### [mason-lsp](https://github.com/mason-org/mason-lspconfig.nvim)
 <details>
 <summary>mason default options</summary>
 
@@ -356,7 +355,7 @@ require("neovim-idea.options").mason_lspconfig = {
 ```
 
 
-### 8. [nvim-metals](https://github.com/scalameta/nvim-metals)
+### [nvim-metals](https://github.com/scalameta/nvim-metals)
 <details>
 <summary>nvim-metals default options</summary>
 
@@ -390,7 +389,7 @@ end
 ```
 
 
-### 9. [lualine]()
+### [lualine](https://github.com/nvim-lualine/lualine.nvim)
 <details>
 <summary>lualine default options</summary>
 
@@ -425,10 +424,32 @@ If you're not happy/satisfied with the options above, feel free to extend/overri
 
 ```lua
 -- ~/.config/nvim/lua/option-overrides.lua
-require("neovim-idea.options").nvim_metals = {
+require("neovim-idea.options").lualine = {
   -- add as many lualine's options as you'd like
 }
 ```
+
+
+### [mini.pairs](https://github.com/nvim-mini/mini.pairs)
+<details>
+<summary>mini.pairs default options</summary>
+
+```lua
+local mini_pairs_defaults = {}
+```
+</details>
+
+If you're not happy/satisfied with the options above, feel free to extend/override the table like so
+
+```lua
+-- ~/.config/nvim/lua/option-overrides.lua
+require("neovim-idea.options").mini_pairs = {
+  -- add as many mini.pairs's options as you'd like
+}
+```
+
+
+
 
 ## Shortcuts
 

@@ -206,6 +206,13 @@ local edgy_nvim_defaults = {
 
 Options.edgy_nvim = {}
 
+-- [[gitsigns]]
+local gitsigns_defaults = {
+  current_line_blame = true,
+}
+
+Options.gitsigns = {}
+
 --[[Accessors]]
 function Options.get_catppuccin_options()
   return vim.tbl_deep_extend("force", catppuccin_defaults, Options.catppuccin)
@@ -221,6 +228,10 @@ end
 
 function Options.get_edgy_nvim_options()
   return vim.tbl_deep_extend("force", edgy_nvim_defaults, Options.edgy_nvim)
+end
+
+function Options.get_gitsigns_options()
+  return vim.tbl_deep_extend("force", gitsigns_defaults, Options.gitsigns)
 end
 
 return Options

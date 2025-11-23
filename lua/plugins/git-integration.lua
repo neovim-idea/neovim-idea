@@ -16,9 +16,7 @@ return {
     "lewis6991/gitsigns.nvim",
     lazy = false,
     config = function()
-      require("gitsigns").setup({
-        current_line_blame = true,
-      })
+      require("gitsigns").setup(require('neovim-idea.options').get_gitsigns_options())
       vim.keymap.set("n", "<leader>gp", ":Gitsigns preview_hunk<CR>", { desc = "show git hunk preview" })
       -- TODO: current_line_blame is handy, perhaps just leave it on all the times (?)
       vim.keymap.set(

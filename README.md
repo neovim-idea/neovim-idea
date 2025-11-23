@@ -260,9 +260,7 @@ end
 
 
 ### 4. [edgy.nvim](https://github.com/folke/edgy.nvim)
-
 <details>
-
 <summary>edgy.nvim default options</summary>
 
 ```lua
@@ -297,7 +295,27 @@ end
 ```
 
 
+### 5. [gitsigns](https://github.com/lewis6991/gitsigns.nvim)
+<details>
+<summary>gitsigns default options</summary>
 
+```lua
+local gitsigns_defaults = {
+  current_line_blame = true,
+}
+```
+</details>
+
+If you're not happy/satisfied with the options above, feel free to extend/override the table like so
+
+```lua
+-- ~/.config/nvim/lua/option-overrides.lua
+require("neovim-idea.options").gitsigns = {
+    -- add as many gitsigns's options as you'd like
+}
+end
+
+```
 
 ## Shortcuts
 

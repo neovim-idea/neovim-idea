@@ -225,6 +225,27 @@ local mason_lspconfig_defaults = {
 
 Options.mason_lspconfig = {}
 
+-- [[nvim-metals]]
+local nvim_metals_defaults = function(metals, metals_config)
+  metals_config.on_attach = function(_, bufnr)
+    metals.setup_dap()
+    vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
+      buffer = bufnr,
+      callback = function()
+        pcall(vim.lsp.codelens.refresh)
+      end,
+    })
+    pcall(vim.lsp.codelens.refresh)
+
+    vim.keymap.set("n", "<leader>r", vim.lsp.codelens.run, { buffer = bufnr, desc = "Run code lens" })
+  end
+  return metals_config
+end
+
+function Options.nvim_metals(metals, metals_config)
+  return {}
+end
+
 --[[Accessors]]
 function Options.get_catppuccin_options()
   return vim.tbl_deep_extend("force", catppuccin_defaults, Options.catppuccin)
@@ -252,6 +273,10 @@ end
 
 function Options.get_mason_lspconfig_options()
   return vim.tbl_deep_extend("force", mason_lspconfig_defaults, Options.mason_lspconfig)
+end
+
+function Options.get_nvim_metals_options(metals, m_config)
+  return vim.tbl_deep_extend("force", nvim_metals_defaults(metals, m_config), Options.nvim_metals(metals, m_config))
 end
 
 return Options

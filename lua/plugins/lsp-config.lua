@@ -79,12 +79,11 @@ return {
       })
 
       local dap = require("dap")
-      -- TODO: reorder to make the ui selection pleasant to the eye
       dap.configurations.scala = {
         {
           type = "scala",
           request = "launch",
-          name = "[Run] Current file",
+          name = "[Run]   Current file",
           metals = { runType = "run" },
         },
         {
@@ -101,7 +100,7 @@ return {
         {
           type = "scala",
           request = "launch",
-          name = "[Run] Current test file",
+          name = "[Run]   Current test file",
           metals = { runType = "testFile" },
         },
         {
@@ -118,7 +117,7 @@ return {
         {
           type = "scala",
           request = "launch",
-          name = "[Test] Current project",
+          name = "[Test]  Current project",
           metals = { runType = "testTarget" },
         },
         {

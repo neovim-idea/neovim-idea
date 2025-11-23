@@ -548,6 +548,81 @@ require("neovim-idea.options").render_markdown = {
 ```
 
 
+### [statuscol.nvim](https://github.com/luukvbaal/statuscol.nvim)
+<details>
+<summary>statuscol.nvim default options</summary>
+
+```lua
+local statuscol_nvim_defaults = function(builtin)
+  return {
+    setopt = true,
+    relculright = true,
+    ft_ignore = { "neo-tree", "neo-tree-popup" },
+    bt_ignore = { "terminal", "help" },
+    segments = {
+      {
+        text = { builtin.lnumfunc, " " },
+        condition = { true, builtin.not_empty },
+        click = "v:lua.ScLa",
+      },
+      {
+        sign = {
+          namespace = { "diagnostic/signs" },
+          text = { "E", "I", "W", "H" },
+          maxwidth = 2,
+          colwidth = 1,
+          auto = true,
+        },
+        click = "v:lua.ScSa",
+      },
+      {
+        sign = {
+          name = {
+            "Dap.*",
+            "todo%-sign%-.*",
+          },
+          maxwidth = 2,
+          colwidth = 2,
+          -- I prefer to keep this column always shown because the icons for DAP and todo comments gets too much close
+          -- to each other otherwise. And actually it balances pretty nicely the space on the left side of the line
+          -- numbers so, it's a win-win-win
+          auto = true,
+        },
+        click = "v:lua.ScSa",
+      },
+      {
+        text = { builtin.foldfunc, " " },
+        click = "v:lua.ScFa",
+      },
+      {
+        sign = {
+          name = { "gitsigns.*" },
+          text = { "gitsigns.*" },
+          namespace = { "gitsigns.*" },
+        },
+        click = "v:lua.ScSa",
+      },
+    },
+  }
+end
+```
+</details>
+
+If you're not happy/satisfied with the options above, feel free to extend/override the function like so
+
+```lua
+-- ~/.config/nvim/lua/option-overrides.lua
+require("neovim-idea.options").statuscol_nvim = function(builtin)
+  -- add as many statuscol.nvim's options as you'd like
+  local opts = {}
+  return opts
+end
+}
+```
+
+
+
+
 ## Shortcuts
 
 > [!IMPORTANT]

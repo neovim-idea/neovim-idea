@@ -448,7 +448,55 @@ require("neovim-idea.options").mini_pairs = {
 }
 ```
 
+### [neotree]()
+<details>
+<summary>neotree default options</summary>
 
+```lua
+
+local neotree_defaults = {
+  open_files_do_not_replace_types = { "terminal", "Trouble", "qf", "Outline", "trouble", "edgy" },
+  popup_border_style = "",
+  window = {
+    position = "left",
+    border = {
+      style = "single",
+    },
+    -- todo: figure out how to set a max width
+    --        auto_expand_width = true,
+  },
+  filesystem = {
+    use_libuv_file_watcher = true,
+    follow_current_file = {
+      enabled = true,
+      leave_dirs_open = true,
+    },
+  },
+  default_component_configs = {
+    indent = {
+      with_markers = false,
+      indent_marker = "",
+      last_indent_marker = "",
+      highlight = "NeoTreeIndentMarker",
+      with_expanders = true,
+      expander_collapsed = "",
+      expander_expanded = "",
+      expander_highlight = "NeoTreeExpander",
+    },
+  },
+}
+```
+</details>
+
+
+If you're not happy/satisfied with the options above, feel free to extend/override the table like so
+
+```lua
+-- ~/.config/nvim/lua/option-overrides.lua
+require("neovim-idea.options").neotree = {
+  -- add as many neotree's options as you'd like
+}
+```
 
 
 ## Shortcuts

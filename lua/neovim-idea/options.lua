@@ -278,6 +278,41 @@ local mini_pairs_defaults = {}
 
 Options.mini_pairs = {}
 
+-- [[neotree]]
+local neotree_defaults = {
+  open_files_do_not_replace_types = { "terminal", "Trouble", "qf", "Outline", "trouble", "edgy" },
+  popup_border_style = "",
+  window = {
+    position = "left",
+    border = {
+      style = "single",
+    },
+    -- todo: figure out how to set a max width
+    --        auto_expand_width = true,
+  },
+  filesystem = {
+    use_libuv_file_watcher = true,
+    follow_current_file = {
+      enabled = true,
+      leave_dirs_open = true,
+    },
+  },
+  default_component_configs = {
+    indent = {
+      with_markers = false,
+      indent_marker = "",
+      last_indent_marker = "",
+      highlight = "NeoTreeIndentMarker",
+      with_expanders = true,
+      expander_collapsed = "",
+      expander_expanded = "",
+      expander_highlight = "NeoTreeExpander",
+    },
+  },
+}
+
+Options.neotree = {}
+
 --[[Accessors]]
 function Options.get_catppuccin_options()
   return vim.tbl_deep_extend("force", catppuccin_defaults, Options.catppuccin)
@@ -317,6 +352,10 @@ end
 
 function Options.get_mini_pairs_options()
   return vim.tbl_deep_extend("force", mini_pairs_defaults, Options.mini_pairs)
+end
+
+function Options.get_neotree_options()
+  return vim.tbl_deep_extend("force", neotree_defaults, Options.neotree)
 end
 
 return Options

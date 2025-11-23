@@ -7,48 +7,8 @@ return {
     "nvim-tree/nvim-web-devicons",
   },
   lazy = false,
-  opts = function(_, opts)
-    opts = opts or {}
-    -- don't open files inside edgy windows
-    opts.open_files_do_not_replace_types = opts.open_files_do_not_replace_types
-      or { "terminal", "Trouble", "qf", "Outline", "trouble" }
-    table.insert(opts.open_files_do_not_replace_types, "edgy")
-    -- ensure it opens on the left by default
-    opts.window = opts.window or {}
-    opts.window.position = "left"
-    return opts
-  end,
   config = function()
-    local neotree = require("neo-tree")
-    neotree.setup({
-      popup_border_style = "",
-      window = {
-        border = {
-          style = "single"
-        },
-        -- todo: figure out how to set a max width
-        --        auto_expand_width = true,
-      },
-      filesystem = {
-        use_libuv_file_watcher = true,
-        follow_current_file = {
-          enabled = true,
-          leave_dirs_open = true,
-        },
-      },
-      default_component_configs = {
-        indent = {
-          with_markers = false,
-          indent_marker = "",
-          last_indent_marker = "",
-          highlight = "NeoTreeIndentMarker",
-          with_expanders = true, -- if nil and file nesting is enabled, will enable expanders
-          expander_collapsed = "",
-          expander_expanded = "",
-          expander_highlight = "NeoTreeExpander",
-        },
-      },
-    })
+    require("neo-tree").setup(require("neovim-idea.options").get_neotree_options())
 
     -- performs a neotree action, preserving the current mode of the original buffer
     --@param action string

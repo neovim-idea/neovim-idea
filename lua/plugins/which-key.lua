@@ -1,11 +1,7 @@
 return {
   "folke/which-key.nvim",
   event = "VeryLazy",
-  opts = {
-    preset = "helix",
-    -- delay more such that it doesn't get in the way unless im really waiting a bit
-    delay = 500,
-  },
+  opts = require("neovim-idea.options").get_which_key_options(),
   keys = {
     {
       "<leader>?",

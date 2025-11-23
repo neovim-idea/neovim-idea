@@ -744,6 +744,28 @@ require("neovim-idea.options").vim_notify = {
 ```
 
 
+### [which-key]()
+<details>
+<summary>which-key default options</summary>
+
+```lua
+local which_key_defaults = {
+  preset = "helix",
+  -- delay more such that it doesn't get in the way unless im really waiting a bit
+  delay = 500,
+}
+```
+</details>
+
+
+If you're not happy/satisfied with the options above, feel free to extend/override the table like so
+
+```lua
+-- ~/.config/nvim/lua/option-overrides.lua
+require("neovim-idea.options").which_key = {
+  -- add as many which-key's options as you'd like
+}
+```
 
 ## Shortcuts
 

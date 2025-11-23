@@ -18,7 +18,7 @@ return {
           title = "Terminal",
           ft = "snacks_terminal",
           size = { height = 0.20 },
-          filter = function(_buf, win)
+          filter = function(_, win)
             return vim.w[win].snacks_win
               and vim.w[win].snacks_win.position == pos
               and vim.w[win].snacks_win.relative == "editor"
@@ -29,23 +29,5 @@ return {
 
       return opts
     end,
-  },
-  {
-    "folke/snacks.nvim",
-    priority = 1000,
-    lazy = false,
-    opts = {
-      terminal = { enabled = true },
-    },
-    keys = {
-      {
-        "<D-F12>",
-        function()
-          require("snacks").terminal(nil, { position = "bottom" })
-        end,
-        mode = { "n", "i", "t" },
-        desc = "Toggle Bottom Terminal (Snacks)",
-      },
-    },
   },
 }

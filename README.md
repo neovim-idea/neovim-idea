@@ -254,8 +254,7 @@ If you're not happy/satisfied with the options above, feel free to extend/overri
 -- ~/.config/nvim/lua/option-overrides.lua
 require("neovim-idea.options").nvim_dap_ui = {
     -- add as many nvim-dap-ui's options as you'd like
-  }
-end
+}
 ```
 
 
@@ -291,7 +290,6 @@ If you're not happy/satisfied with the options above, feel free to extend/overri
 require("neovim-idea.options").edgy_nvim = {
     -- add as many edgy_nvim's options as you'd like
 }
-end
 ```
 
 
@@ -314,7 +312,7 @@ If you're not happy/satisfied with the options above, feel free to extend/overri
 require("neovim-idea.options").gitsigns = {
     -- add as many gitsigns's options as you'd like
 }
-end
+```
 
 
 ### 6. [mason](https://github.com/mason-org/mason.nvim)
@@ -333,8 +331,6 @@ If you're not happy/satisfied with the options above, feel free to extend/overri
 require("neovim-idea.options").mason = {
     -- add as many mason's options as you'd like
 }
-end
-
 ```
 
 
@@ -356,8 +352,41 @@ If you're not happy/satisfied with the options above, feel free to extend/overri
 require("neovim-idea.options").mason_lspconfig = {
     -- add as many mason's options as you'd like
 }
-end
 
+```
+
+
+### 8. [nvim-metals](https://github.com/scalameta/nvim-metals)
+<details>
+<summary>nvim-metals default options</summary>
+
+```lua
+local nvim_metals_defaults = function(metals, metals_config)
+  metals_config.on_attach = function(_, bufnr)
+    metals.setup_dap()
+    vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
+      buffer = bufnr,
+      callback = function()
+        pcall(vim.lsp.codelens.refresh)
+      end,
+    })
+    pcall(vim.lsp.codelens.refresh)
+
+    vim.keymap.set("n", "<leader>r", vim.lsp.codelens.run, { buffer = bufnr, desc = "Run code lens" })
+  end
+  return metals_config
+end
+```
+</details>
+
+If you're not happy/satisfied with the options above, feel free to extend/override the function like so
+
+```lua
+-- ~/.config/nvim/lua/option-overrides.lua
+require("neovim-idea.options").nvim_metals = function(metals, metals_config)
+    -- add as many metals-config's options as you'd like
+  return metals_config
+end
 ```
 
 ## Shortcuts

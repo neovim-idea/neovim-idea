@@ -66,19 +66,17 @@ return {
       local metals = require("metals")
       local metals_config = metals.bare_config()
       metals_config.capabilities = require("cmp_nvim_lsp").default_capabilities()
-
-      metals_config.on_attach = function(_, bufnr)
-        metals.setup_dap()
-        vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
-          buffer = bufnr,
-          callback = function()
-            pcall(vim.lsp.codelens.refresh)
-          end,
-        })
-        pcall(vim.lsp.codelens.refresh)
-
-        vim.keymap.set("n", "<leader>r", vim.lsp.codelens.run, { buffer = bufnr, desc = "Run code lens" })
-      end
+      return require("neovim-idea.options").get_nvim_metals_options(metals, metals_config)
+    end,
+    config = function(self, metals_config)
+      local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = self.ft,
+        callback = function()
+          require("metals").initialize_or_attach(metals_config)
+        end,
+        group = nvim_metals_group,
+      })
 
       local dap = require("dap")
       -- TODO: reorder to make the ui selection pleasant to the eye
@@ -135,17 +133,6 @@ return {
           },
         },
       }
-      return metals_config
-    end,
-    config = function(self, metals_config)
-      local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
-      vim.api.nvim_create_autocmd("FileType", {
-        pattern = self.ft,
-        callback = function()
-          require("metals").initialize_or_attach(metals_config)
-        end,
-        group = nvim_metals_group,
-      })
     end,
   },
   {

@@ -21,15 +21,7 @@ return {
 			vim.opt.sessionoptions:append("globals")
 		end,
 		config = function()
-			require("neovim-project").setup({
-				projects = {
-					"~/projects/*",
-					"~/.config/*",
-				},
-				picker = {
-					type = "telescope",
-				},
-			})
+			require("neovim-project").setup(require("neovim-idea.options").get_neovim_project_options())
 
 			vim.keymap.set("n", "<leader>pd", function()
 				vim.cmd("NeovimProjectDiscover")

@@ -313,6 +313,19 @@ local neotree_defaults = {
 
 Options.neotree = {}
 
+-- [[neovim-project]]
+local neovim_project_defaults = {
+  projects = {
+    "~/projects/*",
+    "~/.config/*",
+  },
+  picker = {
+    type = "telescope",
+  },
+}
+
+Options.neovim_project = {}
+
 --[[Accessors]]
 function Options.get_catppuccin_options()
   return vim.tbl_deep_extend("force", catppuccin_defaults, Options.catppuccin)
@@ -356,6 +369,10 @@ end
 
 function Options.get_neotree_options()
   return vim.tbl_deep_extend("force", neotree_defaults, Options.neotree)
+end
+
+function Options.get_neovim_project_options()
+  return vim.tbl_deep_extend("force", neovim_project_defaults, Options.neovim_project)
 end
 
 return Options

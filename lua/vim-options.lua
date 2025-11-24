@@ -21,25 +21,25 @@ vim.api.nvim_set_hl(0, "ColorColumn", { link = "CursorLine" })
 --    1. use `remap = true` when the RHS are keys that could hit another mapping
 --    2. use `silent = true` when you want to run functions quietly (no `echo`es, nor "Press Enter" prompts, etc..)
 
-
 -- cursor style
 -- vim.opt.guicursor = "a:ver1-blinkwait700-blinkon400-blinkoff250"
 
 -- keymaps
 -- insert lines above/below
-vim.keymap.set({ "n", "i", "v" }, "<M-D-CR>", function()
-  vim.cmd("normal! O")
-  vim.defer_fn(function()
-    vim.cmd("startinsert!")
-  end, 10)
-end, { silent = true, desc = "Insert blank line above (enter insert mode)" })
+local actions = require("neovim-idea.actions")
+vim.keymap.set(
+  { "n", "i", "v" },
+  "<M-D-CR>",
+  actions.insert_line_above_cursor,
+  { silent = true, desc = "Insert blank line above (enter insert mode)" }
+)
 
-vim.keymap.set({ "n", "i", "v" }, "<D-CR>", function()
-  vim.cmd("normal! o")
-  vim.defer_fn(function()
-    vim.cmd("startinsert!")
-  end, 10)
-end, { silent = true, desc = "Insert blank line below (enter insert mode)" })
+vim.keymap.set(
+  { "n", "i", "v" },
+  "<D-CR>",
+  actions.insert_line_below_cursor,
+  { silent = true, desc = "Insert blank line below (enter insert mode)" }
+)
 
 -- cycle through open buffers
 -- todo: when leaving a text buffer, save it to disk
@@ -72,8 +72,8 @@ vim.keymap.set({ "n", "i" }, "<S-Left>", function()
   local current_line = vim.fn.getline(".") -- Get the current line content
   local cursor_col = current_cursor_position[2] -- Get the cursor column position
   local newpos = C.left_camel_hump(current_line:sub(0, cursor_col))
-  local new_cursor_col = newpos.cursor_col or #(vim.fn.getline(vim.fn.line('.') - 1))
-  vim.api.nvim_win_set_cursor(0, { current_cursor_position[1] + newpos.cursor_line , new_cursor_col})
+  local new_cursor_col = newpos.cursor_col or #(vim.fn.getline(vim.fn.line(".") - 1))
+  vim.api.nvim_win_set_cursor(0, { current_cursor_position[1] + newpos.cursor_line, new_cursor_col })
 end, { noremap = true, silent = true })
 
 -- Map Shift+Right in normal/insert modes to the rightward camel-hump motion
@@ -100,10 +100,9 @@ vim.keymap.set({ "n", "i" }, "<S-Right>", function()
     new_cursor_col = cursor_col + newpos.cursor_col
   end
 
-  vim.api.nvim_win_set_cursor(0, { new_cursor_line, new_cursor_col})
+  vim.api.nvim_win_set_cursor(0, { new_cursor_line, new_cursor_col })
   -- print("..\"" .. line_to_be_processed .. "\"")
 end, { noremap = true, silent = true })
-
 
 -- Put this in your init.lua or a lua module you load
 
@@ -114,12 +113,14 @@ local function move_line_up()
   end
   local bufnr = 0
   local row, col = unpack(vim.api.nvim_win_get_cursor(0)) -- row: 1-based
-  if row == 1 then return end
+  if row == 1 then
+    return
+  end
 
-  local lines = vim.api.nvim_buf_get_lines(bufnr, row-2, row, false) -- prev, curr
+  local lines = vim.api.nvim_buf_get_lines(bufnr, row - 2, row, false) -- prev, curr
   local prev, curr = lines[1], lines[2]
-  vim.api.nvim_buf_set_lines(bufnr, row-2, row, false, { curr, prev })
-  vim.api.nvim_win_set_cursor(0, { row-1, math.min(col, #curr) })
+  vim.api.nvim_buf_set_lines(bufnr, row - 2, row, false, { curr, prev })
+  vim.api.nvim_win_set_cursor(0, { row - 1, math.min(col, #curr) })
 end
 
 local function move_line_down()
@@ -130,27 +131,29 @@ local function move_line_down()
   local bufnr = 0
   local row, col = unpack(vim.api.nvim_win_get_cursor(0))
   local last = vim.api.nvim_buf_line_count(bufnr)
-  if row == last then return end
+  if row == last then
+    return
+  end
 
-  local lines = vim.api.nvim_buf_get_lines(bufnr, row-1, row+1, false) -- curr, next
+  local lines = vim.api.nvim_buf_get_lines(bufnr, row - 1, row + 1, false) -- curr, next
   local curr, nextl = lines[1], lines[2]
-  vim.api.nvim_buf_set_lines(bufnr, row-1, row+1, false, { nextl, curr })
-  vim.api.nvim_win_set_cursor(0, { row+1, math.min(col, #curr) })
+  vim.api.nvim_buf_set_lines(bufnr, row - 1, row + 1, false, { nextl, curr })
+  vim.api.nvim_win_set_cursor(0, { row + 1, math.min(col, #curr) })
 end
 
 -- optional keymaps
-vim.keymap.set({"n", "i"}, "<D-S-Up>", move_line_up,   { desc = "Move line up" })
-vim.keymap.set({"n", "i"}, "<D-S-Down>", move_line_down, { desc = "Move line down" })
+vim.keymap.set({ "n", "i" }, "<D-S-Up>", move_line_up, { desc = "Move line up" })
+vim.keymap.set({ "n", "i" }, "<D-S-Down>", move_line_down, { desc = "Move line down" })
 
 -- Normal and Visual Mode
-vim.keymap.set({'n', 'v'}, '<D-x>', '"+d', { noremap = true })
-vim.keymap.set({'n', 'v'}, '<D-c>', '"+y', { noremap = true })
-vim.keymap.set({'n', 'v'}, '<D-v>', '"+p', { noremap = true })
+vim.keymap.set({ "n", "v" }, "<D-x>", '"+d', { noremap = true })
+vim.keymap.set({ "n", "v" }, "<D-c>", '"+y', { noremap = true })
+vim.keymap.set({ "n", "v" }, "<D-v>", '"+p', { noremap = true })
 
 -- Insert Mode with return to Insert mode after action
-vim.keymap.set('i', '<D-x>', '<Esc>"+d<D-i>', { noremap = true })
-vim.keymap.set('i', '<D-c>', '<Esc>"+y<D-i>', { noremap = true })
-vim.keymap.set('i', '<D-v>', '<Esc>"+p<D-i>', { noremap = true })
+vim.keymap.set("i", "<D-x>", '<Esc>"+d<D-i>', { noremap = true })
+vim.keymap.set("i", "<D-c>", '<Esc>"+y<D-i>', { noremap = true })
+vim.keymap.set("i", "<D-v>", '<Esc>"+p<D-i>', { noremap = true })
 
 -- Autosave on buffer "blur" if the buffer is writeable
 local group = vim.api.nvim_create_augroup("AutoSaveOnBlur", { clear = true })
@@ -162,14 +165,20 @@ vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost" }, {
     -- Skip special/readonly buffers and unnamed buffers
     local name = vim.api.nvim_buf_get_name(buf)
     local bo = vim.bo[buf]
-    if name == "" then return end
-    if bo.buftype ~= "" then return end
-    if not bo.modifiable or bo.readonly then return end
+    if name == "" then
+      return
+    end
+    if bo.buftype ~= "" then
+      return
+    end
+    if not bo.modifiable or bo.readonly then
+      return
+    end
 
     -- Only write if modified; be quiet and resilient
     -- Use buf_call to ensure commands run in the right buffer context
     vim.api.nvim_buf_call(buf, function()
-      vim.cmd("silent! update")  -- update writes only if modified
+      vim.cmd("silent! update") -- update writes only if modified
     end)
   end,
 })
@@ -193,12 +202,21 @@ local function duplicate_line_below_and_insert()
   vim.cmd("startinsert")
 end
 
-vim.keymap.set({ "n", "i" }, "<D-d>", duplicate_line_below_and_insert, { silent = true, desc = "Duplicate line below and insert" })
+vim.keymap.set(
+  { "n", "i" },
+  "<D-d>",
+  duplicate_line_below_and_insert,
+  { silent = true, desc = "Duplicate line below and insert" }
+)
 
 local function undo_preserve_mode()
   local mode = vim.api.nvim_get_mode().mode
-  local function tc(keys) return vim.api.nvim_replace_termcodes(keys, true, false, true) end
-  local function feed(keys) vim.api.nvim_feedkeys(tc(keys), "n", false) end
+  local function tc(keys)
+    return vim.api.nvim_replace_termcodes(keys, true, false, true)
+  end
+  local function feed(keys)
+    vim.api.nvim_feedkeys(tc(keys), "n", false)
+  end
 
   if mode:match("^n") then
     -- Normal
@@ -222,23 +240,22 @@ vim.keymap.set({ "n", "i", "v", "x", "s" }, "<D-z>", undo_preserve_mode, {
 })
 
 local function show_lsp_error()
-  vim.diagnostic.open_float(nil, {scope = "line"})
+  vim.diagnostic.open_float(nil, { scope = "line" })
 end
 
-vim.keymap.set({"n", "i"}, "<D-e>", show_lsp_error, {silent = true, desc = "show LSP errors in the current line"})
+vim.keymap.set({ "n", "i" }, "<D-e>", show_lsp_error, { silent = true, desc = "show LSP errors in the current line" })
 
 -- Function: run the existing `gcc` mapping (from Comment.nvim / commentary)
 local function toggle_comment_line()
   -- use :normal (NOT :normal!) so mappings are honored
-  vim.cmd('normal gcc')
+  vim.cmd("normal gcc")
 end
 
 -- Bindings
-vim.keymap.set('n', '<D-/>', toggle_comment_line, { desc = 'Toggle comment (line)', silent = true })
+vim.keymap.set("n", "<D-/>", toggle_comment_line, { desc = "Toggle comment (line)", silent = true })
 
 -- Visual mode: use the `gc` operator on the selection
-vim.keymap.set('x', '<D-/>', 'gc', { remap = true, silent = true, desc = 'Toggle comment (selection)' })
+vim.keymap.set("x", "<D-/>", "gc", { remap = true, silent = true, desc = "Toggle comment (selection)" })
 
 -- (Optional) Insert mode: escape, toggle, then return to insert
-vim.keymap.set('i', '<D-/>', '<Esc><Cmd>normal gcc<CR>a',
-  { desc = 'Toggle comment (line) from insert', silent = true })
+vim.keymap.set("i", "<D-/>", "<Esc><Cmd>normal gcc<CR>a", { desc = "Toggle comment (line) from insert", silent = true })

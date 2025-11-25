@@ -7,6 +7,11 @@ return {
   config = function()
     local dap = require("dap")
     local dapui = require("dapui")
+    local actions = require("neovim-idea.actions").setup({
+      dap = dap,
+      dapui = dapui,
+    })
+
     dapui.setup(require("neovim-idea.options").get_nvim_dap_ui_options())
 
     -- dap.listeners.before.attach.dapui_config = function()
@@ -20,10 +25,10 @@ return {
     vim.fn.sign_define("DapBreakpointCondition", { text = "󰺕", texthl = "DiagnosticWarn", linehl = "", numhl = "" })
     vim.fn.sign_define("DapStopped", { text = "󰸞", texthl = "DiagnosticInfo", linehl = "", numhl = "" })
 
-    vim.keymap.set("n", "<D-b>", dap.toggle_breakpoint, { desc = "toggle line breakpoint" })
-    vim.keymap.set("n", "<D-D>", dap.continue, { desc = "start / continue debugging" })
-    vim.keymap.set("n", "<D-k4>", dapui.toggle, { desc = "toggle DAP UI" })
-    vim.keymap.set("n", "<D-4>", dapui.toggle, { desc = "toggle DAP UI" })
+    vim.keymap.set("n", "<D-b>", actions.dap_toggle_breakpoint, { desc = "toggle line breakpoint" })
+    vim.keymap.set("n", "<D-D>", actions.dap_continue, { desc = "start / continue debugging" })
+    vim.keymap.set("n", "<D-k4>", actions.dapui_toggle, { desc = "toggle DAP UI" })
+    vim.keymap.set("n", "<D-4>", actions.dapui_toggle, { desc = "toggle DAP UI" })
     -- don't show the max width column
     vim.api.nvim_create_autocmd("FileType", {
       pattern = {

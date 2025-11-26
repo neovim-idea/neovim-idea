@@ -853,6 +853,15 @@ However it is possible to set conditional breakpoints like so
 > :DapSetBreakpoint --condition 'x == someValue'
 
 
+## Miscellaneous
+
+To keep your git branches lean and clean, you can automatically remove untracked remote branches (i.e. deleted after a
+PR is merged) by setting
+
+```bash
+git config --global fetch.prune true
+```
+
 ## Things To Improve
 
 * [x] project manager

@@ -902,3 +902,4 @@ git config --global fetch.prune true
 * [x] when exiting lazygit, neotree should refresh its status icons
 * [ ] highlight a line that has a breakpoint set
 * [ ] update treesitter to `main` and figure out where the configuration options are now located
+* [ ] `AutoSaveOnBlur` should also fire a neotree event in order to refresh the status of the files

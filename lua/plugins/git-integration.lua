@@ -17,12 +17,14 @@ return {
     lazy = false,
     config = function()
       require("gitsigns").setup(require("neovim-idea.options").get_gitsigns_options())
+      local gitsigns_actions = require("gitsigns.actions")
+      local actions = require("neovim-idea.actions").setup({ gitsigns_actions = gitsigns_actions })
       vim.keymap.set("n", "<leader>gp", ":Gitsigns preview_hunk<CR>", { desc = "show git hunk preview" })
       -- TODO: current_line_blame is handy, perhaps just leave it on all the times (?)
       vim.keymap.set(
         "n",
         "<leader>gt",
-        ":Gitsigns toggle_current_line_blame<CR>",
+        actions.toggle_current_line_blame,
         { desc = "show current line last committer" }
       )
     end,

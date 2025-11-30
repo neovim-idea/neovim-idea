@@ -876,19 +876,21 @@ git config --global fetch.prune true
   * [ ] extract logic in its own plugin
     * [ ] add proper testing
   * [ ] make own plugin to addd functional-style lua for easier development
-* [x] autosave buffers
 * [ ] make neotree condense package folders
+* [x] autosave buffers
+  * [ ] `AutoSaveOnBlur` should also fire a neotree event in order to refresh the status of the file tree
 * [ ] shortcuts to create new class/obj
 * [x] shortcuts to implement all methods from trait/abstract class
 * [x] undo with D-z
+  * [ ] maybe find a proper neovim plugin?
 * [x] make neotree stick to the left sidebar
   * [x] use https://github.com/folke/edgy.nvim
 * [x] make the files open in the main content area
 * [x] reshuffle the UI of dap
 * [ ] one single place to define all key combinations
 * [ ] unified way to define keymap (don't use two different APIs)
-* [ ] delete holding SHIFT should "camelHump delete"
-* [ ] select holding SHIFT should "camelHump select"
+* [ ] holding OPT while pressing `Backspace`  / `Space` should "camelHump delete" to the left / right
+* [ ] holding OPT+SHIFT while pressing `LeftArrow`  / `RightArrow` should "camelHump select" to the left / right
 * [x] add shortcut to duplicate current line and place it below
 * [x] SHIFT+UP/DOWN moves the current line up/down
 * [x] use https://github.com/folke/snacks.nvim/tree/main/docs for lazygit
@@ -902,9 +904,9 @@ git config --global fetch.prune true
 * [x] toggle comment/uncomment with <D-/>
 * [x] use notification plugin to avoid losing focus from the buffer
   * [x] add telescope integration to retrieve notifications in case we need to copy/paste logs
-* [ ] bind mouse keys prev/next to cycle between open files
+* [ ] plugin to mimic IntellIJ Idea quick open file selection with CTRL+TAB / CTRL+SHIFT+TAB
+  * [ ] bind mouse keys prev/next to cycle between open files
 * [ ] global search & replace
 * [x] when exiting lazygit, neotree should refresh its status icons
 * [ ] highlight a line that has a breakpoint set
 * [ ] update treesitter to `main` and figure out where the configuration options are now located
-* [ ] `AutoSaveOnBlur` should also fire a neotree event in order to refresh the status of the files

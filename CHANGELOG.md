@@ -1,3 +1,24 @@
+## [1.3.1](https://github.com/neovim-idea/neovim-idea/compare/v1.3.0...v1.3.1) (2025-11-30)
+
+### 📖 Docs
+
+* add miscellaneous section ([32b5a45](https://github.com/neovim-idea/neovim-idea/commit/32b5a451dfac64b1ed6f4c7b8cc5443e7d5bf26d))
+* added few entried to the "things to improve" ([0ad079d](https://github.com/neovim-idea/neovim-idea/commit/0ad079d0271447a8eee89af73ac82b45f1f2dcd2))
+
+### 🩹 Fixes
+
+* better rename floating input ([964adfe](https://github.com/neovim-idea/neovim-idea/commit/964adfec47cb7f0b2b3360c447944eb785c8933e))
+* extract toggle terminal action ([adacb7a](https://github.com/neovim-idea/neovim-idea/commit/adacb7a79f1bb79cbe99f38165d56a5232319c66))
+* extracting actions to the proper file ([8a3b6cb](https://github.com/neovim-idea/neovim-idea/commit/8a3b6cb31c16b1e489bfe7dec186cd4a194b077c))
+* extracting camel humps actions ([aaad73c](https://github.com/neovim-idea/neovim-idea/commit/aaad73c1960bd24ed238580b269b3bb05289afbc))
+* extracting dap & dapui actions ([9ffa4d0](https://github.com/neovim-idea/neovim-idea/commit/9ffa4d0c27f5307bc3df0674ab13a5972d4444f5))
+* extracting format buffer action ([ca86300](https://github.com/neovim-idea/neovim-idea/commit/ca863006d239a10d70ca977a732799332553cfdb))
+* extracting gitsign action ([b70dbba](https://github.com/neovim-idea/neovim-idea/commit/b70dbbaab42588047741f62abb49302f1684a08a))
+* extracting neovim-project actions ([209655c](https://github.com/neovim-idea/neovim-idea/commit/209655c1c3b0a56c2e9142b0acce9b03e79bbfe0))
+* extracting telescope actions ([80edc09](https://github.com/neovim-idea/neovim-idea/commit/80edc09e4353d687f960ac4afec0ba3a1ded40d9))
+* extracting tree explorer actions ([0d1571f](https://github.com/neovim-idea/neovim-idea/commit/0d1571fd64c72364194622586e960e49b818b0c8))
+* removed useless custom plugin ([bbd7cab](https://github.com/neovim-idea/neovim-idea/commit/bbd7cab4375fc51f2c3e5b2c4afe547be56ca84e))
+
 ## [1.3.0](https://github.com/neovim-idea/neovim-idea/compare/v1.2.1...v1.3.0) (2025-11-23)
 
 ### 📖 Docs

@@ -81,6 +81,43 @@ function Actions.fuzzy_find_in_files()
   require("telescope.builtin").live_grep()
 end
 
+function Actions.left_camel_hump()
+  local ch = require("custom_plugins.camel-humps")
+  local current_cursor_position = vim.api.nvim_win_get_cursor(0)
+  local current_line = vim.fn.getline(".")
+  local cursor_col = current_cursor_position[2]
+  local newpos = ch.left_camel_hump(current_line:sub(0, cursor_col))
+  local new_cursor_col = newpos.cursor_col or #(vim.fn.getline(vim.fn.line(".") - 1))
+  vim.api.nvim_win_set_cursor(0, { current_cursor_position[1] + newpos.cursor_line, new_cursor_col })
+end
+
+function Actions.right_camel_hump()
+  local ch = require("custom_plugins.camel-humps")
+  local current_cursor_position = vim.api.nvim_win_get_cursor(0)
+  local current_line = vim.fn.getline(".")
+  local cursor_col = current_cursor_position[2]
+  local line_to_be_processed = current_line:sub(cursor_col + 1, #current_line)
+  local line_count = vim.api.nvim_buf_line_count(0)
+  local newpos = ch.right_camel_hump(line_to_be_processed)
+
+  local new_cursor_col = nil
+  local new_cursor_line = current_cursor_position[1] + newpos.cursor_line
+
+  if newpos.cursor_col == nil then
+    -- we need to move to the next line.. but do we have a new one?
+    if new_cursor_line >= line_count then
+      new_cursor_line = line_count
+      new_cursor_col = #current_line
+    else
+      new_cursor_col = 0
+    end
+  else
+    new_cursor_col = cursor_col + newpos.cursor_col
+  end
+
+  vim.api.nvim_win_set_cursor(0, { new_cursor_line, new_cursor_col })
+end
+
 function Actions.setup(opts)
   dap = dap or opts.dap
   dapui = dapui or opts.dapui

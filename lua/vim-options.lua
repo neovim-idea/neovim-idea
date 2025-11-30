@@ -41,68 +41,8 @@ vim.keymap.set(
   { silent = true, desc = "Insert blank line below (enter insert mode)" }
 )
 
--- cycle through open buffers
--- todo: when leaving a text buffer, save it to disk
-function cycle_buffers()
-  local bufs = vim.fn.getbufinfo({ buflisted = 1 })
-  local current_buf = vim.fn.bufnr("%")
-
-  local found_current_buf = false
-  for _, buf in ipairs(bufs) do
-    if found_current_buf then
-      vim.cmd("buffer " .. buf.bufnr)
-      return
-    end
-    if buf.bufnr == current_buf then
-      found_current_buf = true
-    end
-  end
-  -- If we reached the end of the buffer list, cycle back to the first one
-  if bufs[1] then
-    vim.cmd("buffer " .. bufs[1].bufnr)
-  end
-end
-
--- Map CTRL-TAB to cycle through open buffers
-vim.keymap.set({ "n", "i" }, "<C-Tab>", cycle_buffers, { noremap = true, silent = true })
-
-local C = require("custom_plugins.camel-humps")
-vim.keymap.set({ "n", "i" }, "<S-Left>", function()
-  local current_cursor_position = vim.api.nvim_win_get_cursor(0) -- Get current cursor position
-  local current_line = vim.fn.getline(".") -- Get the current line content
-  local cursor_col = current_cursor_position[2] -- Get the cursor column position
-  local newpos = C.left_camel_hump(current_line:sub(0, cursor_col))
-  local new_cursor_col = newpos.cursor_col or #(vim.fn.getline(vim.fn.line(".") - 1))
-  vim.api.nvim_win_set_cursor(0, { current_cursor_position[1] + newpos.cursor_line, new_cursor_col })
-end, { noremap = true, silent = true })
-
--- Map Shift+Right in normal/insert modes to the rightward camel-hump motion
-vim.keymap.set({ "n", "i" }, "<S-Right>", function()
-  local current_cursor_position = vim.api.nvim_win_get_cursor(0) -- Get current cursor position
-  local current_line = vim.fn.getline(".") -- Get the current line content
-  local cursor_col = current_cursor_position[2] -- Get the cursor column position
-  local line_to_be_processed = current_line:sub(cursor_col + 1, #current_line)
-  local line_count = vim.api.nvim_buf_line_count(0)
-  local newpos = C.right_camel_hump(line_to_be_processed)
-
-  local new_cursor_col = nil
-  local new_cursor_line = current_cursor_position[1] + newpos.cursor_line
-
-  if newpos.cursor_col == nil then
-    -- we need to move to the next line.. but do we have a new one?
-    if new_cursor_line >= line_count then
-      new_cursor_line = line_count
-      new_cursor_col = #current_line
-    else
-      new_cursor_col = 0
-    end
-  else
-    new_cursor_col = cursor_col + newpos.cursor_col
-  end
-
-  vim.api.nvim_win_set_cursor(0, { new_cursor_line, new_cursor_col })
-  -- print("..\"" .. line_to_be_processed .. "\"")
-end, { noremap = true, silent = true })
+vim.keymap.set({ "n", "i" }, "<M-Left>", actions.left_camel_hump, { noremap = true, silent = true })
+vim.keymap.set({ "n", "i" }, "<M-Right>", actions.right_camel_hump, { noremap = true, silent = true })
 
 -- Put this in your init.lua or a lua module you load
 

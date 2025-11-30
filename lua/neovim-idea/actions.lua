@@ -69,6 +69,11 @@ function Actions.lsp_format_buffer()
   vim.lsp.buf.format()
 end
 
+function Actions.toggle_terminal()
+  -- TODO: would be better to pass `snacks` in the setup
+  require("snacks").terminal(nil, { position = "bottom" })
+end
+
 function Actions.setup(opts)
   dap = dap or opts.dap
   dapui = dapui or opts.dapui

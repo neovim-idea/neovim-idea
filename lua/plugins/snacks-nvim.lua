@@ -11,9 +11,7 @@ return {
     keys = {
       {
         "<D-F12>",
-        function()
-          require("snacks").terminal(nil, { position = "bottom" })
-        end,
+        require("neovim-idea.actions").toggle_terminal,
         mode = { "n", "i", "t" },
         desc = "Toggle Bottom Terminal (Snacks)",
       },

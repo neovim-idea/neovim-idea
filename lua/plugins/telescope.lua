@@ -3,9 +3,9 @@ return {
     "nvim-telescope/telescope.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
-      local builtin = require("telescope.builtin")
-      vim.keymap.set("n", "<D-f>", builtin.find_files, { desc = "find file" })
-      vim.keymap.set("n", "<D-F>", builtin.live_grep, { desc = "fuzzy find in project files (live grep)" })
+      local actions = require("neovim-idea.actions")
+      vim.keymap.set("n", "<D-f>", actions.find_files, { desc = "find file" })
+      vim.keymap.set("n", "<D-F>", actions.fuzzy_find_in_files, { desc = "fuzzy find in project files (live grep)" })
     end,
   },
   {

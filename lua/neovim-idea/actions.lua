@@ -70,8 +70,15 @@ function Actions.lsp_format_buffer()
 end
 
 function Actions.toggle_terminal()
-  -- TODO: would be better to pass `snacks` in the setup
   require("snacks").terminal(nil, { position = "bottom" })
+end
+
+function Actions.find_files()
+  require("telescope.builtin").find_files()
+end
+
+function Actions.fuzzy_find_in_files()
+  require("telescope.builtin").live_grep()
 end
 
 function Actions.setup(opts)

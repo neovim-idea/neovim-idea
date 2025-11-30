@@ -57,6 +57,14 @@ function Actions.reveal_in_file_tree()
   neotree_action("reveal")
 end
 
+function Actions.show_all_projects()
+  vim.cmd("NeovimProjectDiscover")
+end
+
+function Actions.show_recent_projects()
+  vim.cmd("NeovimProjectHistory")
+end
+
 function Actions.setup(opts)
   dap = dap or opts.dap
   dapui = dapui or opts.dapui

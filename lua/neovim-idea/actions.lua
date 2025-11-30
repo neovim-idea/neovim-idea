@@ -38,6 +38,25 @@ function Actions.toggle_current_line_blame()
   gitsigns_actions.toggle_current_line_blame()
 end
 
+local neotree_action = function(action)
+  local original_buf = vim.api.nvim_get_current_buf()
+  local modifiable = vim.api.nvim_buf_get_option(original_buf, "modifiable")
+  if modifiable then
+    vim.cmd("stopinsert")
+  end
+  vim.schedule(function()
+    vim.cmd("Neotree " .. action)
+  end)
+end
+
+function Actions.toggle_file_tree()
+  neotree_action("toggle")
+end
+
+function Actions.reveal_in_file_tree()
+  neotree_action("reveal")
+end
+
 function Actions.setup(opts)
   dap = dap or opts.dap
   dapui = dapui or opts.dapui

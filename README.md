@@ -46,6 +46,11 @@ local catppuccin_defaults = {
       ColorColumn = { bg = colors.surface0 },
       FloatBorder = { bg = colors.mantle, fg = colors.text },
 
+      -- [[Snacks]]
+      SnacksInputNormal = { bg = colors.crust, fg = colors.text },
+      SnacksInputBorder = { bg = colors.crust, fg = colors.text },
+      SnacksInputTitle = { bg = colors.crust, fg = colors.text },
+
       -- [[Neotree]]
       NeoTreeWinSeparator = { bg = colors.crust, fg = colors.crust },
       NeoTreeVertSplit = { bg = "NONE" },

@@ -65,6 +65,10 @@ function Actions.show_recent_projects()
   vim.cmd("NeovimProjectHistory")
 end
 
+function Actions.lsp_format_buffer()
+  vim.lsp.buf.format()
+end
+
 function Actions.setup(opts)
   dap = dap or opts.dap
   dapui = dapui or opts.dapui

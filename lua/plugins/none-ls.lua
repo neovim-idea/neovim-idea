@@ -7,7 +7,7 @@ return {
         null_ls.builtins.formatting.stylua,
       },
     })
-
-    vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, { desc = "format current buffer" })
+    local actions = require("neovim-idea.actions")
+    vim.keymap.set("n", "<leader>gf", actions.lsp_format_buffer, { desc = "format current buffer" })
   end,
 }

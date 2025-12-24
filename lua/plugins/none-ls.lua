@@ -8,6 +8,6 @@ return {
       },
     })
     local actions = require("neovim-idea.actions")
-    vim.keymap.set("n", "<leader>gf", actions.lsp_format_buffer, { desc = "format current buffer" })
+    vim.keymap.set({ "n", "i" }, "<M-D-l>", actions.lsp_format_buffer, { desc = "format current buffer" })
   end,
 }

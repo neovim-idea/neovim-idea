@@ -821,6 +821,10 @@ and therefore you must install [Logi Option+](https://www.logitech.com/en-us/sof
 your keyboad and then, under the `General` section .. toggle  `use F1, F2 etc. keys as standard function keys`.
 Go figure.
 
+Also, your terminal might need to be tweaked in order to detect your Option/Alt key, rather than being used to send
+Unicode characters. In `iTerm2`, you can change this in `Settings` -> `Profile` -> `<your profile>` -> `Keys` -> `Left
+(or Right, or both) Option Key` -> change to `Esc+` . This way, `Option+l` will be mapped to `M-l` rather than `¬`.
+
 
 | Action | Shortcut | Description | 
 | --------------- | --------------- | --------------- |

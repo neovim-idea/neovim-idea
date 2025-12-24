@@ -6,6 +6,6 @@ return {
   },
   lazy = false,
   config = function()
-    require("switcher-nvim").setup()
+    require("switcher-nvim").setup(require("neovim-idea.options").get_switcher_nvim_options())
   end,
 }

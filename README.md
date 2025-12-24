@@ -625,6 +625,32 @@ end
 }
 ```
 
+### [switcher-nvim](https://github.com/neovim-idea/switcher-nvim)
+<details>
+<summary>switcher-nvim default options</summary>
+
+```lua
+local switcher_nvim_defaults = {
+  selection = {
+    icon_margin_right = "",
+    icon_margin_left = "",
+    chevron = "",
+  },
+}
+```
+</details>
+
+If you're not happy/satisfied with the options above, feel free to extend/override the table like so
+
+```lua
+-- ~/.config/nvim/lua/option-overrides.lua
+require("neovim-idea.options").switcher_nvim = function(builtin)
+  -- add as many switcher-nvim's options as you'd like
+  local opts = {}
+  return opts
+end
+}
+```
 
 ### [telescope](https://github.com/nvim-telescope/telescope.nvim)
 <details>
@@ -794,6 +820,10 @@ on my personal MBP M1, it didn't; seems like that, on the newer Apple Silicon MB
 and therefore you must install [Logi Option+](https://www.logitech.com/en-us/software/logi-options-plus.html), import
 your keyboad and then, under the `General` section .. toggle  `use F1, F2 etc. keys as standard function keys`.
 Go figure.
+
+Also, your terminal might need to be tweaked in order to detect your Option/Alt key, rather than being used to send
+Unicode characters. In `iTerm2`, you can change this in `Settings` -> `Profile` -> `<your profile>` -> `Keys` -> `Left
+(or Right, or both) Option Key` -> change to `Esc+` . This way, `Option+l` will be mapped to `M-l` rather than `¬`.
 
 
 | Action | Shortcut | Description | 

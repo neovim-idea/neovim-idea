@@ -16,6 +16,13 @@ local catppuccin_defaults = {
       ColorColumn = { bg = colors.surface0 },
       FloatBorder = { bg = colors.mantle, fg = colors.text },
 
+      -- [[NeovimIdeaSwitcher]]
+      NeovimIdeaSwitcherNormal = { bg = colors.mantle, fg = colors.text },
+      NeovimIdeaSwitcherNormalNC = { bg = colors.mantle, fg = colors.text },
+      NeovimIdeaSwitcherFloatBorder = { bg = colors.mantle, fg = colors.subtext1 },
+      NeovimIdeaSwitcherCursorLine = { bg = "#2e3861", fg = colors.subtext1 },
+      NeovimIdeaSwitcherCursorLineNC = { bg = "#2e3861", fg = colors.subtext1 },
+
       -- [[Snacks]]
       SnacksInputNormal = { bg = colors.crust, fg = colors.text },
       SnacksInputBorder = { bg = colors.crust, fg = colors.text },
@@ -396,6 +403,17 @@ function Options.statuscol_nvim(builtin)
   return {}
 end
 
+-- [[switcher-nvim]]
+local switcher_nvim_defaults = {
+  selection = {
+    icon_margin_right = "",
+    icon_margin_left = "",
+    chevron = "",
+  },
+}
+
+Options.switcher_nvim = {}
+
 -- [[telescope.nvim]]
 local telescope_nvim_defaults = {
   defaults = {
@@ -527,6 +545,9 @@ end
 
 function Options.get_statuscol_nvim_options(builtin)
   return vim.tbl_deep_extend("force", statuscol_nvim_defaults(builtin), Options.statuscol_nvim(builtin))
+end
+function Options.get_switcher_nvim_options(builtin)
+  return vim.tbl_deep_extend("force", switcher_nvim_defaults, Options.switcher_nvim)
 end
 
 function Options.get_telescope_nvim_options()

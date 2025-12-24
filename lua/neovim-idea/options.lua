@@ -16,6 +16,13 @@ local catppuccin_defaults = {
       ColorColumn = { bg = colors.surface0 },
       FloatBorder = { bg = colors.mantle, fg = colors.text },
 
+      -- [[NeovimIdeaSwitcher]]
+      NeovimIdeaSwitcherNormal = { bg = colors.mantle, fg = colors.text },
+      NeovimIdeaSwitcherNormalNC = { bg = colors.mantle, fg = colors.text },
+      NeovimIdeaSwitcherFloatBorder = { bg = colors.mantle, fg = colors.subtext1 },
+      NeovimIdeaSwitcherCursorLine = { bg = "#2e3861", fg = colors.subtext1 },
+      NeovimIdeaSwitcherCursorLineNC = { bg = "#2e3861", fg = colors.subtext1 },
+
       -- [[Snacks]]
       SnacksInputNormal = { bg = colors.crust, fg = colors.text },
       SnacksInputBorder = { bg = colors.crust, fg = colors.text },

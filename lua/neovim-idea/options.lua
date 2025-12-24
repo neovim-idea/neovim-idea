@@ -403,6 +403,17 @@ function Options.statuscol_nvim(builtin)
   return {}
 end
 
+-- [[switcher-nvim]]
+local switcher_nvim_defaults = {
+  selection = {
+    icon_margin_right = "",
+    icon_margin_left = "",
+    chevron = "",
+  },
+}
+
+Options.switcher_nvim = {}
+
 -- [[telescope.nvim]]
 local telescope_nvim_defaults = {
   defaults = {
@@ -534,6 +545,9 @@ end
 
 function Options.get_statuscol_nvim_options(builtin)
   return vim.tbl_deep_extend("force", statuscol_nvim_defaults(builtin), Options.statuscol_nvim(builtin))
+end
+function Options.get_switcher_nvim_options(builtin)
+  return vim.tbl_deep_extend("force", switcher_nvim_defaults, Options.switcher_nvim)
 end
 
 function Options.get_telescope_nvim_options()

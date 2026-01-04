@@ -41,9 +41,6 @@ vim.keymap.set(
   { silent = true, desc = "Insert blank line below (enter insert mode)" }
 )
 
-vim.keymap.set({ "n", "i" }, "<M-Left>", actions.left_camel_hump, { noremap = true, silent = true })
-vim.keymap.set({ "n", "i" }, "<M-Right>", actions.right_camel_hump, { noremap = true, silent = true })
-
 -- Put this in your init.lua or a lua module you load
 
 local function move_line_up()

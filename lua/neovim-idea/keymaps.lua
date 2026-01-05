@@ -35,11 +35,9 @@ function Keymaps.setup(opts)
     merged[key] = vim.tbl_deep_extend("force", value, (opts or {})[key] or {})
   end
 
-  for key, mapping in pairs(merged) do
-    print("setting up '" .. key .. "'")
+  for _, mapping in pairs(merged) do
     vim.keymap.set(mapping.mode, mapping.lhs, mapping.action, mapping.opts)
   end
-  print("DONE")
 end
 
 return Keymaps

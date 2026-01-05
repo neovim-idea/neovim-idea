@@ -33,7 +33,7 @@ vim.opt.fillchars:append({
 
 vim.o.cursorline = true
 
--- avoid scrolling all the way to the botttom, up to the point where the last line is on the top of the editor
+-- avoid scrolling all the way to the bottom, up to the point where the last line is on the top of the editor
 vim.o.scrolloff = 999
 
 require("vim-options")
@@ -44,16 +44,13 @@ require("lazy").setup("plugins")
 vim.cmd.colorscheme("catppuccin-intellijdark")
 
 -- debug stuff to print keystrokes
-local function listen_for_key()
+vim.keymap.set("n", "<F5>", function()
   vim.api.nvim_echo({ { "Listening for next keypress...", "Question" } }, true, {})
 
   local raw_key_input = vim.fn.getcharstr()
   local readable_key_name = vim.fn.keytrans(raw_key_input)
   vim.api.nvim_echo({ { "Neovim sees that as: ", "None" }, { readable_key_name, "Function" } }, true, {})
-end
-
--- Map the function to the <F5> key in normal mode.
-vim.keymap.set("n", "<F5>", listen_for_key, {
+end, {
   noremap = true,
   silent = true,
   desc = "Listen for a key and print its representation",

@@ -118,6 +118,41 @@ function Actions.right_camel_hump()
   vim.api.nvim_win_set_cursor(0, { new_cursor_line, new_cursor_col })
 end
 
+function Actions.move_line_up()
+  if vim.bo.readonly or not vim.bo.modifiable then
+    vim.notify("Buffer is not modifiable", vim.log.levels.WARN)
+    return
+  end
+  local bufnr = 0
+  local row, col = unpack(vim.api.nvim_win_get_cursor(0)) -- row: 1-based
+  if row == 1 then
+    return
+  end
+
+  local lines = vim.api.nvim_buf_get_lines(bufnr, row - 2, row, false) -- prev, curr
+  local prev, curr = lines[1], lines[2]
+  vim.api.nvim_buf_set_lines(bufnr, row - 2, row, false, { curr, prev })
+  vim.api.nvim_win_set_cursor(0, { row - 1, math.min(col, #curr) })
+end
+
+function Actions.move_line_down()
+  if vim.bo.readonly or not vim.bo.modifiable then
+    vim.notify("Buffer is not modifiable", vim.log.levels.WARN)
+    return
+  end
+  local bufnr = 0
+  local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+  local last = vim.api.nvim_buf_line_count(bufnr)
+  if row == last then
+    return
+  end
+
+  local lines = vim.api.nvim_buf_get_lines(bufnr, row - 1, row + 1, false) -- curr, next
+  local curr, nextl = lines[1], lines[2]
+  vim.api.nvim_buf_set_lines(bufnr, row - 1, row + 1, false, { nextl, curr })
+  vim.api.nvim_win_set_cursor(0, { row + 1, math.min(col, #curr) })
+end
+
 function Actions.setup(opts)
   dap = dap or opts.dap
   dapui = dapui or opts.dapui

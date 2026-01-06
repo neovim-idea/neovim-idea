@@ -546,7 +546,8 @@ end
 function Options.get_statuscol_nvim_options(builtin)
   return vim.tbl_deep_extend("force", statuscol_nvim_defaults(builtin), Options.statuscol_nvim(builtin))
 end
-function Options.get_switcher_nvim_options(builtin)
+
+function Options.get_switcher_nvim_options()
   return vim.tbl_deep_extend("force", switcher_nvim_defaults, Options.switcher_nvim)
 end
 

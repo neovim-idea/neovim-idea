@@ -3,7 +3,19 @@ local Actions = {}
 local dap = nil
 local dapui = nil
 local gitsigns_actions = nil
+local camelhumps = nil
 
+local function is_insert_mode()
+  local mode = vim.api.nvim_get_mode().mode
+  return mode:sub(1, 1) == "i"
+end
+
+local function is_visual_mode()
+  local mode = vim.api.nvim_get_mode().mode
+  return (mode == "v" or mode == "V" or mode == "\22" or mode == "s" or mode == "S" or mode == "\19")
+end
+
+--[[Public API]]
 function Actions.insert_line_above_cursor()
   vim.cmd("normal! O")
   vim.defer_fn(function()
@@ -77,7 +89,7 @@ function Actions.find_files()
   require("telescope.builtin").find_files()
 end
 
-function Actions.fuzzy_find_in_files()
+function Actions.search_in_files()
   require("telescope.builtin").live_grep()
 end
 
@@ -151,6 +163,79 @@ function Actions.move_line_down()
   local curr, nextl = lines[1], lines[2]
   vim.api.nvim_buf_set_lines(bufnr, row - 1, row + 1, false, { nextl, curr })
   vim.api.nvim_win_set_cursor(0, { row + 1, math.min(col, #curr) })
+end
+
+function Actions.smart_cut()
+  if is_visual_mode() then
+    return '"+d'
+  end
+  return is_insert_mode() and '<C-o>"+dd' or '"+dd'
+end
+
+function Actions.smart_copy()
+  if is_visual_mode() then
+    return '"+y'
+  end
+  return is_insert_mode() and '<C-o>"+yy' or '"+yy'
+end
+
+function Actions.smart_paste()
+  if is_visual_mode() then
+    return '"+p`]'
+  end
+  return is_insert_mode() and '<C-o>"+gP' or '"+gP'
+end
+
+function Actions.duplicate_line_below()
+  local row = vim.api.nvim_win_get_cursor(0)[1]
+  local line = vim.api.nvim_buf_get_lines(0, row - 1, row, true)[1] or ""
+  vim.api.nvim_buf_set_lines(0, row, row, true, { line })
+  vim.api.nvim_win_set_cursor(0, { row + 1, #line })
+end
+
+function Actions.undo()
+  local mode = vim.api.nvim_get_mode().mode
+  if mode:match("^n") then
+    return "u"
+  elseif mode:match("^i") or mode:match("^R") then
+    return "<C-o>u"
+  elseif mode:match("^[vV\22]") then
+    return "<Esc>u" .. "gv"
+  else
+    return "u"
+  end
+end
+
+function Actions.lsp_show_diagnostics()
+  vim.diagnostic.open_float(nil, { scope = "line" })
+end
+
+function Actions.jump_left()
+  if not camelhumps then
+    camelhumps = require("camelhumps")
+  end
+  camelhumps.left()
+end
+
+function Actions.jump_right()
+  if not camelhumps then
+    camelhumps = require("camelhumps")
+  end
+  camelhumps.right()
+end
+
+function Actions.delete_left()
+  if not camelhumps then
+    camelhumps = require("camelhumps")
+  end
+  camelhumps.left_delete()
+end
+
+function Actions.delete_right()
+  if not camelhumps then
+    camelhumps = require("camelhumps")
+  end
+  camelhumps.right_delete()
 end
 
 function Actions.setup(opts)

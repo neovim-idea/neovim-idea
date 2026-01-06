@@ -23,9 +23,81 @@ local defaults = {
   },
   move_line_down = {
     mode = { "n", "i" },
-    lhs = "<D-S-Up>",
+    lhs = "<D-S-Down>",
     action = a.move_line_down,
     opts = { desc = "Move line up" },
+  },
+  smart_cut = {
+    mode = { "n", "i", "v" },
+    lhs = "<D-x>",
+    action = a.smart_cut,
+    opts = { expr = true, replace_keycodes = true, noremap = true, silent = true, desc = "Cut text" },
+  },
+  smart_copy = {
+    mode = { "n", "i", "v" },
+    lhs = "<D-c>",
+    action = a.smart_copy,
+    opts = { expr = true, replace_keycodes = true, noremap = true, silent = true, desc = "Copy text" },
+  },
+  smart_paste = {
+    mode = { "n", "i", "v" },
+    lhs = "<D-v>",
+    action = a.smart_paste,
+    opts = { expr = true, replace_keycodes = true, noremap = true, silent = true, desc = "Paste text" },
+  },
+  duplicate_line_below = {
+    mode = { "n", "i" },
+    lhs = "<D-d>",
+    action = a.duplicate_line_below,
+    opts = { silent = true, desc = "Duplicate current line below" },
+  },
+  undo = {
+    mode = { "n", "i", "v", "x", "s" },
+    lhs = "<D-z>",
+    action = a.undo,
+    opts = { expr = true, replace_keycodes = true, noremap = true, silent = true, desc = "Undo" },
+  },
+  lsp_show_diagnostics = {
+    mode = { "n", "i", "v" },
+    lhs = "<D-e>",
+    action = a.lsp_show_diagnostics,
+    opts = { silent = true, desc = "Show LSP errors in the current line" },
+  },
+  find_files = {
+    mode = { "n", "i", "v" },
+    lhs = "<D-f>",
+    action = a.find_files,
+    opts = { silent = true, desc = "Find files using Telescope" },
+  },
+  search_in_files = {
+    mode = { "n", "i", "v" },
+    lhs = "<D-F>",
+    action = a.search_in_files,
+    opts = { silent = true, desc = "Fuzzy-find in files using Telescope" },
+  },
+  jump_left = {
+    mode = { "n", "i", "v" },
+    lhs = "<M-Left>",
+    action = a.jump_left,
+    opts = { noremap = true, silent = true, desc = "Jump left" },
+  },
+  jump_right = {
+    mode = { "n", "i", "v" },
+    lhs = "<M-Right>",
+    action = a.jump_right,
+    opts = { noremap = true, silent = true, desc = "Jump right" },
+  },
+  delete_left = {
+    mode = { "n", "i", "v" },
+    lhs = "<M-BS>",
+    action = a.delete_left,
+    opts = { noremap = true, silent = true, desc = "Delete left" },
+  },
+  delete_right = {
+    mode = { "n", "i", "v" },
+    lhs = "<M-Del>",
+    action = a.delete_right,
+    opts = { noremap = true, silent = true, desc = "Delete right" },
   },
 }
 

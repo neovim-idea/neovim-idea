@@ -21,21 +21,8 @@ vim.api.nvim_set_hl(0, "ColorColumn", { link = "CursorLine" })
 --    1. use `remap = true` when the RHS are keys that could hit another mapping
 --    2. use `silent = true` when you want to run functions quietly (no `echo`es, nor "Press Enter" prompts, etc..)
 
--- cursor style
--- vim.opt.guicursor = "a:ver1-blinkwait700-blinkon400-blinkoff250"
-
 -- keymaps
 require("neovim-idea.keymaps").setup()
-
--- Normal and Visual Mode
-vim.keymap.set({ "n", "v" }, "<D-x>", '"+d', { noremap = true })
-vim.keymap.set({ "n", "v" }, "<D-c>", '"+y', { noremap = true })
-vim.keymap.set({ "n", "v" }, "<D-v>", '"+p', { noremap = true })
-
--- Insert Mode with return to Insert mode after action
-vim.keymap.set("i", "<D-x>", '<Esc>"+d<D-i>', { noremap = true })
-vim.keymap.set("i", "<D-c>", '<Esc>"+y<D-i>', { noremap = true })
-vim.keymap.set("i", "<D-v>", '<Esc>"+p<D-i>', { noremap = true })
 
 -- Autosave on buffer "blur" if the buffer is writeable
 local group = vim.api.nvim_create_augroup("AutoSaveOnBlur", { clear = true })
@@ -64,68 +51,6 @@ vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost" }, {
     end)
   end,
 })
-
-local function duplicate_line_below_and_insert()
-  local win = 0
-  local buf = 0
-  local pos = vim.api.nvim_win_get_cursor(win) -- {row (1-based), col (0-based bytes)}
-  local row1, col0 = pos[1], pos[2]
-  local row0 = row1 - 1
-
-  local line = vim.api.nvim_buf_get_lines(buf, row0, row0 + 1, true)[1] or ""
-  -- insert the same line *below*
-  vim.api.nvim_buf_set_lines(buf, row0 + 1, row0 + 1, true, { line })
-
-  -- move cursor to the duplicated line, same column (clamped to line length)
-  local newcol = math.min(col0, #line)
-  vim.api.nvim_win_set_cursor(win, { row1 + 1, newcol })
-
-  -- enter insert mode
-  vim.cmd("startinsert")
-end
-
-vim.keymap.set(
-  { "n", "i" },
-  "<D-d>",
-  duplicate_line_below_and_insert,
-  { silent = true, desc = "Duplicate line below and insert" }
-)
-
-local function undo_preserve_mode()
-  local mode = vim.api.nvim_get_mode().mode
-  local function tc(keys)
-    return vim.api.nvim_replace_termcodes(keys, true, false, true)
-  end
-  local function feed(keys)
-    vim.api.nvim_feedkeys(tc(keys), "n", false)
-  end
-
-  if mode:match("^n") then
-    -- Normal
-    feed("u")
-  elseif mode:match("^i") or mode:match("^R") then
-    -- Insert or Replace/Virtual-Replace: do one normal command, pop back to insert/replace
-    feed("<C-o>u")
-  elseif mode:match("^[vV\22]") then
-    -- Visual/Line/Block: leave visual, undo, then reselect
-    feed("<Esc>u" .. "gv")
-  else
-    -- Fallback (operator-pending, etc.)
-    feed("u")
-  end
-end
-
--- Map Command+Z in the modes Neovim accepts. (Replace is covered by "i")
-vim.keymap.set({ "n", "i", "v", "x", "s" }, "<D-z>", undo_preserve_mode, {
-  silent = true,
-  desc = "Undo (preserve current mode)",
-})
-
-local function show_lsp_error()
-  vim.diagnostic.open_float(nil, { scope = "line" })
-end
-
-vim.keymap.set({ "n", "i" }, "<D-e>", show_lsp_error, { silent = true, desc = "show LSP errors in the current line" })
 
 -- Function: run the existing `gcc` mapping (from Comment.nvim / commentary)
 local function toggle_comment_line()

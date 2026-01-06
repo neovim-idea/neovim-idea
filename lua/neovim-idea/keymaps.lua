@@ -99,6 +99,24 @@ local defaults = {
     action = a.delete_right,
     opts = { noremap = true, silent = true, desc = "Delete right" },
   },
+  toggle_line_breakpoint = {
+    mode = { "n", "i" },
+    lhs = "<D-b>",
+    action = a.dap_toggle_breakpoint,
+    opts = { noremap = true, silent = true, desc = "Toggle line breakpoint on/off" },
+  },
+  start_continue_debugger = {
+    mode = { "n", "i" },
+    lhs = "<D-D>",
+    action = a.dap_continue,
+    opts = { noremap = true, silent = true, desc = "Start / Continue debugging" },
+  },
+  toggle_debugger_ui = {
+    mode = { "n", "i" },
+    lhs = { "<D-4>", "<D-k4>" },
+    action = a.dap_continue,
+    opts = { noremap = true, silent = true, desc = "Toggle Debugger UI" },
+  },
 }
 
 function Keymaps.setup(opts)
@@ -108,7 +126,13 @@ function Keymaps.setup(opts)
   end
 
   for _, mapping in pairs(merged) do
-    vim.keymap.set(mapping.mode, mapping.lhs, mapping.action, mapping.opts)
+    if type(mapping.lhs) == "table" then
+      for _, lhs in ipairs(mapping.lhs) do
+        vim.keymap.set(mapping.mode, lhs, mapping.action, mapping.opts)
+      end
+    else
+      vim.keymap.set(mapping.mode, mapping.lhs, mapping.action, mapping.opts)
+    end
   end
 end
 

@@ -193,6 +193,10 @@ function Actions.delete_right()
   camelhumps.right_delete()
 end
 
+function Actions.rename_symbol()
+  return ":IncRename " .. vim.fn.expand("<cword>")
+end
+
 function Actions.setup(opts)
   dap = dap or opts.dap
   dapui = dapui or opts.dapui

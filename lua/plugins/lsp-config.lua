@@ -34,17 +34,6 @@ return {
       })
       vim.lsp.enable("ts_ls")
 
-      vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "show symbol information (apidoc)" })
-      vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "go to symbol definition" })
-      -- go to definition
-      vim.keymap.set({ "n", "v" }, "<leader>gd", vim.lsp.buf.definition, { desc = "got to symbol definitio" })
-      -- go to references
-      vim.keymap.set({ "n", "v" }, "<leader>gr", vim.lsp.buf.references, { desc = "go to symbol references" })
-      vim.keymap.set({ "n", "i" }, "<M-CR>", vim.lsp.buf.code_action, { desc = "show code action" })
-      vim.keymap.set({ "n", "v" }, "<D-r>", function()
-        return ":IncRename " .. vim.fn.expand("<cword>")
-      end, { expr = true, desc = "rename symbol" })
-
       -- when we "go to definition" and hit Enter in one entry, close the panel (since we don't care about it anymore)
       -- TODO: perhaps make it configurable in case somebody doesn't like it this way ?
       vim.api.nvim_create_autocmd("FileType", {

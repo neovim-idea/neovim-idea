@@ -129,6 +129,36 @@ local defaults = {
     action = a.show_in_file_tree,
     opts = { noremap = true, silent = true, desc = "Show file in Neotree" },
   },
+  show_symbol_documentation = {
+    mode = { "n", "i" },
+    lhs = "F1",
+    action = vim.lsp.buf.hover,
+    opts = { noremap = true, silent = true, desc = "Show symbol documentation" },
+  },
+  goto_symbol_definition_or_usage = {
+    mode = { "n", "i" },
+    lhs = { "<M-LeftMouse>", "<leader>gd" },
+    action = vim.lsp.buf.definition,
+    opts = { noremap = true, silent = true, desc = "Go to symbol definition / usage" },
+  },
+  goto_symbol_references = {
+    mode = { "n", "i" },
+    lhs = { "<M-LeftMouse>", "<leader>gd" },
+    action = vim.lsp.buf.references,
+    opts = { noremap = true, silent = true, desc = "Go to symbol references" },
+  },
+  show_code_actions = {
+    mode = { "n", "i" },
+    lhs = "<M-CR>",
+    action = vim.lsp.buf.code_action,
+    opts = { noremap = true, silent = true, desc = "Show code actions" },
+  },
+  rename_symbol = {
+    mode = { "n", "i" },
+    lhs = "<F18>", -- that's how Shift+F6 gets interpreted
+    action = a.rename_symbol,
+    opts = { expr = true, noremap = true, silent = true, desc = "Rename symbol under cursor" },
+  },
 }
 
 function Keymaps.setup(opts)

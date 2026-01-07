@@ -117,6 +117,18 @@ local defaults = {
     action = a.dap_continue,
     opts = { noremap = true, silent = true, desc = "Toggle Debugger UI" },
   },
+  toggle_file_tree = {
+    mode = { "n", "i" },
+    lhs = { "<D-1>", "<D-k1>" },
+    action = a.toggle_file_tree,
+    opts = { noremap = true, silent = true, desc = "Toggle Neotree" },
+  },
+  show_in_file_tree = {
+    mode = { "n", "i" },
+    lhs = "<D-p>",
+    action = a.show_in_file_tree,
+    opts = { noremap = true, silent = true, desc = "Show file in Neotree" },
+  },
 }
 
 function Keymaps.setup(opts)

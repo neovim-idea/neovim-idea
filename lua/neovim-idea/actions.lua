@@ -65,7 +65,7 @@ function Actions.toggle_file_tree()
   neotree_action("toggle")
 end
 
-function Actions.reveal_in_file_tree()
+function Actions.show_in_file_tree()
   neotree_action("reveal")
 end
 

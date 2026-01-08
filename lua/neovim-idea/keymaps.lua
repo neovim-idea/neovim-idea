@@ -143,7 +143,7 @@ local defaults = {
   },
   goto_symbol_references = {
     mode = { "n", "i" },
-    lhs = { "<M-LeftMouse>", "<leader>gd" },
+    lhs = { "<M-S-LeftMouse>", "<leader>gr" },
     action = vim.lsp.buf.references,
     opts = { noremap = true, silent = true, desc = "Go to symbol references" },
   },

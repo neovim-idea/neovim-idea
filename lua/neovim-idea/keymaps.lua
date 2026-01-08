@@ -17,13 +17,13 @@ local defaults = {
   },
   move_line_up = {
     mode = { "n", "i" },
-    lhs = "<D-S-Up>",
+    lhs = "<M-S-Up>",
     action = a.move_line_up,
     opts = { desc = "Move line up" },
   },
   move_line_down = {
     mode = { "n", "i" },
-    lhs = "<D-S-Down>",
+    lhs = "<M-S-Down>",
     action = a.move_line_down,
     opts = { desc = "Move line up" },
   },

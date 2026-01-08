@@ -136,13 +136,13 @@ local defaults = {
     opts = { noremap = true, silent = true, desc = "Show symbol documentation" },
   },
   goto_symbol_definition_or_usage = {
-    mode = { "n", "i" },
+    mode = "n",
     lhs = { "<M-LeftMouse>", "<leader>gd" },
     action = vim.lsp.buf.definition,
     opts = { noremap = true, silent = true, desc = "Go to symbol definition / usage" },
   },
   goto_symbol_references = {
-    mode = { "n", "i" },
+    mode = "n",
     lhs = { "<M-S-LeftMouse>", "<leader>gr" },
     action = vim.lsp.buf.references,
     opts = { noremap = true, silent = true, desc = "Go to symbol references" },

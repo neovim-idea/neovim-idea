@@ -159,6 +159,18 @@ local defaults = {
     action = a.rename_symbol,
     opts = { expr = true, noremap = true, silent = true, desc = "Rename symbol under cursor" },
   },
+  git_preview_hunk = {
+    mode = "n",
+    lhs = "<leader>gp",
+    action = a.git_preview_hunk,
+    opts = { noremap = true, silent = true, desc = "Show the last committer of the current line" },
+  },
+  git_toggle_current_line_blae = {
+    mode = "n",
+    lhs = "<leader>gt",
+    action = a.git_toggle_current_line_blame,
+    opts = { noremap = true, silent = true, desc = "Show the last committer of the current line" },
+  },
 }
 
 function Keymaps.setup(opts)

@@ -4,6 +4,12 @@ local dap = nil
 local dapui = nil
 local gitsigns_actions = nil
 local camelhumps = nil
+local snacks = nil
+
+local function is_normal_mode()
+  local mode = vim.api.nvim_get_mode().mode
+  return mode:sub(1, 1) == "n"
+end
 
 local function is_insert_mode()
   local mode = vim.api.nvim_get_mode().mode
@@ -201,11 +207,39 @@ function Actions.git_preview_hunk()
   return ":Gitsigns preview_hunk<CR>"
 end
 
+function Actions.show_lazygit()
+  assert(snacks, "snacks is nil, did you forget to set it?")
+  snacks.lazygit.open()
+end
+
+function Actions.show_keymaps()
+  require("which-key").show({ global = true })
+end
+
+function Actions.toggle_comment()
+  if is_normal_mode() then
+    vim.cmd("normal gcc")
+  elseif is_visual_mode() then
+    vim.cmd("normal gc")
+  elseif is_insert_mode() then
+    vim.cmd("normal gcc")
+    vim.cmd("startinsert")
+  end
+end
+
+function Actions.debug_keys_pressed()
+  vim.api.nvim_echo({ { "Listening for next keypress...", "Question" } }, true, {})
+  local raw_key_input = vim.fn.getcharstr()
+  local readable_key_name = vim.fn.keytrans(raw_key_input)
+  vim.api.nvim_echo({ { "Neovim sees that as: ", "None" }, { readable_key_name, "Function" } }, true, {})
+end
+
 function Actions.setup(opts)
   dap = dap or opts.dap
   dapui = dapui or opts.dapui
   gitsigns_actions = gitsigns_actions or opts.gitsigns_actions
   camelhumps = camelhumps or opts.camelhumps
+  snacks = snacks or opts.snacks
   return Actions
 end
 

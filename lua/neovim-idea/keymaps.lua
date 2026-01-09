@@ -165,11 +165,23 @@ local defaults = {
     action = a.git_preview_hunk,
     opts = { noremap = true, silent = true, desc = "Show the last committer of the current line" },
   },
-  git_toggle_current_line_blae = {
+  git_toggle_current_line_blame = {
     mode = "n",
     lhs = "<leader>gt",
     action = a.git_toggle_current_line_blame,
     opts = { noremap = true, silent = true, desc = "Show the last committer of the current line" },
+  },
+  show_all_projects = {
+    mode = "n",
+    lhs = "<leader>pa",
+    action = a.show_all_projects,
+    opts = { noremap = true, silent = true, desc = "Neovim Project: Show All" },
+  },
+  show_recent_projects = {
+    mode = "n",
+    lhs = "<leader>pr",
+    action = a.show_all_projects,
+    opts = { noremap = true, silent = true, desc = "Neovim Project: Show Recent" },
   },
 }
 

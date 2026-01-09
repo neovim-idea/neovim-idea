@@ -490,6 +490,11 @@ local which_key_defaults = {
 
 Options.which_key = {}
 
+-- [[mini.icons]]
+local mini_icons_defaults = {}
+
+Options.mini_icons = {}
+
 --[[Accessors]]
 function Options.get_catppuccin_options()
   return vim.tbl_deep_extend("force", catppuccin_defaults, Options.catppuccin)
@@ -569,6 +574,10 @@ end
 
 function Options.get_which_key_options()
   return vim.tbl_deep_extend("force", which_key_defaults, Options.which_key)
+end
+
+function Options.get_mini_icons_options()
+  return vim.tbl_deep_extend("force", mini_icons_defaults, Options.mini_icons)
 end
 
 return Options

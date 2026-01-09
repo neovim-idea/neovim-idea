@@ -4,7 +4,7 @@ return {
       "nvim-mini/mini.icons",
       version = false,
       config = function()
-        require("mini.icons").setup({})
+        require("mini.icons").setup(require("neovim-idea.options").get_mini_icons_options())
       end,
     },
   },
@@ -22,9 +22,6 @@ return {
     end,
     config = function()
       require("neovim-project").setup(require("neovim-idea.options").get_neovim_project_options())
-      local actions = require("neovim-idea.actions")
-      vim.keymap.set("n", "<leader>pa", actions.show_all_projects, { desc = "Neovim Project: Discover" })
-      vim.keymap.set("n", "<leader>pr", actions.show_recent_projects, { desc = "Neovim Project: History" })
     end,
   },
 }

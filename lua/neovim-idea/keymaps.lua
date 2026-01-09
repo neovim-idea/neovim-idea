@@ -189,6 +189,30 @@ local defaults = {
     action = a.lsp_format_buffer,
     opts = { noremap = true, silent = true, desc = "Neovim Project: Show Recent" },
   },
+  show_lazygit = {
+    mode = { "n", "i" },
+    lhs = "<D-G>",
+    action = a.show_lazygit,
+    opts = { noremap = true, silent = true, desc = "Show lazygit" },
+  },
+  show_keymaps = {
+    mode = "n",
+    lhs = "<leader>?",
+    action = a.show_keymaps,
+    opts = { noremap = true, silent = true, desc = "Show keymaps (via which-key)" },
+  },
+  toggle_comment = {
+    mode = { "n", "i", "v" },
+    lhs = "<D-/>",
+    action = a.toggle_comment,
+    opts = { noremap = true, silent = true, desc = "Show keymaps (via which-key)" },
+  },
+  print_keys_pressed = {
+    mode = { "n", "i", "v" },
+    lhs = "<F5>",
+    action = a.debug_keys_pressed,
+    opts = { noremap = true, silent = true, desc = "Listens for key presses and prints them (debug utility)" },
+  },
 }
 
 function Keymaps.setup(opts)

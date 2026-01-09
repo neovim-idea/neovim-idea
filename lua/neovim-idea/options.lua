@@ -495,6 +495,11 @@ local mini_icons_defaults = {}
 
 Options.mini_icons = {}
 
+-- [[colorscheme]]
+local colorscheme_defaults = "catppuccin-intellijdark"
+
+Options.colorscheme = nil
+
 --[[Accessors]]
 function Options.get_catppuccin_options()
   return vim.tbl_deep_extend("force", catppuccin_defaults, Options.catppuccin)
@@ -578,6 +583,10 @@ end
 
 function Options.get_mini_icons_options()
   return vim.tbl_deep_extend("force", mini_icons_defaults, Options.mini_icons)
+end
+
+function Options.get_colorscheme()
+  return Options.colorscheme or colorscheme_defaults
 end
 
 return Options

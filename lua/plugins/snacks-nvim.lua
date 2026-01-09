@@ -18,10 +18,7 @@ return {
     },
     config = function(_, opts)
       require("snacks").setup(opts)
-      local Snacks = require("snacks")
-      vim.keymap.set({ "n", "i" }, "<D-G>", function()
-        Snacks.lazygit.open()
-      end, { desc = "open lazygit" })
+      require("neovim-idea.actions").setup({ snacks = require("snacks") })
 
       -- fire a neotree event when lazygit closes
       -- many thanks to https://github.com/nvim-neo-tree/neo-tree.nvim/discussions/1253#discussioncomment-9971975

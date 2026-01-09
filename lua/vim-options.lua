@@ -17,12 +17,25 @@ vim.opt.breakindentopt = "shift:2"
 vim.opt.showbreak = "↳"
 vim.api.nvim_set_hl(0, "ColorColumn", { link = "CursorLine" })
 
--- NOTE When refactoring the keymaps, keep in mind that:
---    1. use `remap = true` when the RHS are keys that could hit another mapping
---    2. use `silent = true` when you want to run functions quietly (no `echo`es, nor "Press Enter" prompts, etc..)
+-- leader
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
 
--- keymaps
-require("neovim-idea.keymaps").setup()
+-- enable folding with treesitter
+vim.o.foldenable = true
+vim.o.foldmethod = "expr"
+vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.o.foldlevel = 99
+vim.o.foldlevelstart = 99
+vim.o.foldcolumn = "auto:1"
+vim.opt.fillchars:append({
+  foldopen = "",
+  foldclose = "",
+  foldsep = "│",
+  fold = " ",
+})
+
+vim.o.cursorline = true
 
 -- Autosave on buffer "blur" if the buffer is writeable
 local group = vim.api.nvim_create_augroup("AutoSaveOnBlur", { clear = true })
@@ -51,18 +64,3 @@ vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost" }, {
     end)
   end,
 })
-
--- Function: run the existing `gcc` mapping (from Comment.nvim / commentary)
-local function toggle_comment_line()
-  -- use :normal (NOT :normal!) so mappings are honored
-  vim.cmd("normal gcc")
-end
-
--- Bindings
-vim.keymap.set("n", "<D-/>", toggle_comment_line, { desc = "Toggle comment (line)", silent = true })
-
--- Visual mode: use the `gc` operator on the selection
-vim.keymap.set("x", "<D-/>", "gc", { remap = true, silent = true, desc = "Toggle comment (selection)" })
-
--- (Optional) Insert mode: escape, toggle, then return to insert
-vim.keymap.set("i", "<D-/>", "<Esc><Cmd>normal gcc<CR>a", { desc = "Toggle comment (line) from insert", silent = true })

@@ -183,6 +183,12 @@ local defaults = {
     action = a.show_all_projects,
     opts = { noremap = true, silent = true, desc = "Neovim Project: Show Recent" },
   },
+  lsp_format_buffer = {
+    mode = { "n", "i" },
+    lhs = "<M-D-l>",
+    action = a.lsp_format_buffer,
+    opts = { noremap = true, silent = true, desc = "Neovim Project: Show Recent" },
+  },
 }
 
 function Keymaps.setup(opts)

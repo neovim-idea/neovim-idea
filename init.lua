@@ -20,7 +20,7 @@ vim.opt.rtp:prepend(lazypath)
 require("vim-options")
 local ok, overrides = pcall(require, "overrides")
 overrides = ok and overrides or {}
-require("neovim-idea.keymaps").setup(overrides)
+require("neovim-idea.keymaps").setup(overrides.keymaps)
 require("lazy").setup("plugins")
 -- last but not least, setup the colorscheme!
-vim.cmd.colorscheme(require("neovim-idea.options").get_colorscheme())
+vim.cmd.colorscheme(overrides.options.colorscheme)

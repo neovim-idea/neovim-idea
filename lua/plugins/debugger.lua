@@ -7,7 +7,7 @@ return {
   config = function()
     local dap = require("dap")
     local dapui = require("dapui")
-    local actions = require("neovim-idea.actions").setup({
+    require("neovim-idea.actions").setup({
       dap = dap,
       dapui = dapui,
     })

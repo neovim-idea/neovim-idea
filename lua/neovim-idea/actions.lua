@@ -45,7 +45,7 @@ function Actions.dapui_toggle()
   dapui.toggle()
 end
 
-function Actions.toggle_current_line_blame()
+function Actions.git_toggle_current_line_blame()
   assert(gitsigns_actions, "gitsigns_actions is nil, did you forget to set it?")
   gitsigns_actions.toggle_current_line_blame()
 end
@@ -195,6 +195,10 @@ end
 
 function Actions.rename_symbol()
   return ":IncRename " .. vim.fn.expand("<cword>")
+end
+
+function Actions.git_preview_hunk()
+  return ":Gitsigns preview_hunk<CR>"
 end
 
 function Actions.setup(opts)

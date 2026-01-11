@@ -14,10 +14,9 @@ obviously, neovim was the IDE of choice.
 HOWEVER: despite my (limited) previous knowledge of (neo)vim, I had nor the time or the inclination to learn a whole
 plethora of commands and shortcuts to be used in different modes. Call it laziness, old age or muscle memory. As a
 direct consequence of it, I brazenly messed with the key shortcuts in a way that any respectable neovim user would either
-get angry or weep in despair. Sorry, not sorry, I've got work to do. 
+get angry or weep in despair. Sorry, not sorry, I've got work to do.
 
-If you, however, think you can stomach that: enjoy the repo! Feel free to clone it and tweak it as you please :)   
-
+If you, however, think you can stomach that: enjoy the repo! Feel free to clone it and tweak it as you please :)
 
 ## Plugin Options
 
@@ -25,8 +24,8 @@ If you, however, think you can stomach that: enjoy the repo! Feel free to clone 
 that you would normally see in IntellIJ. However, should you feel the need to change some configurations options or
 keymaps, you are encouraged to do so.
 
-
 ### [catppuccin](https://github.com/catppuccin/nvim)
+
 <details>
 <summary>neovim-idea default options</summary>
 
@@ -144,6 +143,7 @@ local catppuccin_defaults = {
   end,
 }
 ```
+
 </details>
 
 If you're not happy/satisfied with the options above, feel free to extend/override the table like so
@@ -160,8 +160,8 @@ require("neovim-idea.options").catppuccin = {
 }
 ```
 
-
 ### [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
+
 <details>
 <summary>nvim-cmp default options</summary>
 
@@ -201,6 +201,7 @@ local nvim_cmp_defaults = function(cmp)
   }
 end
 ```
+
 </details>
 
 If you're not happy/satisfied with the options above, feel free to extend/override the function like so (it can accept
@@ -215,8 +216,8 @@ require("neovim-idea.options").nvim_cmp = function(cmp)
 end
 ```
 
-
 ### [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui)
+
 <details>
 <summary>nvim-dap-ui default options</summary>
 
@@ -251,6 +252,7 @@ local nvim_dap_ui_defaults = {
   },
 }
 ```
+
 </details>
 
 If you're not happy/satisfied with the options above, feel free to extend/override the table like so
@@ -262,8 +264,8 @@ require("neovim-idea.options").nvim_dap_ui = {
 }
 ```
 
-
 ### [edgy.nvim](https://github.com/folke/edgy.nvim)
+
 <details>
 <summary>edgy.nvim default options</summary>
 
@@ -286,6 +288,7 @@ local edgy_nvim_defaults = {
   },
 }
 ```
+
 </details>
 
 If you're not happy/satisfied with the options above, feel free to extend/override the table like so
@@ -297,8 +300,8 @@ require("neovim-idea.options").edgy_nvim = {
 }
 ```
 
-
 ### [gitsigns](https://github.com/lewis6991/gitsigns.nvim)
+
 <details>
 <summary>gitsigns default options</summary>
 
@@ -307,6 +310,7 @@ local gitsigns_defaults = {
   current_line_blame = true,
 }
 ```
+
 </details>
 
 If you're not happy/satisfied with the options above, feel free to extend/override the table like so
@@ -318,14 +322,15 @@ require("neovim-idea.options").gitsigns = {
 }
 ```
 
-
 ### [mason](https://github.com/mason-org/mason.nvim)
+
 <details>
 <summary>mason default options</summary>
 
 ```lua
 local mason_defaults = {}
 ```
+
 </details>
 
 If you're not happy/satisfied with the options above, feel free to extend/override the table like so
@@ -337,8 +342,8 @@ require("neovim-idea.options").mason = {
 }
 ```
 
-
 ### [mason-lsp](https://github.com/mason-org/mason-lspconfig.nvim)
+
 <details>
 <summary>mason default options</summary>
 
@@ -347,6 +352,7 @@ local mason_lspconfig_defaults = {
   ensure_installed = { "lua_ls", "ts_ls" },
 }
 ```
+
 </details>
 
 If you're not happy/satisfied with the options above, feel free to extend/override the table like so
@@ -359,8 +365,8 @@ require("neovim-idea.options").mason_lspconfig = {
 
 ```
 
-
 ### [nvim-metals](https://github.com/scalameta/nvim-metals)
+
 <details>
 <summary>nvim-metals default options</summary>
 
@@ -381,6 +387,7 @@ local nvim_metals_defaults = function(metals, metals_config)
   return metals_config
 end
 ```
+
 </details>
 
 If you're not happy/satisfied with the options above, feel free to extend/override the function like so
@@ -393,8 +400,8 @@ require("neovim-idea.options").nvim_metals = function(metals, metals_config)
 end
 ```
 
-
 ### [lualine](https://github.com/nvim-lualine/lualine.nvim)
+
 <details>
 <summary>lualine default options</summary>
 
@@ -423,6 +430,7 @@ local lualine_defaults = {
   },
 }
 ```
+
 </details>
 
 If you're not happy/satisfied with the options above, feel free to extend/override the table like so
@@ -434,14 +442,15 @@ require("neovim-idea.options").lualine = {
 }
 ```
 
-
 ### [mini.pairs](https://github.com/nvim-mini/mini.pairs)
+
 <details>
 <summary>mini.pairs default options</summary>
 
 ```lua
 local mini_pairs_defaults = {}
 ```
+
 </details>
 
 If you're not happy/satisfied with the options above, feel free to extend/override the table like so
@@ -454,6 +463,7 @@ require("neovim-idea.options").mini_pairs = {
 ```
 
 ### [neotree]()
+
 <details>
 <summary>neotree default options</summary>
 
@@ -491,6 +501,7 @@ local neotree_defaults = {
   },
 }
 ```
+
 </details>
 
 If you're not happy/satisfied with the options above, feel free to extend/override the table like so
@@ -502,8 +513,8 @@ require("neovim-idea.options").neotree = {
 }
 ```
 
-
 ### [neovim-project](https://github.com/coffebar/neovim-project)
+
 <details>
 <summary>neovim-project default options</summary>
 
@@ -519,6 +530,7 @@ local neovim_project_defaults = {
   },
 }
 ```
+
 </details>
 
 If you're not happy/satisfied with the options above, feel free to extend/override the table like so
@@ -530,8 +542,8 @@ require("neovim-idea.options").neovim_project = {
 }
 ```
 
-
 ### [render-markdown](https://github.com/MeanderingProgrammer/render-markdown.nvim)
+
 <details>
 <summary>render-markdown default options</summary>
 
@@ -541,6 +553,7 @@ function Options.get_neovim_project_options()
 end
 
 ```
+
 </details>
 
 If you're not happy/satisfied with the options above, feel free to extend/override the table like so
@@ -552,8 +565,8 @@ require("neovim-idea.options").render_markdown = {
 }
 ```
 
-
 ### [statuscol.nvim](https://github.com/luukvbaal/statuscol.nvim)
+
 <details>
 <summary>statuscol.nvim default options</summary>
 
@@ -611,6 +624,7 @@ local statuscol_nvim_defaults = function(builtin)
   }
 end
 ```
+
 </details>
 
 If you're not happy/satisfied with the options above, feel free to extend/override the function like so
@@ -626,6 +640,7 @@ end
 ```
 
 ### [switcher-nvim](https://github.com/neovim-idea/switcher-nvim)
+
 <details>
 <summary>switcher-nvim default options</summary>
 
@@ -638,6 +653,7 @@ local switcher_nvim_defaults = {
   },
 }
 ```
+
 </details>
 
 If you're not happy/satisfied with the options above, feel free to extend/override the table like so
@@ -653,6 +669,7 @@ end
 ```
 
 ### [telescope](https://github.com/nvim-telescope/telescope.nvim)
+
 <details>
 <summary>telescope.nvim default options</summary>
 
@@ -686,6 +703,7 @@ local telescope_nvim_defaults = {
   },
 }
 ```
+
 </details>
 
 If you're not happy/satisfied with the options above, feel free to extend/override the table like so
@@ -697,8 +715,8 @@ require("neovim-idea.options").telescope_nvim = {
 }
 ```
 
-
 ### [todo-comments](https://github.com/folke/todo-comments.nvim)
+
 <details>
 <summary>todo-comments default options</summary>
 
@@ -715,6 +733,7 @@ local todo_comments_defaults = {
   },
 }
 ```
+
 </details>
 
 If you're not happy/satisfied with the options above, feel free to extend/override the table like so
@@ -726,8 +745,8 @@ require("neovim-idea.options").todo_comments = {
 }
 ```
 
-
 ### [nvim-treesitter]()
+
 <details>
 <summary>nvim-treesitter default options</summary>
 
@@ -740,6 +759,7 @@ local nvim_treesitter_defaults = {
   fold = { enable = true },
 }
 ```
+
 </details>
 
 If you're not happy/satisfied with the options above, feel free to extend/override the table like so
@@ -751,8 +771,8 @@ require("neovim-idea.options").todo_comments = {
 }
 ```
 
-
 ### [vim-notify](https://github.com/rcarriga/nvim-notify)
+
 <details>
 <summary>vim-notify default options</summary>
 
@@ -763,6 +783,7 @@ local vim_notify_defaults = {
   top_down = true,
 }
 ```
+
 </details>
 
 If you're not happy/satisfied with the options above, feel free to extend/override the table like so
@@ -774,8 +795,8 @@ require("neovim-idea.options").vim_notify = {
 }
 ```
 
-
 ### [which-key]()
+
 <details>
 <summary>which-key default options</summary>
 
@@ -786,8 +807,8 @@ local which_key_defaults = {
   delay = 500,
 }
 ```
-</details>
 
+</details>
 
 If you're not happy/satisfied with the options above, feel free to extend/override the table like so
 
@@ -806,33 +827,30 @@ require("neovim-idea.options").which_key = {
 > will print any shortcut to the command line. If nothing gets printed, it means that your terminal or OS is capturing
 > it already.
 
-
 > [!NOTE]
 > This setup comes with [which-key](https://github.com/folke/which-key.nvim) preinstalled: either type `:Whichkey` in
 > the command prompt, or press `<leader>` (=spacebar in this setup) followed by `?` and a popup will appear, showing all
 > available shortcuts that are registered in neovim (navigate Down/Up the popup via CTRL+d/CTRL+u)
-
 
 In case you're using `Logictech MX Keys` in MacOS, you might have issues trying to figure out why `Fn` keys are still
 modifying the brightness/volume/etc.. even though you you specifically toggled on the System Settings option
 `use F1, F2 etc. keys as standard function keys`. No, you're not drunk: on my Company's old MBP i9 they worked fine but,
 on my personal MBP M1, it didn't; seems like that, on the newer Apple Silicon MBPs, this setting is not honored properly
 and therefore you must install [Logi Option+](https://www.logitech.com/en-us/software/logi-options-plus.html), import
-your keyboad and then, under the `General` section .. toggle  `use F1, F2 etc. keys as standard function keys`.
+your keyboad and then, under the `General` section .. toggle `use F1, F2 etc. keys as standard function keys`.
 Go figure.
 
 Also, your terminal might need to be tweaked in order to detect your Option/Alt key, rather than being used to send
 Unicode characters. In `iTerm2`, you can change this in `Settings` -> `Profile` -> `<your profile>` -> `Keys` -> `Left
 (or Right, or both) Option Key` -> change to `Esc+` . This way, `Option+l` will be mapped to `M-l` rather than `¬`.
 
-
-| Action | Shortcut | Description | 
-| --------------- | --------------- | --------------- |
-| Toggle Project Files | CMD+1, CMD+k1 | Toggles the file browser from any window/buffer |
-| Show in Project Files | CMD+p | Show current file in the file browser |
-| Show Project Files help | ? | Shows all extra actions that can be performed in the file tree, i.e. `a`dd, `r`ename, `d`elete a file or `/` to fuzzy-find files |
-| Find files | CMD+f | Find project files by name | 
-| Find in files | CMD+F | Fuzzy find some text in the project files | 
+| Action                  | Shortcut      | Description                                                                                                                      |
+| ----------------------- | ------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| Toggle Project Files    | CMD+1, CMD+k1 | Toggles the file browser from any window/buffer                                                                                  |
+| Show in Project Files   | CMD+p         | Show current file in the file browser                                                                                            |
+| Show Project Files help | ?             | Shows all extra actions that can be performed in the file tree, i.e. `a`dd, `r`ename, `d`elete a file or `/` to fuzzy-find files |
+| Find files              | CMD+f         | Find project files by name                                                                                                       |
+| Find in files           | CMD+F         | Fuzzy find some text in the project files                                                                                        |
 
 ## Notes
 
@@ -849,10 +867,10 @@ rm -rf ~/.local/state/nvim
 ```
 
 1. telescope `live_grep` needs the external program `ripgrep` to work (run `brew install ripgrep`)
-2. install `stylua` via `:Mason` to have nice formatting for `*.lua` files
-3. install `coursier` to use  `nvim-metals` (run `brew install coursier`)
+2. install `stylua` via `:Mason` to have nice formatting for `*.lua` files, and `prettier` for `*.md` ones
+3. install `coursier` to use `nvim-metals` (run `brew install coursier`)
 4. install metals in nvim using the command `:MetalsInstall`
-5. install lazygit (run `brew install lazygit`) 
+5. install lazygit (run `brew install lazygit`)
 6. install treesitter cli (run `brew install tree-sitter-cli`)
 7. open your scala project and have fun
 
@@ -860,9 +878,8 @@ Optionally, if you want to enable Java development:
 
 1. `brew install mvn`
 2. from within neovim, type `:Mason` command and look for the `java-language-server`, then hit `i` to install
-    (note: [needs at least Java18](https://github.com/georgewfraser/java-language-server/issues/273))
+   (note: [needs at least Java18](https://github.com/georgewfraser/java-language-server/issues/273))
 3. follow instructions from [lsp-config official documentation page](https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#java_language_server)
-
 
 ## Keyboard remappings
 
@@ -887,7 +904,6 @@ However it is possible to set conditional breakpoints like so
 
 > :DapSetBreakpoint --condition 'x == someValue'
 
-
 ## Miscellaneous
 
 To keep your git branches lean and clean, you can automatically remove untracked remote branches (i.e. deleted after a
@@ -899,44 +915,44 @@ git config --global fetch.prune true
 
 ## Things To Improve
 
-* [x] project manager
-* [ ] by default, when opening a project: open in order `README.md` or `build.sbt`
-* [ ] keep insert mode after autocompletion
-* [x] simple camel hump navigation
-  * [ ] extract logic in its own plugin
-    * [ ] add proper testing
-  * [ ] make own plugin to addd functional-style lua for easier development
-* [ ] make neotree condense package folders
-* [x] autosave buffers
-  * [ ] `AutoSaveOnBlur` should also fire a neotree event in order to refresh the status of the file tree
-* [ ] shortcuts to create new class/obj
-* [x] shortcuts to implement all methods from trait/abstract class
-* [x] undo with D-z
-  * [ ] maybe find a proper neovim plugin?
-* [x] make neotree stick to the left sidebar
-  * [x] use https://github.com/folke/edgy.nvim
-* [x] make the files open in the main content area
-* [x] reshuffle the UI of dap
-* [ ] one single place to define all key combinations
-* [ ] unified way to define keymap (don't use two different APIs)
-* [ ] holding OPT while pressing `Backspace`  / `Space` should "camelHump delete" to the left / right
-* [ ] holding OPT+SHIFT while pressing `LeftArrow`  / `RightArrow` should "camelHump select" to the left / right
-* [x] add shortcut to duplicate current line and place it below
-* [x] SHIFT+UP/DOWN moves the current line up/down
-* [x] use https://github.com/folke/snacks.nvim/tree/main/docs for lazygit
-  * [x] terminal (?)
-* [x] find out how to rename variables, classes
-  * [ ] ... and [files](https://github.com/folke/snacks.nvim/blob/main/docs/rename.md)
-* [x] show errors in the current line
-* [x] click on a gutter to toggle a breakpoint creation on/off
-* [ ] scratch files management for quick & dirty snippets
-* [x] copy paste shortcuts using D-c, D-x, D-v
-* [x] toggle comment/uncomment with <D-/>
-* [x] use notification plugin to avoid losing focus from the buffer
-  * [x] add telescope integration to retrieve notifications in case we need to copy/paste logs
-* [ ] plugin to mimic IntellIJ Idea quick open file selection with CTRL+TAB / CTRL+SHIFT+TAB
-  * [ ] bind mouse keys prev/next to cycle between open files
-* [ ] global search & replace
-* [x] when exiting lazygit, neotree should refresh its status icons
-* [ ] highlight a line that has a breakpoint set
-* [ ] update treesitter to `main` and figure out where the configuration options are now located
+- [x] project manager
+- [ ] by default, when opening a project: open in order `README.md` or `build.sbt`
+- [ ] keep insert mode after autocompletion
+- [x] simple camel hump navigation
+  - [x] extract logic in its own plugin
+    - [x] add proper testing
+  - [x] make own plugin to addd functional-style lua for easier development
+- [ ] make neotree condense package folders
+- [x] autosave buffers
+  - [ ] `AutoSaveOnBlur` should also fire a neotree event in order to refresh the status of the file tree
+- [ ] shortcuts to create new class/obj
+- [x] shortcuts to implement all methods from trait/abstract class
+- [x] undo with D-z
+  - [ ] maybe find a proper neovim plugin?
+- [x] make neotree stick to the left sidebar
+  - [x] use https://github.com/folke/edgy.nvim
+- [x] make the files open in the main content area
+- [x] reshuffle the UI of dap
+- [x] one single place to define all key combinations
+- [x] unified way to define keymap (don't use two different APIs)
+- [x] holding OPT while pressing `Backspace` / `Space` should "camelHump delete" to the left / right
+- [x] holding OPT+SHIFT while pressing `LeftArrow` / `RightArrow` should "camelHump select" to the left / right
+- [x] add shortcut to duplicate current line and place it below
+- [x] SHIFT+UP/DOWN moves the current line up/down
+- [x] use https://github.com/folke/snacks.nvim/tree/main/docs for lazygit
+  - [x] terminal (?)
+- [x] find out how to rename variables, classes
+  - [ ] ~... and [files](https://github.com/folke/snacks.nvim/blob/main/docs/rename.md)~
+- [x] show errors in the current line
+- [x] click on a gutter to toggle a breakpoint creation on/off
+- [ ] scratch files management for quick & dirty snippets
+- [x] copy paste shortcuts using D-c, D-x, D-v
+- [x] toggle comment/uncomment with <D-/>
+- [x] use notification plugin to avoid losing focus from the buffer
+  - [x] add telescope integration to retrieve notifications in case we need to copy/paste logs
+- [x] plugin to mimic IntellIJ Idea quick open file selection with CTRL+TAB / CTRL+SHIFT+TAB
+  - [x] bind mouse keys prev/next to cycle between open files
+- [ ] global search & replace
+- [x] when exiting lazygit, neotree should refresh its status icons
+- [ ] highlight a line that has a breakpoint set
+- [ ] update treesitter to `main` and figure out where the configuration options are now located

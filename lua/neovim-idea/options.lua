@@ -232,7 +232,7 @@ Options.mason = {}
 
 -- [[mason-lspconfig]]
 local mason_lspconfig_defaults = {
-  ensure_installed = { "lua_ls", "ts_ls" },
+  ensure_installed = { "stylua", "lua_ls" },
 }
 
 Options.mason_lspconfig = {}

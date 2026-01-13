@@ -56,6 +56,10 @@ function Actions.git_toggle_current_line_blame()
   gitsigns_actions.toggle_current_line_blame()
 end
 
+function Actions.git_current_file_blame()
+  return":Git blame<CR>"
+end
+
 local neotree_action = function(action)
   local original_buf = vim.api.nvim_get_current_buf()
   local modifiable = vim.api.nvim_buf_get_option(original_buf, "modifiable")
@@ -205,6 +209,10 @@ end
 
 function Actions.git_preview_hunk()
   return ":Gitsigns preview_hunk<CR>"
+end
+
+function Actions.git_undo_hunk()
+  return ":Gitsigns reset_hunk<CR>"
 end
 
 function Actions.show_lazygit()

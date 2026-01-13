@@ -20,6 +20,11 @@ return {
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
       vim.lsp.config("lua_ls", {
+        settings = {
+          Lua = {
+            hint = { enable = true },
+          },
+        },
         capabilities = capabilities,
         on_attach = function(client, _)
           -- make sure to use stylua only for formatting

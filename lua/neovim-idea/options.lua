@@ -239,7 +239,23 @@ Options.mason_lspconfig = {}
 
 -- [[nvim-metals]]
 local nvim_metals_defaults = function(metals, metals_config)
-  metals_config.on_attach = function(_, bufnr)
+  metals_config.settings = {
+    superMethodLensesEnabled = true,
+    inlayHints = {
+      hintsSRayMode = { enable = true },
+      byNameParameters = { enable = true },
+      hintsInPatternMatch = { enable = true },
+      implicitArguments = { enable = true },
+      implicitConversions = { enable = true },
+      inferredTypes = { enable = true },
+      typeParameters = { enable = true },
+    },
+  }
+
+  metals_config.on_attach = function(client, bufnr)
+    if client.server_capabilities.inlayHintProvider then
+      vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+    end
     metals.setup_dap()
     vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
       buffer = bufnr,

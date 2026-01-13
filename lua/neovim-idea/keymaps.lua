@@ -1,6 +1,13 @@
 local Keymaps = {}
 
 local a = require("neovim-idea.actions")
+local function listen_for_key()
+  vim.api.nvim_echo({ { "Listening for next keypress...", "Question" } }, true, {})
+
+  local raw_key_input = vim.fn.getcharstr()
+  local readable_key_name = vim.fn.keytrans(raw_key_input)
+  vim.api.nvim_echo({ { "Neovim sees that as: ", "None" }, { readable_key_name, "Function" } }, true, {})
+end
 
 local defaults = {
   insert_line_above_cursor = {
@@ -45,17 +52,17 @@ local defaults = {
     action = a.smart_paste,
     opts = { expr = true, replace_keycodes = true, noremap = true, silent = true, desc = "Paste text" },
   },
-  duplicate_line_below = {
-    mode = { "n", "i" },
-    lhs = "<D-d>",
-    action = a.duplicate_line_below,
-    opts = { silent = true, desc = "Duplicate current line below" },
-  },
   undo = {
     mode = { "n", "i", "v", "x", "s" },
     lhs = "<D-z>",
     action = a.undo,
     opts = { expr = true, replace_keycodes = true, noremap = true, silent = true, desc = "Undo" },
+  },
+  duplicate_line_below = {
+    mode = { "n", "i" },
+    lhs = "<D-d>",
+    action = a.duplicate_line_below,
+    opts = { silent = true, desc = "Duplicate current line below" },
   },
   lsp_show_diagnostics = {
     mode = { "n", "i", "v" },
@@ -99,6 +106,18 @@ local defaults = {
     action = a.delete_right,
     opts = { noremap = true, silent = true, desc = "Delete right" },
   },
+  toggle_file_tree = {
+    mode = { "n", "i" },
+    lhs = { "<D-1>", "<D-k1>" },
+    action = a.toggle_file_tree,
+    opts = { noremap = true, silent = true, desc = "Toggle Neotree" },
+  },
+  show_in_file_tree = {
+    mode = { "n", "i" },
+    lhs = "<D-p>",
+    action = a.show_in_file_tree,
+    opts = { noremap = true, silent = true, desc = "Show file in Neotree" },
+  },
   toggle_line_breakpoint = {
     mode = { "n", "i" },
     lhs = "<D-b>",
@@ -114,36 +133,24 @@ local defaults = {
   toggle_debugger_ui = {
     mode = { "n", "i" },
     lhs = { "<D-4>", "<D-k4>" },
-    action = a.dap_continue,
+    action = a.dapui_toggle,
     opts = { noremap = true, silent = true, desc = "Toggle Debugger UI" },
-  },
-  toggle_file_tree = {
-    mode = { "n", "i" },
-    lhs = { "<D-1>", "<D-k1>" },
-    action = a.toggle_file_tree,
-    opts = { noremap = true, silent = true, desc = "Toggle Neotree" },
-  },
-  show_in_file_tree = {
-    mode = { "n", "i" },
-    lhs = "<D-p>",
-    action = a.show_in_file_tree,
-    opts = { noremap = true, silent = true, desc = "Show file in Neotree" },
   },
   show_symbol_documentation = {
     mode = { "n", "i" },
-    lhs = "F1",
+    lhs = "<D-h>",
     action = vim.lsp.buf.hover,
     opts = { noremap = true, silent = true, desc = "Show symbol documentation" },
   },
   goto_symbol_definition_or_usage = {
     mode = "n",
-    lhs = { "<M-LeftMouse>", "<leader>gd" },
+    lhs = { "<leader>gd", "<M-LeftMouse>" },
     action = vim.lsp.buf.definition,
     opts = { noremap = true, silent = true, desc = "Go to symbol definition / usage" },
   },
   goto_symbol_references = {
     mode = "n",
-    lhs = { "<M-S-LeftMouse>", "<leader>gr" },
+    lhs = { "<leader>gr", "<M-S-LeftMouse>" },
     action = vim.lsp.buf.references,
     opts = { noremap = true, silent = true, desc = "Go to symbol references" },
   },
@@ -154,7 +161,7 @@ local defaults = {
     opts = { noremap = true, silent = true, desc = "Show code actions" },
   },
   rename_symbol = {
-    mode = { "n", "i" },
+    mode = "n",
     lhs = "<F18>", -- that's how Shift+F6 gets interpreted
     action = a.rename_symbol,
     opts = { expr = true, noremap = true, silent = true, desc = "Rename symbol under cursor" },
@@ -163,13 +170,25 @@ local defaults = {
     mode = "n",
     lhs = "<leader>gp",
     action = a.git_preview_hunk,
-    opts = { noremap = true, silent = true, desc = "Show the last committer of the current line" },
+    opts = { expr = true, noremap = true, silent = true, desc = "Show the changes of the current hunk" },
+  },
+  git_reset_hunk = {
+    mode = "n",
+    lhs = "<leader>gu",
+    action = a.git_undo_hunk,
+    opts = { expr = true, noremap = true, silent = true, desc = "Undo / Revert the changes of the current hunk" },
   },
   git_toggle_current_line_blame = {
     mode = "n",
     lhs = "<leader>gt",
     action = a.git_toggle_current_line_blame,
-    opts = { noremap = true, silent = true, desc = "Show the last committer of the current line" },
+    opts = { noremap = true, silent = true, desc = "Git toggle current line blame" },
+  },
+  git_blame = {
+    mode = "n",
+    lhs = "<leader>gb",
+    action = a.git_current_file_blame,
+    opts = { expr = true, noremap = true, silent = true, desc = "Git current file blame" },
   },
   show_all_projects = {
     mode = "n",
@@ -180,14 +199,14 @@ local defaults = {
   show_recent_projects = {
     mode = "n",
     lhs = "<leader>pr",
-    action = a.show_all_projects,
+    action = a.show_recent_projects,
     opts = { noremap = true, silent = true, desc = "Neovim Project: Show Recent" },
   },
   lsp_format_buffer = {
     mode = { "n", "i" },
     lhs = "<M-D-l>",
     action = a.lsp_format_buffer,
-    opts = { noremap = true, silent = true, desc = "Neovim Project: Show Recent" },
+    opts = { noremap = true, silent = true, desc = "Format current file" },
   },
   show_lazygit = {
     mode = { "n", "i" },

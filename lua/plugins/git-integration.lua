@@ -2,12 +2,12 @@ return {
   {
     "tpope/vim-fugitive",
     config = function()
-      vim.keymap.set("n", "<leader>gb", ":Git blame<CR>", {})
       -- make fugitive buffers easier to quit
       vim.api.nvim_create_autocmd("FileType", {
         pattern = { "fugitive", "fugitiveblame" },
         callback = function()
           vim.keymap.set("n", "q", "<cmd>close<CR>", { buffer = true })
+          vim.keymap.set("n", "<Esc>", "<cmd>close<CR>", { buffer = true })
         end,
       })
     end,

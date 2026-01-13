@@ -1,22 +1,169 @@
-# Read This First!
+# READ THIS FIRST!
 
-This is a very personal and opinionated customisation of neovim to resemble IntelliJ IDEA look & feel, tailored towards
+This is a very personal and opinionated customisation of neovim to resemble IntelliJ IDEA UI/UX, tailored towards
 Scala development (does support Java as well, although I believe it would need extra configuration to support standalone
 Java development).
 
-Due to my work laptop being old and with limited amount or RAM, having one instance of IntelliJ IDEA running along with
+Due to my work laptop being old, and with limited amount or RAM, having one instance of IntelliJ IDEA running along with
 Chrome and Slack had become... problematic. Add to the mix dockerized instances of kafka/postgres/redis/amqp and so on,
 and the system just turns downright unusable.
 
 Because of that, I needed a **quick** replacement for IntelliJ to shave off those ~4GB of memory and keep me working;
-obviously, neovim was the IDE of choice.
+obviously, [neovim](https://github.com/neovim/neovim) was the IDE of choice.
 
-HOWEVER: despite my (limited) previous knowledge of (neo)vim, I had nor the time or the inclination to learn a whole
-plethora of commands and shortcuts to be used in different modes. Call it laziness, old age or muscle memory. As a
-direct consequence of it, I brazenly messed with the key shortcuts in a way that any respectable neovim user would either
-get angry or weep in despair. Sorry, not sorry, I've got work to do.
+> [!WARNING]
+> Despite my (limited) previous knowledge of (neo)vim, I had nor the time or the inclination to learn a whole plethora
+> of commands and shortcuts to be used in different modes. Call it laziness, old age or muscle memory. As a direct
+> consequence of it, I brazenly messed with the key shortcuts in a way that any respectable neovim user would either
+> get angry or weep in despair, use arrow keys and enabled mouse. Sorry, not sorry, I've got work to do.
 
 If you, however, think you can stomach that: enjoy the repo! Feel free to clone it and tweak it as you please :)
+
+## Setup
+
+### 1. Install external dependencies
+
+Note: the following instructions require [homebrew](https://brew.sh/) installed and available in your system, so Linux &
+MacOS users are covered. If, however, you're on Windows... please send a PR to extend this section :love_letter:
+
+```bash
+brew install neovim font-fira-mono-for-powerline font-fira-code coursier lazygit ripgrep tree-sitter-cli npm
+```
+
+For Scala development, you'd need to install also [sdkman](https://sdkman.io)
+
+```bash
+curl -s "https://get.sdkman.io" | bash
+```
+
+and then Java, sbt, visualVM (not required, but you do profile your app, right?). [Coursier](https://sdkman.io/sdks/coursier/) support hasn't landed yet on sdkman.
+
+```bash
+sdk install java 17.0.17-amzn
+sdk install sbt
+sdk install visualvm
+
+```
+
+And now, clone the repo to the destination folder `~/.config/nvim` (:warning: backup the nvim folder first, if you have
+a pre-existing setup! )
+
+```bash
+git clone git@github.com:neovim-idea/neovim-idea.git ~/.config/nvim
+```
+
+### 2. Install packages within neovim
+
+At this point, you can finally run `neovim`:
+
+```bash
+nvim
+```
+
+Upon the very first run, neovim will install [lazy](https://github.com/folke/lazy.nvim), and all the necessary plugins
+defined in this repo. Once the installation is done, hit `:q` to quit Lazy dialog, then hit `:Mason` to open [Mason](https://github.com/mason-org/mason.nvim):
+you will need to look for `stylua` and `prettier`, and install them by selecting them and then pressing `i`. Once Mason
+is done, simply hit `<Esc>` to quit it, and `:q` to quit neovim.
+
+### 3. Terminal setup
+
+It's important to understand that most of the keymaps used in this setup do need the `Meta` / `Alt` and
+`Opt` / `Start` keys to be forwarded to the terminal. Sadly, some terminal emulators (such as iTerm) will capture them
+to provide their own functionalities, such as swap between terminal tabs. Because my IntelliJ setup does make heavy
+usage of those keys, here below I'll describe how to forward them.
+
+Below, you'll find the changes required for iTerm; if you're using another terminal emulator, some of these tweaks might
+even not be necessary at all (and if so, please leave a PR).
+
+First of all, you need to remove all keybindings that iTerm has by default (and why not using [tmux instead?](https://github.com/tmux/tmux/wiki))
+
+![disable iterm keybindings](docs/disable_keybindings.png)
+
+Then, you'd need to disable the navigation shortcuts
+
+![disable iterm navigation shortcuts](docs/disable_navigation_shortcuts.png)
+
+Then, change font settings to one that support gliphs and, if you like to see pretty symbols such as `≥` rather than `>=`,
+enable also font ligatures
+
+![change iterm font settings](docs/change_font_settings.png)
+
+Last but not least, slightly change the key mappings
+
+![change iterm key mappings](docs/change_keys_mapping.png)
+
+### 4. A note on Logitech MX Keys
+
+In case you're using `Logitech MX Keys` in MacOS, you might have issues trying to figure out why `Fn` keys are still
+modifying the brightness/volume/etc.. even though you you specifically toggled `on` the System Settings option
+`use F1, F2 etc. keys as standard function keys`. No, you're not drunk: on my Company's old MBP i9 they worked fine but,
+on my personal MBP M1, they didn't; seems like that, on the newer Apple Silicon MBPs, this setting is not honored
+properly and therefore you must install [Logi Option+](https://www.logitech.com/en-us/software/logi-options-plus.html),
+import your keyboad and then, under the `General` section .. toggle `use F1, F2 etc. keys as standard function keys`.
+
+Go figure why :shrug:
+
+### 5. Start esploring your new setup!
+
+That's all! You can restart neovim, if you didn't already, and you're good to go!
+
+## Default Shortcuts
+
+> [!IMPORTANT]
+> The following shortcuts require valid mapping to `M` (Cmd / Alt), `D` (Opt / Start) and `Fn` keys; you can quickly
+> verify that your terminal recognises & forwards them properly by either:
+>
+> 1. press `F5`: that will execute a small debug utility that will listen & print any key combination or, if `F5`
+>    isn't recognised either ...
+> 2. ... type `:lua require("neovim-idea.actions").debug_keys_pressed()`, which will trigger the very same utility
+
+By default, `neovim-idea` associates the `<leader>` key to the Space key. If you don't like this setting, in the next
+section you'll find all the information to change this, along with all the shortcuts and general options.
+
+| Shortcut        | Mnemonics             | Description                                                 |
+| :-------------- | :-------------------- | :---------------------------------------------------------- |
+| `<M-D-CR>`      | `Cmd+Opt+Enter`       | Insert a new line above the current one                     |
+| `<D-CR>`        | `Cmd+Enter`           | Insert a new line below the current one                     |
+| `<M-S-Up>`      | `Opt+Shift+Up`        | Move the current line one up                                |
+| `<M-S-Down>`    | `Opt+Shift+Down`      | Move the current line one up                                |
+| `<D-x>`         | `Cmd+x`               | Cut selected text (or entire line, if nothing is selected)  |
+| `<D-c>`         | `Cmd+c`               | Copy selected text (or entire line, if nothing is selected) |
+| `<D-v>`         | `Cmd+v`               | Paste text starting from the cursor (or over selected text) |
+| `<D-z>`         | `Cmd+z`               | Undo                                                        |
+| `<D-d>`         | `Cmd+d`               | Duplicate current line (and moves cursor below)             |
+| `<D-e>`         | `Cmd+e`               | Show LSP errors / warnings of the current line              |
+| `<D-f>`         | `Cmd+f`               | Find files by name                                          |
+| `<D-F>`         | `Cmd+Shift+f`         | Fuzzy find inside files                                     |
+| `<M-Left>`      | `Opt+Left`            | Camelhump movement to the left                              |
+| `<M-Right>`     | `Opt+Right`           | Camelhump movement to the right                             |
+| `<M-BS>`        | `Opt+Backspace`       | Camelhump deletion to the left                              |
+| `<M-Del>`       | `Opt+Delete`          | Camelhump deletion to the right                             |
+| `<D-1>`         | `Cmd+1`               | Show / Hide Project Tree View                               |
+| `<D-k1>`        | `Cmd+Numpad1`         | Show / Hide Project Tree View                               |
+| `<D-p>`         | `Cmd+p`               | Pinpoint current file into Project Tree View                |
+| `<D-b>`         | `Cmd+b`               | Toggle breakpoint in the current line                       |
+| `<D-D>`         | `Cmd+Shift+d`         | Start / Continue a debugging session                        |
+| `<D-4>`         | `Cmd+4`               | Show / Hide Debugger Adapter Protocol UI                    |
+| `<D-k4>`        | `Cmd+Numpad4`         | Show / Hide Debugger Adapter Protocol UI                    |
+| `<D-h>`         | `Cmd+h`               | Show API documentation of the symbol under cursor           |
+| `<leader>gd`    | `Space+gd`            | Jump between symbol definition and usage                    |
+| `<M-LeftMouse>` | `Cmd+LeftMouse`       | (\*) Jump between symbol definition and usage               |
+| `<leader>gd`    | `Space+gr`            | Go to symbol references                                     |
+| `<M-LeftMouse>` | `Cmd+Shift+LeftMouse` | (\*) Go to symbol references                                |
+| `<M+CR>`        | `Opt+Enter`           | Run available Code Actions in the current line              |
+| `<F18>`         | `Shift+F6`            | Rename the current symbol under cursor                      |
+| `<leader>gp`    | `Space+gp`            | Git Preview Hunk                                            |
+| `<leader>gu`    | `Space+gu`            | Git Undo (Revert) Hunk                                      |
+| `<leader>gt`    | `Space+gt`            | Git Toggle current line blame                               |
+| `<leader>gb`    | `Space+gb`            | Git current file blame                                      |
+| `<leader>pa`    | `Space+pa`            | Show all projects                                           |
+| `<leader>pr`    | `Space+pr`            | Show recent projects                                        |
+| `<M-D-l>`       | `Cmd+Opt+l`           | Format current file                                         |
+| `<D-G>`         | `Cmd+Shft+G`          | Show Lazygit interface                                      |
+| `<D-/>`         | `Cmd+Slash`           | Comment / Uncomment current line or selected lines          |
+| `<F5>`          | `F5`                  | Debug: capture and print any key combination                |
+
+(\*) in MacOS, mouse events register differently the Cmd key modifier.
 
 ## Plugin Options
 
@@ -824,21 +971,13 @@ require("neovim-idea.options").which_key = {
 > [!IMPORTANT]
 > Ensure your terminal doesn't steal CMD key and CMD+number key combinations (i.e. to switch between open terminal tabs:
 > use tmux instead!). If you're not sure whether your key combination is recognised by neovim: press `F5`, and neovim
-> will print any shortcut to the command line. If nothing gets printed, it means that your terminal or OS is capturing
-> it already.
+> will print any keypress combination to the command line. If nothing gets printed, it means that your terminal or OS is
+> capturing it already.
 
 > [!NOTE]
 > This setup comes with [which-key](https://github.com/folke/which-key.nvim) preinstalled: either type `:Whichkey` in
 > the command prompt, or press `<leader>` (=spacebar in this setup) followed by `?` and a popup will appear, showing all
 > available shortcuts that are registered in neovim (navigate Down/Up the popup via CTRL+d/CTRL+u)
-
-In case you're using `Logictech MX Keys` in MacOS, you might have issues trying to figure out why `Fn` keys are still
-modifying the brightness/volume/etc.. even though you you specifically toggled on the System Settings option
-`use F1, F2 etc. keys as standard function keys`. No, you're not drunk: on my Company's old MBP i9 they worked fine but,
-on my personal MBP M1, it didn't; seems like that, on the newer Apple Silicon MBPs, this setting is not honored properly
-and therefore you must install [Logi Option+](https://www.logitech.com/en-us/software/logi-options-plus.html), import
-your keyboad and then, under the `General` section .. toggle `use F1, F2 etc. keys as standard function keys`.
-Go figure.
 
 Also, your terminal might need to be tweaked in order to detect your Option/Alt key, rather than being used to send
 Unicode characters. In `iTerm2`, you can change this in `Settings` -> `Profile` -> `<your profile>` -> `Keys` -> `Left

@@ -161,6 +161,7 @@ section you'll find all the information to change this, along with all the short
 | `<M-D-l>`       | `Cmd+Opt+l`           | Format current file                                         |
 | `<D-G>`         | `Cmd+Shft+G`          | Show Lazygit interface                                      |
 | `<D-/>`         | `Cmd+Slash`           | Comment / Uncomment current line or selected lines          |
+| `<D-r>`         | `Cmd+r`               | Run Code Lens(es) in the current line                       |
 | `<F5>`          | `F5`                  | Debug: capture and print any key combination                |
 
 (\*) in MacOS, mouse events register differently the Cmd key modifier.

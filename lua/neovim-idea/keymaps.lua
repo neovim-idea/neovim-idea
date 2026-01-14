@@ -219,6 +219,12 @@ local defaults = {
     action = a.toggle_comment,
     opts = { noremap = true, silent = true, desc = "Show keymaps (via which-key)" },
   },
+  run_codelens = {
+    mode = { "n", "i", "v" },
+    lhs = "<D-r>",
+    action = a.run_codelens,
+    opts = { noremap = true, silent = true, desc = "Run Code Lens(es) in the current line" },
+  },
   print_keys_pressed = {
     mode = { "n", "i", "v" },
     lhs = "<F5>",

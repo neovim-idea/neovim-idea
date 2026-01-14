@@ -246,6 +246,10 @@ function Actions.toggle_comment()
   end
 end
 
+function Actions.run_codelens()
+  vim.lsp.codelens.run()
+end
+
 function Actions.debug_keys_pressed()
   vim.api.nvim_echo({ { "Listening for next keypress...", "Question" } }, true, {})
   local raw_key_input = vim.fn.getcharstr()

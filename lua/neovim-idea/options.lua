@@ -239,16 +239,21 @@ Options.mason_lspconfig = {}
 
 -- [[nvim-metals]]
 local nvim_metals_defaults = function(metals, metals_config)
+  -- you can find lots of useful settings in https://scalameta.org/metals/docs/editors/user-configuration/
   metals_config.settings = {
     superMethodLensesEnabled = true,
+    enableSemanticHighlighting = true,
+    enableIndentOnPaste = true,
     inlayHints = {
-      hintsSRayMode = { enable = true },
+      inferredTypes = { enable = true },
+      namedParameters = { enable = true },
       byNameParameters = { enable = true },
-      hintsInPatternMatch = { enable = true },
       implicitArguments = { enable = true },
       implicitConversions = { enable = true },
-      inferredTypes = { enable = true },
       typeParameters = { enable = true },
+      hintsInPatternMatch = { enable = true },
+      closingLabels = { enable = true },
+      hintsXRayMode = { enable = true },
     },
   }
 
@@ -264,8 +269,6 @@ local nvim_metals_defaults = function(metals, metals_config)
       end,
     })
     pcall(vim.lsp.codelens.refresh)
-
-    vim.keymap.set("n", "<leader>r", vim.lsp.codelens.run, { buffer = bufnr, desc = "Run code lens" })
   end
   return metals_config
 end

@@ -1,13 +1,6 @@
 local Keymaps = {}
 
 local a = require("neovim-idea.actions")
-local function listen_for_key()
-  vim.api.nvim_echo({ { "Listening for next keypress...", "Question" } }, true, {})
-
-  local raw_key_input = vim.fn.getcharstr()
-  local readable_key_name = vim.fn.keytrans(raw_key_input)
-  vim.api.nvim_echo({ { "Neovim sees that as: ", "None" }, { readable_key_name, "Function" } }, true, {})
-end
 
 local defaults = {
   insert_line_above_cursor = {
@@ -26,31 +19,31 @@ local defaults = {
     mode = { "n", "i" },
     lhs = "<M-S-Up>",
     action = a.move_line_up,
-    opts = { desc = "Move line up" },
+    opts = { silent = true, desc = "Move line up" },
   },
   move_line_down = {
     mode = { "n", "i" },
     lhs = "<M-S-Down>",
     action = a.move_line_down,
-    opts = { desc = "Move line up" },
+    opts = { silent = true, desc = "Move line up" },
   },
   smart_cut = {
     mode = { "n", "i", "v" },
     lhs = "<D-x>",
     action = a.smart_cut,
-    opts = { expr = true, replace_keycodes = true, noremap = true, silent = true, desc = "Cut text" },
+    opts = { noremap = true, silent = true, desc = "Cut text" },
   },
   smart_copy = {
     mode = { "n", "i", "v" },
     lhs = "<D-c>",
     action = a.smart_copy,
-    opts = { expr = true, replace_keycodes = true, noremap = true, silent = true, desc = "Copy text" },
+    opts = { noremap = true, silent = true, desc = "Copy text" },
   },
   smart_paste = {
     mode = { "n", "i", "v" },
     lhs = "<D-v>",
     action = a.smart_paste,
-    opts = { expr = true, replace_keycodes = true, noremap = true, silent = true, desc = "Paste text" },
+    opts = { noremap = true, silent = true, desc = "Paste text" },
   },
   undo = {
     mode = { "n", "i", "v", "x", "s" },
@@ -170,13 +163,13 @@ local defaults = {
     mode = "n",
     lhs = "<leader>gp",
     action = a.git_preview_hunk,
-    opts = { expr = true, noremap = true, silent = true, desc = "Show the changes of the current hunk" },
+    opts = { noremap = true, silent = true, desc = "Show the changes of the current hunk" },
   },
   git_reset_hunk = {
     mode = "n",
     lhs = "<leader>gu",
     action = a.git_undo_hunk,
-    opts = { expr = true, noremap = true, silent = true, desc = "Undo / Revert the changes of the current hunk" },
+    opts = { noremap = true, silent = true, desc = "Undo / Revert the changes of the current hunk" },
   },
   git_toggle_current_line_blame = {
     mode = "n",
@@ -188,7 +181,7 @@ local defaults = {
     mode = "n",
     lhs = "<leader>gb",
     action = a.git_current_file_blame,
-    opts = { expr = true, noremap = true, silent = true, desc = "Git current file blame" },
+    opts = { noremap = true, silent = true, desc = "Git current file blame" },
   },
   show_all_projects = {
     mode = "n",

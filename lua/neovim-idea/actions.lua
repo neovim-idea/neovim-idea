@@ -57,7 +57,7 @@ function Actions.git_toggle_current_line_blame()
 end
 
 function Actions.git_current_file_blame()
-  return":Git blame<CR>"
+  vim.cmd("Git blame")
 end
 
 local neotree_action = function(action)
@@ -139,24 +139,33 @@ function Actions.move_line_down()
 end
 
 function Actions.smart_cut()
+  local command
   if is_visual_mode() then
-    return '"+d'
+    command = 'normal! "+d'
+  else
+    command = is_insert_mode() and 'stopinsert | normal! "+dd' or 'normal! "+dd'
   end
-  return is_insert_mode() and '<C-o>"+dd' or '"+dd'
+  vim.cmd(command)
 end
 
 function Actions.smart_copy()
+  local command
   if is_visual_mode() then
-    return '"+y'
+    command = 'normal! "+y'
+  else
+    command = is_insert_mode() and 'stopinsert | normal! "+yy' or 'normal! "+yy'
   end
-  return is_insert_mode() and '<C-o>"+yy' or '"+yy'
+  vim.cmd(command)
 end
 
 function Actions.smart_paste()
+  local command
   if is_visual_mode() then
-    return '"+p`]'
+    command = 'normal! "+p`]'
+  else
+    command = is_insert_mode() and 'stopinsert | normal! "+gP' or 'normal! "+gP'
   end
-  return is_insert_mode() and '<C-o>"+gP' or '"+gP'
+  vim.cmd(command)
 end
 
 function Actions.duplicate_line_below()
@@ -208,11 +217,13 @@ function Actions.rename_symbol()
 end
 
 function Actions.git_preview_hunk()
-  return ":Gitsigns preview_hunk<CR>"
+  assert(gitsigns_actions, "gitsigns_actions is nil, did you forget to set it?")
+  gitsigns_actions.preview_hunk()
 end
 
 function Actions.git_undo_hunk()
-  return ":Gitsigns reset_hunk<CR>"
+  assert(gitsigns_actions, "gitsigns_actions is nil, did you forget to set it?")
+  gitsigns_actions.reset_hunk()
 end
 
 function Actions.show_lazygit()

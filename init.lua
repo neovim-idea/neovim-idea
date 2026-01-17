@@ -15,17 +15,19 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-
 -- load generic vim option, then some user defined overrides (if any), initialize neovim-idea's keymaps, and lazy
 require("vim-options")
 local ok, overrides = pcall(require, "overrides")
 local keymaps = {}
-local colorscheme = "catppuccin-intellijdark"
+local options = {}
 if ok then
+  options = overrides.options and overrides.options or options
   keymaps = overrides.keymaps and overrides.keymaps or keymaps
-  colorscheme = (overrides.options and overrides.options.colorscheme) and overrides.options.colorscheme or colorscheme
 end
+local neovim_idea_options = require("neovim-idea.options").setup(options)
 require("neovim-idea.keymaps").setup(keymaps)
+
+-- now, load lazy
 require("lazy").setup("plugins")
 -- last but not least, setup the colorscheme!
-vim.cmd.colorscheme(colorscheme)
+vim.cmd.colorscheme(neovim_idea_options.get_colorscheme())

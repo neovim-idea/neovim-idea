@@ -203,7 +203,7 @@ local defaults = {
   },
   show_lazygit = {
     mode = { "n", "i" },
-    lhs = "<D-G>",
+    lhs = { "<D-k>", "<F60>" },
     action = a.show_lazygit,
     opts = { noremap = true, silent = true, desc = "Show lazygit" },
   },
@@ -234,9 +234,17 @@ local defaults = {
 }
 
 function Keymaps.setup(opts)
+  opts = opts or {}
   local merged = {}
+
   for key, value in pairs(defaults) do
-    merged[key] = vim.tbl_deep_extend("force", value, (opts or {})[key] or {})
+    merged[key] = vim.tbl_deep_extend("force", value, opts[key] or {})
+  end
+
+  for key, value in pairs(opts) do
+    if merged[key] == nil then
+      merged[key] = value
+    end
   end
 
   for _, mapping in pairs(merged) do

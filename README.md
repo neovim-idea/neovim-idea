@@ -1,6 +1,40 @@
-# READ THIS FIRST!
+<div align="center">
 
-This is a very personal and opinionated customisation of neovim to resemble IntelliJ IDEA UI/UX, tailored towards
+[![GitHub Tag](https://img.shields.io/github/v/tag/neovim-idea/neovim-idea?sort=semver&style=for-the-badge)](https://github.com/neovim-idea/neovim-idea/releases)
+[![Lua](https://img.shields.io/badge/Lua-blue.svg?style=for-the-badge&logo=lua)](http://www.lua.org)
+[![Neovim](https://img.shields.io/badge/Neovim%200.10+-green.svg?style=for-the-badge&logo=neovim)](https://neovim.io)
+
+## neovim-idea
+
+###### The neovim customization to resemble IntelliJ IDEA UX/UI :heart_eyes:
+
+![neovim-idea sample usage](docs/neovim-idea-demo.mp4 "neovim-idea sample usage")
+
+</div>
+
+---
+
+<!-- TOC -->
+  * [READ THIS FIRST!](#read-this-first)
+  * [Setup](#setup)
+    * [1. Install external dependencies](#1-install-external-dependencies)
+    * [2. Install packages within neovim](#2-install-packages-within-neovim)
+    * [3. Terminal setup](#3-terminal-setup)
+    * [4. A note on Logitech MX Keys](#4-a-note-on-logitech-mx-keys)
+    * [5. Start exploring your new setup!](#5-start-exploring-your-new-setup)
+  * [Default Shortcuts](#default-shortcuts)
+  * [Override Keymaps and Options](#override-keymaps-and-options)
+  * [Notes](#notes)
+  * [Things not supported](#things-not-supported)
+    * [Setting a breakpoint inside lambda expressions](#setting-a-breakpoint-inside-lambda-expressions)
+  * [Miscellaneous](#miscellaneous)
+  * [Todo](#todo)
+  * [Buy me a :beer:](#buy-me-a-beer)
+<!-- TOC -->
+
+## READ THIS FIRST!
+
+This is a very **personal and opinionated** customisation of neovim to resemble IntelliJ IDEA UI/UX, tailored towards
 Scala development (does support Java as well, although I believe it would need extra configuration to support standalone
 Java development).
 
@@ -8,14 +42,16 @@ Due to my work laptop being old, and with limited amount or RAM, having one inst
 Chrome and Slack had become... problematic. Add to the mix dockerized instances of kafka/postgres/redis/amqp and so on,
 and the system just turns downright unusable.
 
-Because of that, I needed a **quick** replacement for IntelliJ to shave off those ~4GB of memory and keep me working;
-obviously, [neovim](https://github.com/neovim/neovim) was the IDE of choice.
+Because of that, I needed a **quick** replacement for IntelliJ to shave off those ~4GB of memory and keep me working,
+while waiting for my Company to get a replacement. Obviously, [neovim](https://github.com/neovim/neovim) was the IDE of
+choice.
 
 > [!WARNING]
 > Despite my (limited) previous knowledge of (neo)vim, I had nor the time or the inclination to learn a whole plethora
 > of commands and shortcuts to be used in different modes. Call it laziness, old age or muscle memory. As a direct
 > consequence of it, I brazenly messed with the key shortcuts in a way that any respectable neovim user would either
-> get angry or weep in despair, use arrow keys and enabled mouse. Sorry, not sorry, I've got work to do.
+> get angry or weep in despair: using arrow keys and mouse whenever I can, writing the crappiest keymaps to shift
+> neovim's development experience as close as could to IntelliJ. Sorry, not sorry, I've got work to do.
 
 If you, however, think you can stomach that: enjoy the repo! Feel free to clone it and tweak it as you please :)
 
@@ -23,8 +59,8 @@ If you, however, think you can stomach that: enjoy the repo! Feel free to clone 
 
 ### 1. Install external dependencies
 
-Note: the following instructions require [homebrew](https://brew.sh/) installed and available in your system, so Linux &
-MacOS users are covered. If, however, you're on Windows... please send a PR to extend this section :love_letter:
+Note: the following instructions require [homebrew](https://brew.sh/) installed and available in your system, so Linux & MacOS users
+are covered. If you, however, are on Windows: 1) why? 2) please send a PR to improve this section :love_letter:
 
 ```bash
 brew install neovim font-fira-mono-for-powerline font-fira-code coursier lazygit ripgrep tree-sitter-cli npm
@@ -42,10 +78,9 @@ and then Java, sbt, visualVM (not required, but you do profile your app, right?)
 sdk install java 17.0.17-amzn
 sdk install sbt
 sdk install visualvm
-
 ```
 
-And now, clone the repo to the destination folder `~/.config/nvim` (:warning: backup the nvim folder first, if you have
+And now, clone the repo to the destination folder `~/.config/nvim` ( :warning: backup the nvim folder first, if you have
 a pre-existing setup! )
 
 ```bash
@@ -65,15 +100,19 @@ defined in this repo. Once the installation is done, hit `:q` to quit Lazy dialo
 you will need to look for `stylua` and `prettier`, and install them by selecting them and then pressing `i`. Once Mason
 is done, simply hit `<Esc>` to quit it, and `:q` to quit neovim.
 
+At this point, neovim is pretty much functional... but we need to tweak a bit the terminal, to make sure special keys
+like `Cmd`, `Opt` and similar can actually be detected by neovim.
+
 ### 3. Terminal setup
 
-It's important to understand that most of the keymaps used in this setup do need the `Meta` / `Alt` and
-`Opt` / `Start` keys to be forwarded to the terminal. Sadly, some terminal emulators (such as iTerm) will capture them
-to provide their own functionalities, such as swap between terminal tabs. Because my IntelliJ setup does make heavy
-usage of those keys, here below I'll describe how to forward them.
+It's important to understand that most of the keymaps used in this setup do need the `Cmd` / `Alt` and
+`Opt` / `Start` keys to be forwarded to neovim. Sadly, some terminal emulators (such as iTerm) will capture them
+to provide their own functionalities, such as swapping between terminal tabs. Because my IntelliJ setup does make heavy
+usage of those keys, here below I'll describe how to forward them for iTerm; if you have other terminals, please leave a
+PR to expand this documentation.
 
-Below, you'll find the changes required for iTerm; if you're using another terminal emulator, some of these tweaks might
-even not be necessary at all (and if so, please leave a PR).
+<details>
+<summary>iTerm instructions</summary>
 
 First of all, you need to remove all keybindings that iTerm has by default (and why not using [tmux instead?](https://github.com/tmux/tmux/wiki))
 
@@ -92,18 +131,21 @@ Last but not least, slightly change the key mappings
 
 ![change iterm key mappings](docs/change_keys_mapping.png)
 
+</details>
+
 ### 4. A note on Logitech MX Keys
 
 In case you're using `Logitech MX Keys` in MacOS, you might have issues trying to figure out why `Fn` keys are still
-modifying the brightness/volume/etc.. even though you you specifically toggled `on` the System Settings option
+modifying the brightness/volume/etc.. even though you you specifically toggled `on` MacOS's System Settings option
 `use F1, F2 etc. keys as standard function keys`. No, you're not drunk: on my Company's old MBP i9 they worked fine but,
 on my personal MBP M1, they didn't; seems like that, on the newer Apple Silicon MBPs, this setting is not honored
 properly and therefore you must install [Logi Option+](https://www.logitech.com/en-us/software/logi-options-plus.html),
-import your keyboad and then, under the `General` section .. toggle `use F1, F2 etc. keys as standard function keys`.
+import your keyboad and then, under the `General` section .. toggle the twin setting called, you guessed it,
+`use F1, F2 etc. keys as standard function keys`.
 
 Go figure why :shrug:
 
-### 5. Start esploring your new setup!
+### 5. Start exploring your new setup!
 
 That's all! You can restart neovim, if you didn't already, and you're good to go!
 
@@ -111,11 +153,18 @@ That's all! You can restart neovim, if you didn't already, and you're good to go
 
 > [!IMPORTANT]
 > The following shortcuts require valid mapping to `M` (Cmd / Alt), `D` (Opt / Start) and `Fn` keys; you can quickly
-> verify that your terminal recognises & forwards them properly by either:
->
+> verify that your terminal recognises & forwards them properly to neovim by either:
 > 1. press `F5`: that will execute a small debug utility that will listen & print any key combination or, if `F5`
 >    isn't recognised either ...
 > 2. ... type `:lua require("neovim-idea.actions").debug_keys_pressed()`, which will trigger the very same utility
+> 3. press some key combination that uses Cmd/Opt modifiers, to make sure they're recognised properly
+
+<details>
+<summary>Example of how running the keymap debug utility in neovim</summary>
+
+![Short keymap example](docs/keymap_debug.gif)
+
+</details>
 
 By default, `neovim-idea` associates the `<leader>` key to the Space key. If you don't like this setting, in the next
 section you'll find all the information to change this, along with all the shortcuts and general options.
@@ -159,877 +208,110 @@ section you'll find all the information to change this, along with all the short
 | `<leader>pa`    | `Space+pa`            | Show all projects                                           |
 | `<leader>pr`    | `Space+pr`            | Show recent projects                                        |
 | `<M-D-l>`       | `Cmd+Opt+l`           | Format current file                                         |
-| `<D-G>`         | `Cmd+Shft+G`          | Show Lazygit interface                                      |
+| `<D-k>`         | `Cmd+k`               | Show Lazygit interface                                      |
+| `<F60>`         | `Opt+F12`             | Show Lazygit interface                                      |
 | `<D-/>`         | `Cmd+Slash`           | Comment / Uncomment current line or selected lines          |
 | `<D-r>`         | `Cmd+r`               | Run Code Lens(es) in the current line                       |
 | `<F5>`          | `F5`                  | Debug: capture and print any key combination                |
 
 (\*) in MacOS, mouse events register differently the Cmd key modifier.
 
-## Plugin Options
+If you're completely new to neovim however, you'd still need to have a bit of learning: here's some links that may be
+helpful to get started with neovim, and the plugin used in this repository
+
+* Neovim
+  * [Starting Guide](https://neovim.io/doc/user/starting.html)
+  * [Quick Reference](https://neovim.io/doc/user/quickref.html)
+* Language Server Protocol
+  * [Mason.nvim](https://github.com/mason-org/mason.nvim) - package manager for LSPs, DAPs, linters & formatters
+  * [Mason-lspconfig.nvim](https://github.com/mason-org/mason-lspconfig.nvim) - makes installing/configuring Mason easy
+  * [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) - collection of LSP configurations
+  * [nvim-metals](https://github.com/scalameta/nvim-metals) - the official LSP for Scala, DO NOT use the one from Mason
+* [Debugger Adapter Protocol UI](https://github.com/rcarriga/nvim-dap-ui)
+* Git integration
+  * [Vim Fugitive](https://github.com/tpope/vim-fugitive) - execute any git command in neovim
+  * [Gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) - buffer integration with git
+  * [Lazygit](https://github.com/jesseduffield/lazygit) - git TUI, integrated in neovim via [Lazygit](https://github.com/folke/snacks.nvim/blob/main/docs/lazygit.md)
+* [lualine](https://github.com/nvim-lualine/lualine.nvim) - neovim statusline
+* [neotree-nvim](https://github.com/nvim-neo-tree/neo-tree.nvim) - the treeview plugin
+* [neovim-project](https://github.com/coffebar/neovim-project) - manages projects, keeps sessions of open files, etc...
+* [statuscol.nvim](https://github.com/luukvbaal/statuscol.nvim) - configurable status column with actions
+* [switcher-nvim](https://github.com/neovim-idea/switcher-nvim) - switch between open files like in IJ
+* [camelhumps-nvim](https://github.com/neovim-idea/camelhumps-nvim) - Intellij-like `camelhump` cursor jumps
+* [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) - Find, Filter, Preview, Pick anything
+* [todo-comments](https://github.com/folke/todo-comments.nvim) - highlights comments in the code
+* [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) - treesitter integration for neovim
+* [nvim-notify](https://github.com/rcarriga/nvim-notify) - configurable notification manager
+* [which-key](https://github.com/folke/which-key.nvim) - shows available keybindings in a popup
+
+## Override Keymaps and Options
 
 `neovim-idea` comes "batteries included": it contains all the necessary plugins and configurations to mimic the UI/UX
-that you would normally see in IntellIJ. However, should you feel the need to change some configurations options or
-keymaps, you are encouraged to do so.
+that you would normally see in IntellIJ. However, should you feel the need to change some configurations options,
+keymaps, or even add your own keymaps, you are highly encouraged to do so!
 
-### [catppuccin](https://github.com/catppuccin/nvim)
+Simply create a file `~/.config/nvim/lua/overrides.lua` and return a Lua table that resembles the shapes of the tables
+in `~/.config/nvim/lua/neovim-idea/keymaps.lua` and `~/.config/nvim/lua/neovim-idea/options.lua`.
 
-<details>
-<summary>neovim-idea default options</summary>
-
-```lua
-local catppuccin_defaults = {
-  flavour = "intellijdark",
-  auto_integrations = true,
-  custom_highlights = function(colors)
-    -- intellij-specific tweaks
-    return {
-      -- [[Generic]]
-      Normal = { bg = colors.crust, fg = colors.text },
-      NormalNC = { bg = colors.crust, fg = colors.text },
-      LineNr = { fg = colors.surface0 },
-      CursorLineNr = { fg = colors.overlay0 },
-      CursorLine = { bg = colors.mantle },
-      ColorColumn = { bg = colors.surface0 },
-      FloatBorder = { bg = colors.mantle, fg = colors.text },
-
-      -- [[Snacks]]
-      SnacksInputNormal = { bg = colors.crust, fg = colors.text },
-      SnacksInputBorder = { bg = colors.crust, fg = colors.text },
-      SnacksInputTitle = { bg = colors.crust, fg = colors.text },
-
-      -- [[Neotree]]
-      NeoTreeWinSeparator = { bg = colors.crust, fg = colors.crust },
-      NeoTreeVertSplit = { bg = "NONE" },
-      NeoTreeRootName = { fg = colors.text },
-      NeoTreeFileName = { fg = colors.text },
-      NeoTreeFileIcon = { fg = colors.text },
-      NeoTreeDirectoryName = { fg = colors.text },
-      NeoTreeDirectoryIcon = { fg = colors.text },
-      NeoTreeGitUntracked = { fg = colors.red },
-      NeoTreeGitModified = { fg = colors.lavender },
-      NeoTreeGitStaged = { fg = colors.green },
-      NeoTreeGitUntrackedFolder = { fg = colors.red },
-      NeoTreeGitModifiedFolder = { fg = colors.lavender },
-      NeoTreeGitStagedFolder = { fg = colors.green },
-      NeoTreeCursorLine = { bg = "#2e3861" },
-      NeoTreeFloatTitle = { bg = colors.mantle, fg = colors.text },
-
-      -- [[Telescope - General]]
-      TelescopeNormal = { bg = colors.base, fg = colors.text },
-      TelescopeBorder = { bg = colors.base, fg = colors.text },
-      TelescopeTitle = { bg = colors.base, fg = colors.text },
-      TelescopeSelection = { bg = "#2e3861", fg = colors.subtext1, style = {} },
-      TelescopeMatching = { bg = "NONE", fg = "NONE", style = { "bold" } },
-      -- [[Telescope - Prompt]]
-      TelescopePromptTitle = { bg = colors.base, fg = colors.text },
-      -- [[Telescope - Results]]
-      TelescopeResultsNormal = { bg = colors.base, fg = colors.subtext0 },
-      -- [[Telescope - Preview]]
-      TelescopePreviewTitle = { bg = colors.base, fg = colors.text },
-      TelescopePreviewNormal = { bg = colors.crust, fg = colors.text },
-      TelescopePreviewLine = { bg = colors.base, fg = colors.text },
-
-      -- [[Edgy]]
-      EdgyTitle = { bg = "NONE", fg = colors.subtext0 },
-
-      -- [[Treesitter]]
-      Include = { fg = colors.peach },
-      Constant = { fg = colors.yellow },
-      ["@attribute.scala"] = { fg = colors.yellow },
-      ["@module"] = { fg = colors.text },
-      ["@type.scala"] = { fg = colors.text },
-      ["@module.scala"] = { fg = colors.text },
-      ["@operator.scala"] = { fg = colors.text },
-      ["@keyword.scala"] = { fg = colors.peach },
-      ["@keyword.type.scala"] = { fg = colors.peach },
-      ["@keyword.import.scala"] = { fg = colors.peach },
-      ["@keyword.operator.scala"] = { fg = colors.peach },
-      ["@keyword.function.scala"] = { fg = colors.peach },
-      ["@keyword.modifier.scala"] = { fg = colors.peach },
-      ["@keyword.conditional.scala"] = { fg = colors.peach },
-      ["@variable.parameter.scala"] = { fg = colors.mauve, style = { "italic" } },
-      ["@function.call.scala"] = { fg = colors.text },
-      ["@punctuation.special.scala"] = { fg = colors.peach },
-      ["@variable.member.scala"] = { fg = colors.mauve },
-      ["@comment.scala"] = { fg = colors.green },
-      ["@comment.documentation.scala"] = { fg = colors.green },
-
-      -- [[LSP - Scala]]
-      ["@lsp.type.keyword.scala"] = { fg = colors.peach },
-      ["@lsp.type.class.scala"] = { fg = colors.text },
-      ["@lsp.type.type.scala"] = { fg = colors.text },
-      ["@lsp.type.interface.scala"] = { fg = colors.text },
-      ["@lsp.type.operator.scala"] = { fg = colors.text },
-      ["@lsp.type.method.scala"] = { fg = colors.text },
-      ["@lsp.type.variable.scala"] = { fg = colors.text },
-      ["@lsp.type.comment.scala"] = { fg = colors.green },
-      ["@lsp.type.typeParameter.scala"] = { fg = colors.teal },
-      ["@lsp.type.modifier.scala"] = { fg = colors.peach },
-      ["@lsp.type.namespace.scala"] = { style = {} },
-      -- this kinda works, but there's a limitation in the LSP that local variables and fields/class members share
-      -- the same high-priority token, hence vals defined in function are colored in mauve as well :-/
-      ["@lsp.typemod.variable.readonly.scala"] = { fg = colors.mauve },
-      -- an alternative would be this, but some class/trait val definition are skipped ...
-      -- ["@lsp.typemod.variable.declaration.scala"] = { fg = colors.mauve },
-      -- ["@lsp.typemod.variable.definition.scala"] = { fg = colors.text },
-      -- ["@lsp.typemod.variable.readonly.scala"]   = { fg = colors.text },
-      ["@lsp.typemod.type.abstract.scala"] = { fg = colors.teal },
-      ["@lsp.typemod.parameter.declaration.scala"] = { fg = colors.text },
-      ["@lsp.typemod.parameter.readonly.scala"] = { fg = colors.text },
-      ["@lsp.typemod.method.declaration.scala"] = { fg = colors.blue },
-      ["@lsp.typemod.method.definition.scala"] = { fg = colors.blue },
-
-      -- [[LSP - Sbt]]
-      ["@lsp.type.class.sbt"] = { fg = colors.text },
-      ["@lsp.type.method.sbt"] = { fg = colors.text },
-      ["@lsp.type.operator.sbt"] = { fg = colors.text },
-      ["@lsp.type.keyword.sbt"] = { fg = colors.peach },
-      ["@lsp.type.modifier.sbt"] = { fg = colors.peach },
-      ["@lsp.type.comment.sbt"] = { fg = colors.overlay0 },
-    }
-  end,
-}
-```
-
-</details>
-
-If you're not happy/satisfied with the options above, feel free to extend/override the table like so
+Say, for example, that you want to:
+1. change default indentation to `4` spaces
+2. bind the action `debug_keys_pressed` to `F7` instead of `F5`
+3. change the colorscheme to `catppuccin-matrix`, instead of `catppuccin-intellijdark`
+4. add a new, custom function, that sends a `Hello World!` notification when `F5` or `F6` are pressed
 
 ```lua
--- ~/.config/nvim/lua/option-overrides.lua
-require("neovim-idea.options").catppuccin = {
-  flavour = "latte",
-  auto_integrations = false,
-  custom_highlights = function(colors)
-    return {} -- resets neovim-idea custom color overrides
-  end,
-  -- add as many catppuccin's options as you'd like
-}
-```
+-- ~/.config/nvim/lua/overrides.lua
+vim.cmd("set tabstop=4")
+vim.cmd("set softtabstop=4")
+vim.cmd("set shiftwidth=4")
 
-### [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
+-- you can access the predefined actions, if you need it
+local actions = require("neovim-idea.actions")
 
-<details>
-<summary>nvim-cmp default options</summary>
-
-```lua
-local nvim_cmp_defaults = function(cmp)
-  return {
-    snippet = {
-      -- REQUIRED - you must specify a snippet engine
-      expand = function(args)
-        require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
+return {
+  keymaps = {
+    -- this overrides the `print_keys_pressed` debug utility already defined in `keymaps.lua`
+    print_keys_pressed = {
+      -- no need to provide the `mode`, `action` and `opts` fields, if they don't change
+      lhs = "<F7>",
+      action = actions.debug_keys_pressed, -- not required! it's here just to show how to use `actions`
+    },
+    -- here, we defined a brand new action called `notify_hello_world`
+    notify_hello_world = {
+      mode = { "n", "i" },
+      lhs = { "<F5>", "<F6>" },
+      action = function()
+        vim.notify("Hello World!", vim.log.levels.INFO)
       end,
-    },
-    window = {
-      completion = cmp.config.window.bordered({
-        border = "rounded",
-        winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
-      }),
-      documentation = cmp.config.window.bordered({
-        border = "rounded",
-        winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
-      }),
-    },
-    mapping = cmp.mapping.preset.insert({
-      ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-      ["<C-f>"] = cmp.mapping.scroll_docs(4),
-      ["<C-Space>"] = cmp.mapping.complete(),
-      ["<C-e>"] = cmp.mapping.abort(),
-      ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-      ["<Esc>"] = cmp.mapping.abort(),
-    }),
-    sources = cmp.config.sources({
-      { name = "nvim_lsp" },
-      { name = "luasnip" }, -- For luasnip users.
-    }, {
-      { name = "buffer" },
-    }),
-  }
-end
-```
-
-</details>
-
-If you're not happy/satisfied with the options above, feel free to extend/override the function like so (it can accept
-a `cmp` parameter that comes from `require(nvim-cmp)` in case you'd need it)
-
-```lua
--- ~/.config/nvim/lua/option-overrides.lua
-require("neovim-idea.options").nvim_cmp = function(cmp)
-  return {
-    -- add as many nvim-cmp's options as you'd like
-  }
-end
-```
-
-### [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui)
-
-<details>
-<summary>nvim-dap-ui default options</summary>
-
-```lua
-local nvim_dap_ui_defaults = {
-  layouts = {
-    {
-      elements = {
-        { id = "watches", size = 0.15 },
-        { id = "repl", size = 0.55 },
-        { id = "scopes", size = 0.15 },
-        { id = "stacks", size = 0.15 },
-      },
-      position = "bottom",
-      size = 12,
+      opts = { noremap = true, silent = true, desc = "print 'Hello World!'" },
     },
   },
-  controls = {
-    enabled = true,
-    element = "stacks",
-    icons = {
-      play = "",
-      pause = "󰏤",
-      step_into = "⤵",
-      step_over = "⤴",
-      step_out = "⤶",
-      step_back = "↶",
-      run_last = "↻",
-      terminate = "",
-      disconnect = "⏏",
-    },
-  },
-}
-```
-
-</details>
-
-If you're not happy/satisfied with the options above, feel free to extend/override the table like so
-
-```lua
--- ~/.config/nvim/lua/option-overrides.lua
-require("neovim-idea.options").nvim_dap_ui = {
-    -- add as many nvim-dap-ui's options as you'd like
-}
-```
-
-### [edgy.nvim](https://github.com/folke/edgy.nvim)
-
-<details>
-<summary>edgy.nvim default options</summary>
-
-```lua
-local edgy_nvim_defaults = {
-  left = {
-    {
-      title = "Project Files",
-      ft = "neo-tree",
-      pinned = true,
-      filter = function(buf)
-        return vim.b[buf].neo_tree_source == "filesystem"
-      end,
-      open = "Neotree show position=left filesystem",
-    },
-  },  bottom = {},
+  -- let's override the default color scheme
   options = {
-    left = { size = 40 },
-    bottom = { size = 12 },
+    colorscheme = "catppuccin-matrix",
   },
 }
-```
-
-</details>
-
-If you're not happy/satisfied with the options above, feel free to extend/override the table like so
-
-```lua
--- ~/.config/nvim/lua/option-overrides.lua
-require("neovim-idea.options").edgy_nvim = {
-    -- add as many edgy_nvim's options as you'd like
-}
-```
-
-### [gitsigns](https://github.com/lewis6991/gitsigns.nvim)
-
-<details>
-<summary>gitsigns default options</summary>
-
-```lua
-local gitsigns_defaults = {
-  current_line_blame = true,
-}
-```
-
-</details>
-
-If you're not happy/satisfied with the options above, feel free to extend/override the table like so
-
-```lua
--- ~/.config/nvim/lua/option-overrides.lua
-require("neovim-idea.options").gitsigns = {
-    -- add as many gitsigns's options as you'd like
-}
-```
-
-### [mason](https://github.com/mason-org/mason.nvim)
-
-<details>
-<summary>mason default options</summary>
-
-```lua
-local mason_defaults = {}
-```
-
-</details>
-
-If you're not happy/satisfied with the options above, feel free to extend/override the table like so
-
-```lua
--- ~/.config/nvim/lua/option-overrides.lua
-require("neovim-idea.options").mason = {
-    -- add as many mason's options as you'd like
-}
-```
-
-### [mason-lsp](https://github.com/mason-org/mason-lspconfig.nvim)
-
-<details>
-<summary>mason default options</summary>
-
-```lua
-local mason_lspconfig_defaults = {
-  ensure_installed = { "lua_ls", "ts_ls" },
-}
-```
-
-</details>
-
-If you're not happy/satisfied with the options above, feel free to extend/override the table like so
-
-```lua
--- ~/.config/nvim/lua/option-overrides.lua
-require("neovim-idea.options").mason_lspconfig = {
-    -- add as many mason's options as you'd like
-}
 
 ```
-
-### [nvim-metals](https://github.com/scalameta/nvim-metals)
-
-<details>
-<summary>nvim-metals default options</summary>
-
-```lua
-local nvim_metals_defaults = function(metals, metals_config)
-  metals_config.on_attach = function(_, bufnr)
-    metals.setup_dap()
-    vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
-      buffer = bufnr,
-      callback = function()
-        pcall(vim.lsp.codelens.refresh)
-      end,
-    })
-    pcall(vim.lsp.codelens.refresh)
-
-    vim.keymap.set("n", "<leader>r", vim.lsp.codelens.run, { buffer = bufnr, desc = "Run code lens" })
-  end
-  return metals_config
-end
-```
-
-</details>
-
-If you're not happy/satisfied with the options above, feel free to extend/override the function like so
-
-```lua
--- ~/.config/nvim/lua/option-overrides.lua
-require("neovim-idea.options").nvim_metals = function(metals, metals_config)
-    -- add as many metals-config's options as you'd like
-  return metals_config
-end
-```
-
-### [lualine](https://github.com/nvim-lualine/lualine.nvim)
-
-<details>
-<summary>lualine default options</summary>
-
-```lua
-local lualine_defaults = {
-  options = {
-    component_separators = { left = "", right = "" },
-    section_separators = { left = "", right = "" },
-  },
-  sections = {
-    lualine_y = {
-      {
-        "lsp_status",
-        icon = "󱤢",
-        symbols = {
-          spinner = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" },
-          done = "✓",
-          separator = " ",
-        },
-        -- LSPs that we don't care to show
-        ignore_lsp = { "null-ls", "stylua" },
-        show_name = true,
-      },
-      "progress",
-    },
-  },
-}
-```
-
-</details>
-
-If you're not happy/satisfied with the options above, feel free to extend/override the table like so
-
-```lua
--- ~/.config/nvim/lua/option-overrides.lua
-require("neovim-idea.options").lualine = {
-  -- add as many lualine's options as you'd like
-}
-```
-
-### [mini.pairs](https://github.com/nvim-mini/mini.pairs)
-
-<details>
-<summary>mini.pairs default options</summary>
-
-```lua
-local mini_pairs_defaults = {}
-```
-
-</details>
-
-If you're not happy/satisfied with the options above, feel free to extend/override the table like so
-
-```lua
--- ~/.config/nvim/lua/option-overrides.lua
-require("neovim-idea.options").mini_pairs = {
-  -- add as many mini.pairs's options as you'd like
-}
-```
-
-### [neotree]()
-
-<details>
-<summary>neotree default options</summary>
-
-```lua
-
-local neotree_defaults = {
-  open_files_do_not_replace_types = { "terminal", "Trouble", "qf", "Outline", "trouble", "edgy" },
-  popup_border_style = "",
-  window = {
-    position = "left",
-    border = {
-      style = "single",
-    },
-    -- todo: figure out how to set a max width
-    --        auto_expand_width = true,
-  },
-  filesystem = {
-    use_libuv_file_watcher = true,
-    follow_current_file = {
-      enabled = true,
-      leave_dirs_open = true,
-    },
-  },
-  default_component_configs = {
-    indent = {
-      with_markers = false,
-      indent_marker = "",
-      last_indent_marker = "",
-      highlight = "NeoTreeIndentMarker",
-      with_expanders = true,
-      expander_collapsed = "",
-      expander_expanded = "",
-      expander_highlight = "NeoTreeExpander",
-    },
-  },
-}
-```
-
-</details>
-
-If you're not happy/satisfied with the options above, feel free to extend/override the table like so
-
-```lua
--- ~/.config/nvim/lua/option-overrides.lua
-require("neovim-idea.options").neotree = {
-  -- add as many neotree's options as you'd like
-}
-```
-
-### [neovim-project](https://github.com/coffebar/neovim-project)
-
-<details>
-<summary>neovim-project default options</summary>
-
-```lua
-
-local neovim_project_defaults = {
-  projects = {
-    "~/projects/*",
-    "~/.config/*",
-  },
-  picker = {
-    type = "telescope",
-  },
-}
-```
-
-</details>
-
-If you're not happy/satisfied with the options above, feel free to extend/override the table like so
-
-```lua
--- ~/.config/nvim/lua/option-overrides.lua
-require("neovim-idea.options").neovim_project = {
-  -- add as many neovim-project's options as you'd like
-}
-```
-
-### [render-markdown](https://github.com/MeanderingProgrammer/render-markdown.nvim)
-
-<details>
-<summary>render-markdown default options</summary>
-
-```lua
-function Options.get_neovim_project_options()
-  return vim.tbl_deep_extend("force", neovim_project_defaults, Options.neovim_project)
-end
-
-```
-
-</details>
-
-If you're not happy/satisfied with the options above, feel free to extend/override the table like so
-
-```lua
--- ~/.config/nvim/lua/option-overrides.lua
-require("neovim-idea.options").render_markdown = {
-  -- add as many render-markdown's options as you'd like
-}
-```
-
-### [statuscol.nvim](https://github.com/luukvbaal/statuscol.nvim)
-
-<details>
-<summary>statuscol.nvim default options</summary>
-
-```lua
-local statuscol_nvim_defaults = function(builtin)
-  return {
-    setopt = true,
-    relculright = true,
-    ft_ignore = { "neo-tree", "neo-tree-popup" },
-    bt_ignore = { "terminal", "help" },
-    segments = {
-      {
-        text = { builtin.lnumfunc, " " },
-        condition = { true, builtin.not_empty },
-        click = "v:lua.ScLa",
-      },
-      {
-        sign = {
-          namespace = { "diagnostic/signs" },
-          text = { "E", "I", "W", "H" },
-          maxwidth = 2,
-          colwidth = 1,
-          auto = true,
-        },
-        click = "v:lua.ScSa",
-      },
-      {
-        sign = {
-          name = {
-            "Dap.*",
-            "todo%-sign%-.*",
-          },
-          maxwidth = 2,
-          colwidth = 2,
-          -- I prefer to keep this column always shown because the icons for DAP and todo comments gets too much close
-          -- to each other otherwise. And actually it balances pretty nicely the space on the left side of the line
-          -- numbers so, it's a win-win-win
-          auto = true,
-        },
-        click = "v:lua.ScSa",
-      },
-      {
-        text = { builtin.foldfunc, " " },
-        click = "v:lua.ScFa",
-      },
-      {
-        sign = {
-          name = { "gitsigns.*" },
-          text = { "gitsigns.*" },
-          namespace = { "gitsigns.*" },
-        },
-        click = "v:lua.ScSa",
-      },
-    },
-  }
-end
-```
-
-</details>
-
-If you're not happy/satisfied with the options above, feel free to extend/override the function like so
-
-```lua
--- ~/.config/nvim/lua/option-overrides.lua
-require("neovim-idea.options").statuscol_nvim = function(builtin)
-  -- add as many statuscol.nvim's options as you'd like
-  local opts = {}
-  return opts
-end
-}
-```
-
-### [switcher-nvim](https://github.com/neovim-idea/switcher-nvim)
-
-<details>
-<summary>switcher-nvim default options</summary>
-
-```lua
-local switcher_nvim_defaults = {
-  selection = {
-    icon_margin_right = "",
-    icon_margin_left = "",
-    chevron = "",
-  },
-}
-```
-
-</details>
-
-If you're not happy/satisfied with the options above, feel free to extend/override the table like so
-
-```lua
--- ~/.config/nvim/lua/option-overrides.lua
-require("neovim-idea.options").switcher_nvim = function(builtin)
-  -- add as many switcher-nvim's options as you'd like
-  local opts = {}
-  return opts
-end
-}
-```
-
-### [telescope](https://github.com/nvim-telescope/telescope.nvim)
-
-<details>
-<summary>telescope.nvim default options</summary>
-
-```lua
-local telescope_nvim_defaults = {
-  defaults = {
-    sorting_strategy = "ascending",
-    layout_strategy = "vertical",
-
-    layout_config = {
-      vertical = {
-        prompt_position = "top",
-        mirror = true,
-        results_height = 0.45,
-        preview_height = 0.55,
-      },
-      width = 0.5,
-      height = 0.55,
-    },
-  },
-  extensions = {
-    -- for code actions popup: keep them small!
-    ["ui-select"] = {
-      require("telescope.themes").get_dropdown({
-        layout_config = {
-          width = 0.40,
-          height = 0.30,
-        },
-      }),
-    },
-  },
-}
-```
-
-</details>
-
-If you're not happy/satisfied with the options above, feel free to extend/override the table like so
-
-```lua
--- ~/.config/nvim/lua/option-overrides.lua
-require("neovim-idea.options").telescope_nvim = {
-  -- add as many telescope.nvim's options as you'd like
-}
-```
-
-### [todo-comments](https://github.com/folke/todo-comments.nvim)
-
-<details>
-<summary>todo-comments default options</summary>
-
-```lua
-local todo_comments_defaults = {
-  gui_style = {
-    bg = "NONE",
-  },
-  highlight = {
-    before = "",
-    keyword = "fg",
-    after = "fg",
-    pattern = [[.*<(KEYWORDS)\s*:*]],
-  },
-}
-```
-
-</details>
-
-If you're not happy/satisfied with the options above, feel free to extend/override the table like so
-
-```lua
--- ~/.config/nvim/lua/option-overrides.lua
-require("neovim-idea.options").todo_comments = {
-  -- add as many todo-comments's options as you'd like
-}
-```
-
-### [nvim-treesitter]()
-
-<details>
-<summary>nvim-treesitter default options</summary>
-
-```lua
-local nvim_treesitter_defaults = {
-  -- auto_install = true -- to autoinstall languages as they're encountered
-  ensure_installed = { "lua", "javascript", "java", "scala" },
-  highlight = { enable = true },
-  indent = { enable = true },
-  fold = { enable = true },
-}
-```
-
-</details>
-
-If you're not happy/satisfied with the options above, feel free to extend/override the table like so
-
-```lua
--- ~/.config/nvim/lua/option-overrides.lua
-require("neovim-idea.options").todo_comments = {
-  -- add as many nvim-treesitter's options as you'd like
-}
-```
-
-### [vim-notify](https://github.com/rcarriga/nvim-notify)
-
-<details>
-<summary>vim-notify default options</summary>
-
-```lua
-local vim_notify_defaults = {
-  timeout = 3000,
-  render = "compact",
-  top_down = true,
-}
-```
-
-</details>
-
-If you're not happy/satisfied with the options above, feel free to extend/override the table like so
-
-```lua
--- ~/.config/nvim/lua/option-overrides.lua
-require("neovim-idea.options").vim_notify = {
-  -- add as many vim-notify's options as you'd like
-}
-```
-
-### [which-key]()
-
-<details>
-<summary>which-key default options</summary>
-
-```lua
-local which_key_defaults = {
-  preset = "helix",
-  -- delay more such that it doesn't get in the way unless im really waiting a bit
-  delay = 500,
-}
-```
-
-</details>
-
-If you're not happy/satisfied with the options above, feel free to extend/override the table like so
-
-```lua
--- ~/.config/nvim/lua/option-overrides.lua
-require("neovim-idea.options").which_key = {
-  -- add as many which-key's options as you'd like
-}
-```
-
-## Shortcuts
-
-> [!IMPORTANT]
-> Ensure your terminal doesn't steal CMD key and CMD+number key combinations (i.e. to switch between open terminal tabs:
-> use tmux instead!). If you're not sure whether your key combination is recognised by neovim: press `F5`, and neovim
-> will print any keypress combination to the command line. If nothing gets printed, it means that your terminal or OS is
-> capturing it already.
-
-> [!NOTE]
-> This setup comes with [which-key](https://github.com/folke/which-key.nvim) preinstalled: either type `:Whichkey` in
-> the command prompt, or press `<leader>` (=spacebar in this setup) followed by `?` and a popup will appear, showing all
-> available shortcuts that are registered in neovim (navigate Down/Up the popup via CTRL+d/CTRL+u)
-
-Also, your terminal might need to be tweaked in order to detect your Option/Alt key, rather than being used to send
-Unicode characters. In `iTerm2`, you can change this in `Settings` -> `Profile` -> `<your profile>` -> `Keys` -> `Left
-(or Right, or both) Option Key` -> change to `Esc+` . This way, `Option+l` will be mapped to `M-l` rather than `¬`.
-
-| Action                  | Shortcut      | Description                                                                                                                      |
-| ----------------------- | ------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| Toggle Project Files    | CMD+1, CMD+k1 | Toggles the file browser from any window/buffer                                                                                  |
-| Show in Project Files   | CMD+p         | Show current file in the file browser                                                                                            |
-| Show Project Files help | ?             | Shows all extra actions that can be performed in the file tree, i.e. `a`dd, `r`ename, `d`elete a file or `/` to fuzzy-find files |
-| Find files              | CMD+f         | Find project files by name                                                                                                       |
-| Find in files           | CMD+F         | Fuzzy find some text in the project files                                                                                        |
 
 ## Notes
 
 :warning: Don't know the keymaps?
 
-Just press spacebar and in 500ms (configurable in ./lua/plugins/which-key.lua) it will show an auto completable popup!
+Just press spacebar and in 500ms (configurable) it will show an auto completable popup!
 
-remove all existing nvim config files, states etc..
-
-```bash
-rm -rf ~/.config/nvim
-rm -rf ~/.local/share/nvim
-rm -rf ~/.local/state/nvim
-```
-
-1. telescope `live_grep` needs the external program `ripgrep` to work (run `brew install ripgrep`)
-2. install `stylua` via `:Mason` to have nice formatting for `*.lua` files, and `prettier` for `*.md` ones
-3. install `coursier` to use `nvim-metals` (run `brew install coursier`)
-4. install metals in nvim using the command `:MetalsInstall`
-5. install lazygit (run `brew install lazygit`)
-6. install treesitter cli (run `brew install tree-sitter-cli`)
-7. open your scala project and have fun
-
-Optionally, if you want to enable Java development:
+In case you'd like to enable Java development:
 
 1. `brew install mvn`
 2. from within neovim, type `:Mason` command and look for the `java-language-server`, then hit `i` to install
    (note: [needs at least Java18](https://github.com/georgewfraser/java-language-server/issues/273))
 3. follow instructions from [lsp-config official documentation page](https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#java_language_server)
 
-## Keyboard remappings
-
-1. right CMD into Super
-
 ## Things not supported
 
 Sadly there are things that are not supported
 
-### Directly capturing parts of a line
+### Setting a breakpoint inside lambda expressions
 
 In IntelliJ, when presented with a line like the following
 
@@ -1037,8 +319,8 @@ In IntelliJ, when presented with a line like the following
 val result = somelist.filter(x => filterPredicate(x)).map(v => v % 10)
 ```
 
-you can choose whether set a breakpoint at line level and/or put extra breakpoints at `x` and `v` position;
-this is, saldy, not possible (as far as my knowledge goes) with neovim.
+you can choose whether set a breakpoint not only at line level, but also at lambda expression level (thus being able to
+capture `x` and/or `v`); this is, sadly, not possible with neovim, as far as my knowledge and research went so far.
 
 However it is possible to set conditional breakpoints like so
 
@@ -1053,7 +335,7 @@ PR is merged) by setting
 git config --global fetch.prune true
 ```
 
-## Things To Improve
+## Todo
 
 - [x] project manager
 - [ ] by default, when opening a project: open in order `README.md` or `build.sbt`
@@ -1065,7 +347,7 @@ git config --global fetch.prune true
 - [ ] make neotree condense package folders
 - [x] autosave buffers
   - [ ] `AutoSaveOnBlur` should also fire a neotree event in order to refresh the status of the file tree
-- [ ] shortcuts to create new class/obj
+- [ ] ~shortcuts to create new class/obj~ (`:MetalsNew{Java,Scala}File` does the trick)
 - [x] shortcuts to implement all methods from trait/abstract class
 - [x] undo with D-z
   - [ ] maybe find a proper neovim plugin?
@@ -1096,3 +378,7 @@ git config --global fetch.prune true
 - [x] when exiting lazygit, neotree should refresh its status icons
 - [ ] highlight a line that has a breakpoint set
 - [ ] update treesitter to `main` and figure out where the configuration options are now located
+
+## Buy me a :beer:
+
+BTC `12CQ1L7qQvF3pPXhAgomnSfWaVkL19nV5F` 

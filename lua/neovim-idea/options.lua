@@ -450,17 +450,17 @@ local telescope_nvim_defaults = {
       height = 0.55,
     },
   },
-  extensions = {
-    -- for code actions popup: keep them small!
-    ["ui-select"] = {
-      require("telescope.themes").get_dropdown({
-        layout_config = {
-          width = 0.40,
-          height = 0.30,
-        },
-      }),
-    },
-  },
+  -- extensions = {
+  --   -- for code actions popup: keep them small!
+  --   ["ui-select"] = {
+  --     require("telescope.themes").get_dropdown({
+  --       layout_config = {
+  --         width = 0.40,
+  --         height = 0.30,
+  --       },
+  --     }),
+  --   },
+  -- },
 }
 
 Options.telescope_nvim = {}
@@ -606,6 +606,21 @@ end
 
 function Options.get_colorscheme()
   return Options.colorscheme or colorscheme_defaults
+end
+
+function Options.setup(opts)
+  opts = opts or {}
+
+  for key, value in pairs(opts) do
+    if type(value) == "table" then
+      Options[key] = vim.tbl_deep_extend("force", Options[key] or {}, value)
+    elseif type(value) == "string" then
+      Options[key] = Options[key] or value
+    else
+      print("ignoring key '" .. key .. "'")
+    end
+  end
+  return Options
 end
 
 return Options

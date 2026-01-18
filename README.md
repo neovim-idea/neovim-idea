@@ -8,10 +8,20 @@
 
 ###### The neovim customization to resemble IntelliJ IDEA UX/UI :heart_eyes:
 
-![neovim-idea sample usage](docs/neovim-idea-demo.mp4 "neovim-idea sample usage")
+![neovim-idea sample usage](docs/neovim-idea-demo.gif "neovim-idea sample usage")
+
 
 </div>
 
+---
+Featuring
+
+* Metals integration, Autocompletion, Debugger support
+* Rename symbols, go to symbol definition / reference 
+* Ctrl+Tab file switcher, camel hump cursor movements
+* Fuzzy search in files, Files search
+* Git commands and Terminal UI
+* Markdown rendering
 ---
 
 <!-- TOC -->

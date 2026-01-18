@@ -1,3 +1,42 @@
+## [1.4.0](https://github.com/neovim-idea/neovim-idea/compare/v1.3.1...v1.4.0) (2026-01-18)
+
+### 📖 Docs
+
+* added gif example and list of features ([3ce42b0](https://github.com/neovim-idea/neovim-idea/commit/3ce42b0a8512408865e51d981218fa994dfe8deb))
+
+### ✨ Features
+
+* add camelhumps-nvim plugin ([15d6990](https://github.com/neovim-idea/neovim-idea/commit/15d699034b6ca282615524d9d1f4e19dece3e3a9))
+* use neovim-idea/switcher-nvim :christmas_tree: ([e5736e3](https://github.com/neovim-idea/neovim-idea/commit/e5736e3a955c007702905015c8d56178f78d9003))
+
+### 🩹 Fixes
+
+* add run code lens action & proper Scala hints ([a1927f2](https://github.com/neovim-idea/neovim-idea/commit/a1927f2062a8f795c6276be01ff5770917ec903d))
+* allow multiple keymaps bound to same action ([488a47b](https://github.com/neovim-idea/neovim-idea/commit/488a47b76168e7ad1f228bfa5feadcf4e3c5ef74))
+* better Metals config ([1fc191e](https://github.com/neovim-idea/neovim-idea/commit/1fc191eee13d894dd3d0c334add15c268266eda1))
+* centralising  keymaps ([ac920c4](https://github.com/neovim-idea/neovim-idea/commit/ac920c419c72ab2dd6238b2bf973648e888df259))
+* centralising keymaps ([9da7ca4](https://github.com/neovim-idea/neovim-idea/commit/9da7ca4e1b8a5d8cee16125a2c79a0480320f427))
+* centralising LSP keymaps ([9f52605](https://github.com/neovim-idea/neovim-idea/commit/9f526059f0edfac2ac66580eb1542854d87d1fa5))
+* centralising more git actions ([ebd43ad](https://github.com/neovim-idea/neovim-idea/commit/ebd43ad720861b867cc29a8f8a88b133dac60655))
+* centralising neotree keymaps ([1ef3041](https://github.com/neovim-idea/neovim-idea/commit/1ef3041e1704b2097c974215eb405cbb8e3c9665))
+* centralising neovim-project actions ([af72103](https://github.com/neovim-idea/neovim-idea/commit/af7210387f69f7d875caeb69231009239745a942))
+* centralising remaining keymaps ([23b1c87](https://github.com/neovim-idea/neovim-idea/commit/23b1c87e08ea6d347d1f25d9de187a62d5333972))
+* centralising the lsp buffer formatting action ([637fda3](https://github.com/neovim-idea/neovim-idea/commit/637fda3cc01a5a557053aeb8587ed0e76238edf6))
+* centralisting last remaining keymaps ([4249a3f](https://github.com/neovim-idea/neovim-idea/commit/4249a3f7ac2a921580904b77f71bf4ec3438a8cc))
+* cleanup ([db39365](https://github.com/neovim-idea/neovim-idea/commit/db3936567c734209417e3eaf22618dd8611e0040))
+* conflicting keymaps ([0d0597c](https://github.com/neovim-idea/neovim-idea/commit/0d0597cec89e0b994baa6f0d7e11a80f7d4ad6e8))
+* do not use  "i" mode with leader ([cf648df](https://github.com/neovim-idea/neovim-idea/commit/cf648dfdda3993db91902d0eeb1180e24409ea7c))
+* make sure lsp can format markdown files ([64e1965](https://github.com/neovim-idea/neovim-idea/commit/64e19651d3a51d3a7a91184ad08ca6d5e573a4d5))
+* make sure the overrides work and not include them in git ([83ba45f](https://github.com/neovim-idea/neovim-idea/commit/83ba45f3f063324a10fdceda5a6fb071521ace13))
+* make switcher-nvim user configurable ([74928ce](https://github.com/neovim-idea/neovim-idea/commit/74928ced25da2e5a98da1fa10419760715780ed6))
+* proper apply overrides ([aba3a0b](https://github.com/neovim-idea/neovim-idea/commit/aba3a0b1d1813bfd191cc2d41941c9878f02be5c))
+* proper move up/dovw keymaps ([6b3b3c9](https://github.com/neovim-idea/neovim-idea/commit/6b3b3c9213d88f387e2f64f67ae240b338fb39b4))
+* proper overrides loading ([3612640](https://github.com/neovim-idea/neovim-idea/commit/3612640982c3953d09210818d83c47f528aadc21))
+* refinements in keymaps/options loading ([c57b142](https://github.com/neovim-idea/neovim-idea/commit/c57b14262534bf48fc130f0dc4c37cf7a251b437))
+* remove debugging print ([f1632ad](https://github.com/neovim-idea/neovim-idea/commit/f1632ad0eaa53bb507d8ad82446edca9b04dc13c))
+* trigger formatting the IJ way ([c17787f](https://github.com/neovim-idea/neovim-idea/commit/c17787fba611387c5ddde339f364f1c27ab9118c))
+* use vim.cmd(...) whenever possible ([ab047ae](https://github.com/neovim-idea/neovim-idea/commit/ab047aee3ef1a7880c425587f819a3e5b6d77c43))
+
 ## [1.3.1](https://github.com/neovim-idea/neovim-idea/compare/v1.3.0...v1.3.1) (2025-11-30)
 
 ### 📖 Docs

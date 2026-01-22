@@ -10,36 +10,41 @@
 
 ![neovim-idea sample usage](docs/neovim-idea-demo.gif "neovim-idea sample usage")
 
-
 </div>
 
 ---
+
 Featuring
 
-* Metals integration, Autocompletion, Debugger support
-* Rename symbols, go to symbol definition / reference 
-* Ctrl+Tab file switcher, camel hump cursor movements
-* Fuzzy search in files, Files search
-* Git commands and Terminal UI
-* Markdown rendering
+- Metals integration, Autocompletion, Debugger support, execute code lenses
+- Rename symbols, go to symbol definition / reference
+- Projects integration with sessions persistence
+- Ctrl+Tab file switcher, camel hump cursor movements
+- Fuzzy search in files, Files search
+- Git commands and Terminal UI
+- Markdown rendering
+- IntelliJ Dark & Matrix color scheme
+- ... and more
+
 ---
 
 <!-- TOC -->
-  * [READ THIS FIRST!](#read-this-first)
-  * [Setup](#setup)
-    * [1. Install external dependencies](#1-install-external-dependencies)
-    * [2. Install packages within neovim](#2-install-packages-within-neovim)
-    * [3. Terminal setup](#3-terminal-setup)
-    * [4. A note on Logitech MX Keys](#4-a-note-on-logitech-mx-keys)
-    * [5. Start exploring your new setup!](#5-start-exploring-your-new-setup)
-  * [Default Shortcuts](#default-shortcuts)
-  * [Override Keymaps and Options](#override-keymaps-and-options)
-  * [Notes](#notes)
-  * [Things not supported](#things-not-supported)
-    * [Setting a breakpoint inside lambda expressions](#setting-a-breakpoint-inside-lambda-expressions)
-  * [Miscellaneous](#miscellaneous)
-  * [Todo](#todo)
-  * [Buy me a :beer:](#buy-me-a-beer)
+
+- [READ THIS FIRST!](#read-this-first)
+- [Setup](#setup)
+  - [1. Install external dependencies](#1-install-external-dependencies)
+  - [2. Install packages within neovim](#2-install-packages-within-neovim)
+  - [3. Terminal setup](#3-terminal-setup)
+  - [4. A note on Logitech MX Keys](#4-a-note-on-logitech-mx-keys)
+  - [5. Start exploring your new setup!](#5-start-exploring-your-new-setup)
+- [Default Shortcuts](#default-shortcuts)
+- [Override Keymaps and Options](#override-keymaps-and-options)
+- [Notes](#notes)
+- [Things not supported](#things-not-supported)
+  - [Setting a breakpoint inside lambda expressions](#setting-a-breakpoint-inside-lambda-expressions)
+- [Miscellaneous](#miscellaneous)
+- [Todo](#todo)
+- [Buy me a :beer:](#buy-me-a-beer)
 <!-- TOC -->
 
 ## READ THIS FIRST!
@@ -164,6 +169,7 @@ That's all! You can restart neovim, if you didn't already, and you're good to go
 > [!IMPORTANT]
 > The following shortcuts require valid mapping to `M` (Cmd / Alt), `D` (Opt / Start) and `Fn` keys; you can quickly
 > verify that your terminal recognises & forwards them properly to neovim by either:
+>
 > 1. press `F5`: that will execute a small debug utility that will listen & print any key combination or, if `F5`
 >    isn't recognised either ...
 > 2. ... type `:lua require("neovim-idea.actions").debug_keys_pressed()`, which will trigger the very same utility
@@ -229,30 +235,31 @@ section you'll find all the information to change this, along with all the short
 If you're completely new to neovim however, you'd still need to have a bit of learning: here's some links that may be
 helpful to get started with neovim, and the plugin used in this repository
 
-* Neovim
-  * [Starting Guide](https://neovim.io/doc/user/starting.html)
-  * [Quick Reference](https://neovim.io/doc/user/quickref.html)
-* Language Server Protocol
-  * [Mason.nvim](https://github.com/mason-org/mason.nvim) - package manager for LSPs, DAPs, linters & formatters
-  * [Mason-lspconfig.nvim](https://github.com/mason-org/mason-lspconfig.nvim) - makes installing/configuring Mason easy
-  * [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) - collection of LSP configurations
-  * [nvim-metals](https://github.com/scalameta/nvim-metals) - the official LSP for Scala, DO NOT use the one from Mason
-* [Debugger Adapter Protocol UI](https://github.com/rcarriga/nvim-dap-ui)
-* Git integration
-  * [Vim Fugitive](https://github.com/tpope/vim-fugitive) - execute any git command in neovim
-  * [Gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) - buffer integration with git
-  * [Lazygit](https://github.com/jesseduffield/lazygit) - git TUI, integrated in neovim via [Lazygit](https://github.com/folke/snacks.nvim/blob/main/docs/lazygit.md)
-* [lualine](https://github.com/nvim-lualine/lualine.nvim) - neovim statusline
-* [neotree-nvim](https://github.com/nvim-neo-tree/neo-tree.nvim) - the treeview plugin
-* [neovim-project](https://github.com/coffebar/neovim-project) - manages projects, keeps sessions of open files, etc...
-* [statuscol.nvim](https://github.com/luukvbaal/statuscol.nvim) - configurable status column with actions
-* [switcher-nvim](https://github.com/neovim-idea/switcher-nvim) - switch between open files like in IJ
-* [camelhumps-nvim](https://github.com/neovim-idea/camelhumps-nvim) - Intellij-like `camelhump` cursor jumps
-* [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) - Find, Filter, Preview, Pick anything
-* [todo-comments](https://github.com/folke/todo-comments.nvim) - highlights comments in the code
-* [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) - treesitter integration for neovim
-* [nvim-notify](https://github.com/rcarriga/nvim-notify) - configurable notification manager
-* [which-key](https://github.com/folke/which-key.nvim) - shows available keybindings in a popup
+- Neovim
+  - [Starting Guide](https://neovim.io/doc/user/starting.html)
+  - [Quick Reference](https://neovim.io/doc/user/quickref.html)
+- Language Server Protocol
+  - [Mason.nvim](https://github.com/mason-org/mason.nvim) - package manager for LSPs, DAPs, linters & formatters
+  - [Mason-lspconfig.nvim](https://github.com/mason-org/mason-lspconfig.nvim) - makes installing/configuring Mason easy
+  - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) - collection of LSP configurations
+  - [nvim-metals](https://github.com/scalameta/nvim-metals) - the official LSP for Scala, DO NOT use the one from Mason
+- [Debugger Adapter Protocol UI](https://github.com/rcarriga/nvim-dap-ui)
+- Git integration
+  - [Vim Fugitive](https://github.com/tpope/vim-fugitive) - execute any git command in neovim
+  - [Gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) - buffer integration with git
+  - [Lazygit](https://github.com/jesseduffield/lazygit) - git TUI, integrated in neovim via [Lazygit](https://github.com/folke/snacks.nvim/blob/main/docs/lazygit.md)
+- [lualine](https://github.com/nvim-lualine/lualine.nvim) - neovim statusline
+- [neotree-nvim](https://github.com/nvim-neo-tree/neo-tree.nvim) - the treeview plugin
+- [neovim-project](https://github.com/coffebar/neovim-project) - manages projects, keeps sessions of open files, etc...
+- [statuscol.nvim](https://github.com/luukvbaal/statuscol.nvim) - configurable status column with actions
+- [switcher-nvim](https://github.com/neovim-idea/switcher-nvim) - switch between open files like in IJ
+- [camelhumps-nvim](https://github.com/neovim-idea/camelhumps-nvim) - Intellij-like `camelhump` cursor jumps
+- [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) - Find, Filter, Preview, Pick anything
+- [todo-comments](https://github.com/folke/todo-comments.nvim) - highlights comments in the code
+- [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) - treesitter integration for neovim
+- [nvim-notify](https://github.com/rcarriga/nvim-notify) - configurable notification manager
+- [which-key](https://github.com/folke/which-key.nvim) - shows available keybindings in a popup
+- [catppuccin-reloaded-nvim](https://github.com/neovim-idea/catppuccin-reloaded-nvim) - Just like catppuccin, but extensible
 
 ## Override Keymaps and Options
 
@@ -264,6 +271,7 @@ Simply create a file `~/.config/nvim/lua/overrides.lua` and return a Lua table t
 in `~/.config/nvim/lua/neovim-idea/keymaps.lua` and `~/.config/nvim/lua/neovim-idea/options.lua`.
 
 Say, for example, that you want to:
+
 1. change default indentation to `4` spaces
 2. bind the action `debug_keys_pressed` to `F7` instead of `F5`
 3. change the colorscheme to `catppuccin-matrix`, instead of `catppuccin-intellijdark`
@@ -391,4 +399,4 @@ git config --global fetch.prune true
 
 ## Buy me a :beer:
 
-BTC `12CQ1L7qQvF3pPXhAgomnSfWaVkL19nV5F` 
+BTC `12CQ1L7qQvF3pPXhAgomnSfWaVkL19nV5F`

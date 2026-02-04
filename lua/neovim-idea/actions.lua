@@ -251,8 +251,11 @@ function Actions.close_current_buffer()
   if ok then
     local buffers = utils.available_buffers()
     if #buffers >= 2 then
-      vim.api.nvim_buf_delete(buffers[1].bufnr, { force = false })
+      local readonly = vim.api.nvim_buf_get_option(buffers[1].bufnr, "readonly")
+      local modified = vim.api.nvim_buf_get_option(buffers[1].bufnr, "modified")
+
       vim.api.nvim_set_current_buf(buffers[2].bufnr)
+      vim.api.nvim_buf_delete(buffers[1].bufnr, { force = readonly or modified })
     end
     return
   end

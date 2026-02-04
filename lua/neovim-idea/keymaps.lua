@@ -229,7 +229,7 @@ local defaults = {
     mode = { "n", "i", "v" },
     lhs = "<D-w>",
     action = a.close_current_buffer,
-    opts = { noremap = true, silent = true, desc = "Close current buffer" },
+    opts = { noremap = true, silent = true, desc = "Close current buffer (and saves it if needed)" },
   },
   print_keys_pressed = {
     mode = { "n", "i", "v" },

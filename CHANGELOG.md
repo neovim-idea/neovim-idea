@@ -1,3 +1,12 @@
+## [1.4.1](https://github.com/neovim-idea/neovim-idea/compare/v1.4.0...v1.4.1) (2026-02-04)
+
+### 🩹 Fixes
+
+* added 'close current buffer' action ([7a063f1](https://github.com/neovim-idea/neovim-idea/commit/7a063f1a611b348b81e53d9c6f12a8a961452a3a))
+* apply customised UI highlights to all themes ([a4c4f56](https://github.com/neovim-idea/neovim-idea/commit/a4c4f56a3e33406f0e43c66815f4a7ae6a3fd367))
+* bette buffer closing logic & no visual glitch ([15a0762](https://github.com/neovim-idea/neovim-idea/commit/15a07629e448d324ce1fac2feda55d1b4d690881))
+* included catppuccin-reloaded-nvim and docs updates ([dc2b36a](https://github.com/neovim-idea/neovim-idea/commit/dc2b36aa6515797cb97df0fc16dce9cc28d41e42))
+
 ## [1.4.0](https://github.com/neovim-idea/neovim-idea/compare/v1.3.1...v1.4.0) (2026-01-18)
 
 ### 📖 Docs

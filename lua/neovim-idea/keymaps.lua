@@ -225,6 +225,12 @@ local defaults = {
     action = a.run_codelens,
     opts = { noremap = true, silent = true, desc = "Run Code Lens(es) in the current line" },
   },
+  close_current_buffer = {
+    mode = { "n", "i", "v" },
+    lhs = "<D-w>",
+    action = a.close_current_buffer,
+    opts = { noremap = true, silent = true, desc = "Close current buffer" },
+  },
   print_keys_pressed = {
     mode = { "n", "i", "v" },
     lhs = "<F5>",

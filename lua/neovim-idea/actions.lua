@@ -246,6 +246,21 @@ function Actions.toggle_comment()
   end
 end
 
+function Actions.close_current_buffer()
+  local ok, utils = pcall(require, "switcher-nvim.utils")
+  if ok then
+    local buffers = utils.available_buffers()
+    if #buffers >= 2 then
+      vim.api.nvim_buf_delete(buffers[1].bufnr, { force = false })
+      vim.api.nvim_set_current_buf(buffers[2].bufnr)
+    end
+    return
+  end
+
+  -- fallback: just close the current buffer
+  vim.api.nvim_buf_delete(0, { force = false })
+end
+
 function Actions.run_codelens()
   vim.lsp.codelens.run()
 end

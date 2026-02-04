@@ -228,7 +228,7 @@ section you'll find all the information to change this, along with all the short
 | `<F60>`         | `Opt+F12`             | Show Lazygit interface                                      |
 | `<D-/>`         | `Cmd+Slash`           | Comment / Uncomment current line or selected lines          |
 | `<D-r>`         | `Cmd+r`               | Run Code Lens(es) in the current line                       |
-| `<D-w>`         | `Cmd+w`               | Close current buffer                                        |
+| `<D-w>`         | `Cmd+w`               | Close current buffer (and saves it if needed)               |
 | `<F5>`          | `F5`                  | Debug: capture and print any key combination                |
 
 (\*) in MacOS, mouse events register differently the Cmd key modifier.
